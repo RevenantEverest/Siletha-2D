@@ -20,57 +20,27 @@ function enemyTakeDamage(int){
 */
 //======== Attack ========
 
-let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
-
 function handleClickEvent(evnt){
-    //takeDamage();
+    let attackOne = document.querySelector(`.attackOne`);
+    let attackTwo = document.querySelector(`.attackTwo`);
+    let attackThree = document.querySelector(`.attackThree`);
+    let attackFour = document.querySelector(`.attackFour`);
     
-    let enemyHealth = 100;
     let int = 0;
     
-    switch(sum){
-        case: `1`,
-            int = 10;
-        break;
-        case: `2`,
-            int = 20;
-        break;
-        case: `3`,
-            int = 30;
-        break;
-        case: `4`;
-            int = 40;
-        break;
-        default:
-            int = 0;
-        break;
-            
+    if(attackOne.onclick){
+        int = 10;
     }
-
-    enemyHealth -= int;
-    let currentEnemyHealth = enemyHealthDisplay.style.width = (enemyHealth + `%`);
-    if(currentEnemyHealth === `0%`){
-    attackButton();
+    
+    if(enemyHealth > 0){
+        takeDamage(int)
     }
 }
 
-function takeDamage(){
+let enemyHealth = 100;
+
+function takeDamage(int){
     let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
-    let enemyHealth = 100;
-    let int = 0;
-    
-    if(document.querySelector(`.attackOne`)){
-        int = 10;
-    }
-    if(document.querySelector(`.attackTwo`)){
-        int = 20;
-    }
-    if(document.querySelector(`.attackThree`)){
-        int = 30;
-    }
-    if(document.querySelector(`.attackFour`)){
-        int = 40;
-    }
 
     enemyHealth -= int;
     enemyHealthDisplay.style.width = (enemyHealth + `%`);
@@ -83,6 +53,7 @@ function attackButton(){
         temp.addEventListener(`click`, handleClickEvent);
     }
 }
+
 attackButton();
 
 
