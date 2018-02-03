@@ -4,6 +4,7 @@
         <title>Browser Game</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" href='css/combat.css'>
+        <link rel="stylesheet" href="css/animate.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
@@ -24,13 +25,17 @@
 
         <div class="main">
             <div class="mainBG">
+                <div class="spriteContainer">
+                    <div class="knightIdle"></div>
+                    <div class="knight2Idle"></div>
+                </div>
                 <div class="actionContainer">
                     <div class="actionBox">
                         <div class="attacks">
-                            <button type="button" class="button attack attackOne" data-attack= 1>Attack One</button>
-                            <button type="button" class="button attack attackTwo" data-attack= 2>Attack Two</button>
-                            <button type="button" class="button attack attackThree" data-attack= 3>Attack Three</button>
-                            <button type="button" class="button attack attackFour" data-attack= 4>Attack Four</button>
+                            <button type="button" class="button attack attackOne" data-increment= 10>Attack One</button>
+                            <button type="button" class="button attack attackTwo" data-increment= 20>Attack Two</button>
+                            <button type="button" class="button attack attackThree" data-increment= 30>Attack Three</button>
+                            <button type="button" class="button attack attackFour" data-increment= 40>Attack Four</button>
                         </div>
                     </div>
                 </div>

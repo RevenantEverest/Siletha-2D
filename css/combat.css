@@ -124,11 +124,112 @@ button:hover{
     padding-left: 25%;
     padding-right: 25%;
 }
+/*Knight States*/
+
+.knightIdle{
+    height: 370px;
+    width: 500px;
+    margin-left: 200px;
+    margin-top: 200px;
+    float: left;
+    background-image: url(/images/Knight%20Idle%20Trans.gif);
+    background-size: 500px;
+    background-repeat: no-repeat;
+}
+
+.knight2Idle{
+    height: 370px;
+    width: 400px;
+    float: right;
+    margin-right: 200px;
+    margin-top: 220px;
+    background-image: url(/images/Knight2%20Idle%20Trans.gif);
+    background-size: 400px;
+    background-repeat: no-repeat;
+}
+
+.knightAttack{
+    height: 370px;
+    width: 520px;
+    margin-left: 200px;
+    margin-top: 200px;
+    float: left;
+    background-image: url(/images/Knight%20Attack%20Trans.gif);
+    background-size: 530px;
+    background-repeat: no-repeat;
+    animation: 1s linear backAndForthOne;
+}
+
+.knight2Attack{
+    height: 410px;
+    width: 500px;
+    float: right;
+    margin-right: 90px;
+    margin-top: 150px;
+    background-image: url(/images/Knight2%20Attack.gif);
+    background-size: 420px;
+    background-repeat: no-repeat;
+    animation: 1s linear backAndForthTwo;
+}
+
+/*End Knight States*/
 
 .actionBox{
     height: 100px;
     align-self: center;
     background-color: rgba(255, 255, 255, .2);
+}
+
+.game-overWin{
+    height: 100%;
+    width: 100%;
+}
+
+.victory{
+    font-family: "Raleway", sans-serif;
+    padding-top: 400px;
+    padding-bottom: 400px;
+    font-size: 100px;
+    text-align: center;
+    animation: fadeIn;
+}
+
+/*======== Animations ========*/
+
+@keyframes backAndForthOne {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(120%);
+  }
+
+  75% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes backAndForthTwo {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-120%);
+  }
+
+  75% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /*=============================================*/
