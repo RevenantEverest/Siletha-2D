@@ -1,0 +1,55 @@
+body{
+    background-color: black;
+    color: #dedede;
+}
+
+nav{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    font-family: "Raleway", sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    animation: 2s linear infinite blink;
+    
+}
+
+a:hover{
+    color: grey;
+}
+
+/*Animations*/
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/*Classes*/
+.title{
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    font-size: 80px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+/*IDs*/
+#titleDiv{
+    display: inline-block;
+    text-align: center;
+    outline-style: solid;
+    margin: 300px auto 0 auto;
+}
+
+#playDiv{
+    padding-top: 30px;
+}

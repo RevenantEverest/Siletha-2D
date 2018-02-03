@@ -1,0 +1,134 @@
+html, body {
+    height: 100%;
+    width: 99%;
+}
+body{
+    background-color: black;
+    color: #dedede;
+}
+
+button{
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    border-radius: 12px;
+}
+
+button:hover{
+    background-color: black;
+    color: #dedede;
+}
+
+/*====== Classes =========*/
+/*Unrelated*/
+.attacks{
+    padding: 20px;
+    padding-top: 25px;
+    padding-left: 50px;
+}
+
+.button{
+    height: 50px;
+    width: 200px;
+    font-family: "Raleway", sans-serif;
+}
+
+
+.header{
+    height: 130px;
+    width: 101%;
+    font-family: "Raleway", sans-serif;
+    background-color: ;
+    outline-style: solid;
+    outline-width: medium;
+    outline-color: #dedede;
+}
+
+/*header classes*/
+
+/*health*/
+.healthText{
+    float: left;
+    padding: 25px 0 0 30px;
+}
+
+.healthBarContainer{
+    float: left;
+    display: inline-block;
+    padding-top: 80px;
+    width: 40%;
+}
+
+.healthOutline{
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: medium;
+    height: 10px;
+    width: 33.5%;
+}
+
+.healthDisplay{
+    height: 10px;
+    width: 100%;
+    background-color: green;
+}
+
+/*enemyHealth*/
+.enemyHealthText{
+    float: right;
+    padding: 25px 30px 0 30px;
+}
+
+.enemyHealthBarContainer{
+    float: right;
+    width: 40%;
+}
+
+.enemyHealthOutline{
+    float: right;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: medium;
+    height: 10px;
+    width: 33.5%;
+}
+
+.enemyHealthDisplay{
+    float: right;
+    height: 10px;
+    width: 100%;
+    background-color: red;
+}
+/*=============================================*/
+
+.main{
+    height: 100vh;
+    width: 101%;
+    background-image: url("/images/CaveBG.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: table;
+    background-repeat: no-repeat;
+}
+
+/*main classes*/
+
+.mainBG{
+    height: 100%;
+    width: 100%;
+
+}
+
+.actionContainer{
+    padding-top: 31.5%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.actionBox{
+    height: 100px;
+    align-self: center;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+/*=============================================*/

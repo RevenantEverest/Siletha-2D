@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Browser Game</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link rel="stylesheet" href='css/combat.css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="healthText"><h1>Health</h1></div>
+            <div class="healthBarContainer">
+                <div class="healthOutline">
+                    <div class="healthDisplay"></div>
+                </div>
+            </div>
+            <div class="enemyHealthText"><h1>Enemy Health</h1></div>
+            <div class="enemyHealthBarContainer">
+                <div class="enemyHealthOutline">
+                    <div class="enemyHealthDisplay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="mainBG">
+                <div class="actionContainer">
+                    <div class="actionBox">
+                        <div class="attacks">
+                            <button type="button" class="button attack attackOne" data-attack= 1>Attack One</button>
+                            <button type="button" class="button attack attackTwo" data-attack= 2>Attack Two</button>
+                            <button type="button" class="button attack attackThree" data-attack= 3>Attack Three</button>
+                            <button type="button" class="button attack attackFour" data-attack= 4>Attack Four</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            
+        </div>
+        <script src="js/combatFunctions.js"></script>
+    </body>
+</html>
