@@ -14,6 +14,7 @@ function storeEnemyHealth(){
 }
 /*======== End ========*/
 
+<<<<<<< HEAD
 //======== Button Functionality ========
 function attackButton(){                                                    //Give Attack Buttons Click Events
     let attack = document.querySelectorAll(`.attack`);
@@ -65,6 +66,28 @@ function handleClickEvent(evnt){                                            //Wh
 
 //======== Damage Functions ========
 function takeDamage(int){                                                   //Player Deals Damage
+=======
+function handleClickEvent(evnt){
+    let attackOne = document.querySelector(`.attackOne`);
+    let attackTwo = document.querySelector(`.attackTwo`);
+    let attackThree = document.querySelector(`.attackThree`);
+    let attackFour = document.querySelector(`.attackFour`);
+    
+    let int = 0;
+    
+    if(attackOne.onclick){
+        int = 10;
+    }
+    
+    if(enemyHealth > 0){
+        takeDamage(int)
+    }
+}
+
+let enemyHealth = 100;
+
+function takeDamage(int){
+>>>>>>> 8ffea043e8b9ac7e3217bd14fd6a0a4062ab84b3
     let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
 
     enemyHealth -= int;
@@ -109,6 +132,7 @@ function attackAnimKnightTwo(){                                              //K
     setTimeout(setIdleKnightTwo, 1000);
 }
 
+<<<<<<< HEAD
 function setIdleKnightTwo(){                                                //Knight Two Set Idle
     let attack = document.querySelector(`.knight2Attack`);
     document.querySelector(`.spriteContainer`).removeChild(attack);
@@ -126,6 +150,8 @@ function loseFight(){
 }
 /*======== End ========*/
 
+=======
+>>>>>>> 8ffea043e8b9ac7e3217bd14fd6a0a4062ab84b3
 attackButton();
 
 function RNG(int){
