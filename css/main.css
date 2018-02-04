@@ -1,24 +1,31 @@
+html, body{
+    height: 99.6%;
+    width: 99.9%;
+}
 body{
-    background-color: black;
+    background-image: url(/images/HomeScreen.gif);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: #dedede;
-}
-
-nav{
-    text-align: center;
-}
-
-a{
-    text-decoration: none;
-    color: inherit;
-    font-family: "Raleway", sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    animation: 2s linear infinite blink;
-    
 }
 
 a:hover{
     color: grey;
+}
+
+img{
+    margin-top: 10%;
+    margin-left: 23%;
+}
+
+/*Classes*/
+
+.logoContainer{
+    height: 65%;
+    width: 60%;
+    background-color: rgba(0,0,0,.5);
+    background-position: center;
 }
 
 /*Animations*/
@@ -33,23 +40,3 @@ a:hover{
   }
 }
 
-/*Classes*/
-.title{
-    font-family: "Raleway", sans-serif;
-    text-align: center;
-    font-size: 80px;
-    font-weight: 400;
-    padding: 10px;
-}
-
-/*IDs*/
-#titleDiv{
-    display: inline-block;
-    text-align: center;
-    outline-style: solid;
-    margin: 300px auto 0 auto;
-}
-
-#playDiv{
-    padding-top: 30px;
-}

@@ -14,7 +14,6 @@ function storeEnemyHealth(){
 }
 /*======== End ========*/
 
-<<<<<<< HEAD
 //======== Button Functionality ========
 function attackButton(){                                                    //Give Attack Buttons Click Events
     let attack = document.querySelectorAll(`.attack`);
@@ -59,6 +58,13 @@ function handleClickEvent(evnt){                                            //Wh
     
     console.log(`Enemy did ` + enemyDamage + ` points of damage`);
     console.log(`Player did ` + playerDamage + ` points of damage`);
+    
+    if(playerHealth <= 0){
+        knightOneDie();
+    }
+    if(enemyHealth <= 0){
+        knightTwoDie();
+    }
     //setTimeout(enemyAttack, 1000);
     //setTimeout(attackAnimKnightTwo, 1000);
 }
@@ -66,7 +72,6 @@ function handleClickEvent(evnt){                                            //Wh
 
 //======== Damage Functions ========
 function takeDamage(int){                                                   //Player Deals Damage
-=======
 function handleClickEvent(evnt){
     let attackOne = document.querySelector(`.attackOne`);
     let attackTwo = document.querySelector(`.attackTwo`);
@@ -87,7 +92,6 @@ function handleClickEvent(evnt){
 let enemyHealth = 100;
 
 function takeDamage(int){
->>>>>>> 8ffea043e8b9ac7e3217bd14fd6a0a4062ab84b3
     let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
 
     enemyHealth -= int;
@@ -119,6 +123,12 @@ function setIdleKnightOne(){                                                //Kn
     
     $(`.spriteContainer`).append(`<div class="knightIdle"></div>`)
 }
+    
+function knightOneDie(){
+    let idle = document.querySelector(`.knightIdle`);
+    document.querySelector(`.spriteContainer`).removeChild(idle);
+    $(`.spriteContainer`).append(`<div class="knightDie"></div>`);
+}
 /*======== End ========*/
 
 //======== Knight Two States ========
@@ -132,12 +142,17 @@ function attackAnimKnightTwo(){                                              //K
     setTimeout(setIdleKnightTwo, 1000);
 }
 
-<<<<<<< HEAD
 function setIdleKnightTwo(){                                                //Knight Two Set Idle
     let attack = document.querySelector(`.knight2Attack`);
     document.querySelector(`.spriteContainer`).removeChild(attack);
     
     $(`.spriteContainer`).append(`<div class="knight2Idle"></div>`)
+}
+
+function knightTwoDie(){
+    let idle = document.querySelector(`.knight2Idle`);
+    document.querySelector(`.spriteContainer`).removeChild(idle);
+    $(`.spriteContainer`).append(`<div class="knight2Die"></div>`);
 }
 /*======== End ========*/
 
@@ -150,9 +165,6 @@ function loseFight(){
 }
 /*======== End ========*/
 
-=======
->>>>>>> 8ffea043e8b9ac7e3217bd14fd6a0a4062ab84b3
-attackButton();
 
 function RNG(int){
     let numGen = Math.floor(Math.random() * int);
