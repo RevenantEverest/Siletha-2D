@@ -25,18 +25,41 @@ function attackButton(){                                                    //Gi
 
 function handleClickEvent(evnt){                                            //What happens when button is clicked
     let value = evnt.target.dataset.increment;
+    let playerDamage = RNG(value);
+    let enemyDamage = RNG(30);
     
-    if(enemyHealth < value){
-        value = enemyHealth;
+    if(enemyHealth < playerDamage){ //If enemy health is lower then player damage, adjust player damage to finish off enemy
+        playerDamage = enemyHealth;
     }
-    takeDamage(value);
-    if(enemyHealth <= 0){
+    takeDamage(playerDamage);
+    
+    if(playerHealth < enemyDamage){ //If player health is lower then enemy damage, adjust enemy damage to finish off player
+        enemyDamage = playerHealth;
+    }
+    
+    if(enemyHealth <= 0){           //Check if player won fight
         winFight();
     }
-
-    attackAnimKnightOne();
-    setTimeout(enemyAttack, 1000);
-    setTimeout(attackAnimKnightTwo, 1000);
+    
+    if(playerHealth <= 0){          //Check if player lost fight
+        loseFight();
+    }
+    
+    if(playerHealth > 0){           //Allow player attack anim if player health is above 0
+        attackAnimKnightOne();
+    }
+    
+    let damageEnemy = enemyAttack(enemyDamage);
+    
+    if(enemyHealth > 0){            //Allow enemy to attack if health is above 0
+        setTimeout(damageEnemy, 1000);
+        setTimeout(attackAnimKnightTwo, 1000);
+    }
+    
+    console.log(`Enemy did ` + enemyDamage + ` points of damage`);
+    console.log(`Player did ` + playerDamage + ` points of damage`);
+    //setTimeout(enemyAttack, 1000);
+    //setTimeout(attackAnimKnightTwo, 1000);
 }
 /*======== End ========*/
 
@@ -48,17 +71,10 @@ function takeDamage(int){                                                   //Pl
     enemyHealthDisplay.style.width = (enemyHealth + `%`);
 }
 
-function enemyAttack(){                                                     //Enemy Deals Damage
+function enemyAttack(int){                                                     //Enemy Deals Damage
     let playerHealthDisplay = document.querySelector(`.healthDisplay`);
-    //let enemyInt = Math.floor(Math.random() * 30);
-    let enemyInt = testGen();
     
-    
-    if(playerHealth < enemyInt){
-        enemyInt = enemyHealth;
-    }
-    
-    playerHealth -= enemyInt;
+    playerHealth -= int;
     playerHealthDisplay.style.width = (playerHealth + `%`);
 }
 /*======== End ========*/
@@ -103,17 +119,28 @@ function setIdleKnightTwo(){                                                //Kn
 
 //======== Win/Lose ========
 function winFight(){
-    document.body.classList.add(`game-overWin`);
+    $(`body`).append();
 }
 function loseFight(){
-    
+    document.body.classList.add(`game-overLose`);
 }
 /*======== End ========*/
 
 attackButton();
 
-function testGen(){
-    let enemyInt = Math.floor(Math.random() * 30);
-    return enemyInt;
-    console.log(enemyInt);
+function RNG(int){
+    let numGen = Math.floor(Math.random() * int);
+    return numGen;
+    console.log(numGen);
 }
+
+//======== To Do List ========
+/*
+
+    >Fix bug causing player to not die
+    >Give player and opponent death animations
+    >Visual pop ups displaying damage delt
+    >Better CSS
+    >Allow for multiple class choice (has its own set of To-Do's)
+
+*/
