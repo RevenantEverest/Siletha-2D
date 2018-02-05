@@ -172,6 +172,28 @@ button:hover{
     animation: 1s linear backAndForthTwo;
 }
 
+.knightDie{
+    height: 420px;
+    width: 520px;
+    margin-left: 200px;
+    margin-top: 190px;
+    float: left;
+    background-image: url(/images/KnightOneStates/Knight%20Die%20Trans.gif);
+    background-size: 580px;
+    background-repeat: no-repeat;
+}
+
+.knight2Die{
+    height: 410px;
+    width: 530px;
+    float: right;
+    margin-right: 100px;
+    margin-top: 200px;
+    background-image: url(/images/KnightTwoStates/Knight2%20Die%20Trans.gif);
+    background-size: 550px;
+    background-repeat: no-repeat;
+}
+
 /*End Knight States*/
 
 .actionBox{

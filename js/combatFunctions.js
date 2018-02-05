@@ -31,7 +31,6 @@ function handleClickEvent(evnt){                                            //Wh
     if(enemyHealth < playerDamage){ //If enemy health is lower then player damage, adjust player damage to finish off enemy
         playerDamage = enemyHealth;
     }
-    takeDamage(playerDamage);
     
     if(playerHealth < enemyDamage){ //If player health is lower then enemy damage, adjust enemy damage to finish off player
         enemyDamage = playerHealth;
@@ -47,6 +46,7 @@ function handleClickEvent(evnt){                                            //Wh
     
     if(playerHealth > 0){           //Allow player attack anim if player health is above 0
         attackAnimKnightOne();
+        takeDamage(playerDamage);
     }
     
     let damageEnemy = enemyAttack(enemyDamage);
@@ -56,40 +56,20 @@ function handleClickEvent(evnt){                                            //Wh
         setTimeout(attackAnimKnightTwo, 1000);
     }
     
-    console.log(`Enemy did ` + enemyDamage + ` points of damage`);
-    console.log(`Player did ` + playerDamage + ` points of damage`);
-    
     if(playerHealth <= 0){
         knightOneDie();
     }
     if(enemyHealth <= 0){
         knightTwoDie();
     }
+    
+    return console.log(`Enemy did ` + enemyDamage + ` points of damage`) + console.log(`Player did ` + playerDamage + ` points of damage`);;
     //setTimeout(enemyAttack, 1000);
     //setTimeout(attackAnimKnightTwo, 1000);
 }
 /*======== End ========*/
 
 //======== Damage Functions ========
-function takeDamage(int){                                                   //Player Deals Damage
-function handleClickEvent(evnt){
-    let attackOne = document.querySelector(`.attackOne`);
-    let attackTwo = document.querySelector(`.attackTwo`);
-    let attackThree = document.querySelector(`.attackThree`);
-    let attackFour = document.querySelector(`.attackFour`);
-    
-    let int = 0;
-    
-    if(attackOne.onclick){
-        int = 10;
-    }
-    
-    if(enemyHealth > 0){
-        takeDamage(int)
-    }
-}
-
-let enemyHealth = 100;
 
 function takeDamage(int){
     let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
@@ -126,7 +106,13 @@ function setIdleKnightOne(){                                                //Kn
     
 function knightOneDie(){
     let idle = document.querySelector(`.knightIdle`);
-    document.querySelector(`.spriteContainer`).removeChild(idle);
+    let attack = document.querySelector(`.knightAttack`);
+    if(idle){
+        document.querySelector(`.spriteContainer`).removeChild(idle);
+    }else{
+        document.querySelector(`.spriteContainer`).removeChild(attack);
+    }
+    
     $(`.spriteContainer`).append(`<div class="knightDie"></div>`);
 }
 /*======== End ========*/
@@ -151,7 +137,13 @@ function setIdleKnightTwo(){                                                //Kn
 
 function knightTwoDie(){
     let idle = document.querySelector(`.knight2Idle`);
-    document.querySelector(`.spriteContainer`).removeChild(idle);
+    let attack = document.querySelector(`.knight2Attack`);
+    if(idle){
+        document.querySelector(`.spriteContainer`).removeChild(idle);
+    }else{
+        document.querySelector(`.spriteContainer`).removeChild(attack);
+    }
+    
     $(`.spriteContainer`).append(`<div class="knight2Die"></div>`);
 }
 /*======== End ========*/
@@ -172,11 +164,11 @@ function RNG(int){
     console.log(numGen);
 }
 
+attackButton();
+
 //======== To Do List ========
 /*
 
-    >Fix bug causing player to not die
-    >Give player and opponent death animations
     >Visual pop ups displaying damage delt
     >Better CSS
     >Allow for multiple class choice (has its own set of To-Do's)
