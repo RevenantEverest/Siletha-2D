@@ -1,3 +1,5 @@
+/*============================================= Beginning of Fight Sequence =============================================*/
+
 html, body {
     height: 100%;
     width: 99%;
@@ -19,6 +21,7 @@ button{
     font-family: "Raleway", sans-serif;
     font-weight: 800;
     border-radius: 12px;
+    position: static;
 }
 
 button:hover{
@@ -26,6 +29,11 @@ button:hover{
     color: #dedede;
 }
 
+a:hover{
+    color: red;
+}
+
+/*============================================= Beginning of Fight Sequence =============================================*/
 /*====== Classes =========*/
 /*Unrelated*/
 .attacks{
@@ -40,6 +48,58 @@ button:hover{
     font-family: "Raleway", sans-serif;
 }
 
+.potions{
+    margin-top: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.potionContainer{
+    height: 80px;
+    width: 80px;
+    margin-left: 1px;
+    background-image: url("/images/Items/Health%20Potion.png");
+    background-size: cover;
+    
+    
+}
+
+.continue{
+    display: inline-block;
+    height: 50px;
+    width: 200px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    margin-left: 845px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    position: static;
+    outline-style: solid;
+    animation: 2s linear infinite blink;
+}
+
+.gameOver{
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    height: -20em;
+    margin-left: 840px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    padding: 10px;
+    position: static;
+    text-decoration: none;
+    color: #dedede;
+    outline-style: solid;
+    animation: 3s linear infinite blinkFull;
+}
+
+.continueContainer{
+    position: static;
+    height: -60em;
+}
+
+/*======== End ========*/
 
 .header{
     height: 130px;
@@ -113,10 +173,6 @@ button:hover{
 }
 /*=============================================*/
 
-.main{
-
-}
-
 /*main classes*/
 
 .mainBG{
@@ -126,9 +182,9 @@ button:hover{
 }
 
 .actionContainer{
-    padding-top: 31.5%;
     padding-left: 25%;
     padding-right: 25%;
+    position: static;
 }
 /*Knight States*/
 
@@ -172,10 +228,12 @@ button:hover{
     float: right;
     margin-right: 90px;
     margin-top: 150px;
+    margin-bottom: 30px;
     background-image: url(/images/KnightTwoStates/Knight2%20Attack%20Trans.gif);
     background-size: 420px;
     background-repeat: no-repeat;
     animation: 1s linear backAndForthTwo;
+    position: static;
 }
 
 .knightDie{
@@ -203,23 +261,29 @@ button:hover{
 /*End Knight States*/
 
 .actionBox{
-    height: 100px;
+    margin-top: -1em;
+    height: 220px;
     align-self: center;
     background-color: rgba(255, 255, 255, .2);
+    position: static;
 }
 
-.game-overWin{
-    height: 99%;
-    width: 99%;
+.defeat{
+    height: 500px;
+    width: 460px;
+    margin-top: -100em;
+    margin-left: 700px;
+    animation: 3s linear infinite blink;
+    position: static;
 }
 
 .victory{
-    font-family: "Raleway", sans-serif;
-    padding-top: 400px;
-    padding-bottom: 400px;
-    font-size: 100px;
-    text-align: center;
-    animation: fadeIn;
+    height: 500px;
+    width: 660px;
+    margin-top: -60em;
+    margin-left: 610px;;
+    animation: 3s linear infinite blink;
+    position: static;
 }
 
 /*======== Animations ========*/
@@ -260,4 +324,51 @@ button:hover{
   }
 }
 
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes blinkFull {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 /*=============================================*/
+/*============================================= End of Fight Sequence =============================================*/
+
+/*============================================= Beginning of Dungeon Crawler =============================================*/
+
+#container {
+	position: relative;
+	top: 30px;
+	outline:2px solid #000;
+	font-size: 0;
+    margin-top: 100px;
+    margin-left: 550px;
+	height:760px;
+	width:760px;
+	padding: 0;
+	border: none;
+}
+
+.grid {
+	margin:0;
+	padding:0;
+	border:none;
+	outline:2px solid #000;
+	display:inline-block;
+    background-color: rgba(0, 0, 0, .5);
+}
