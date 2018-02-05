@@ -172,5 +172,7 @@ attackButton();
     >Visual pop ups displaying damage delt
     >Better CSS
     >Allow for multiple class choice (has its own set of To-Do's)
-
+    >Add sounds for taking damage
+    >Add winning and losing sounds
+    >Add story mode
 */
