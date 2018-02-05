@@ -4,6 +4,14 @@ html, body {
 }
 body{
     background-color: black;
+    height: 10vh;
+    width: 99.4%;
+    background-image: url("/images/Forest%20Pixel%20BG.jpg");
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed;*/
+    display: table;
+    background-repeat: no-repeat;
     color: #dedede;
 }
 
@@ -37,10 +45,11 @@ button:hover{
     height: 130px;
     width: 101%;
     font-family: "Raleway", sans-serif;
-    background-color: ;
-    outline-style: solid;
-    outline-width: medium;
-    outline-color: #dedede;
+    background-color: rgba(0,0,0,.5);
+    outline-style:double;
+    outline-width: thick;
+    outline-color: rgba(255, 255, 255, .5);
+    border-radius: 12px;
 }
 
 /*header classes*/
@@ -53,8 +62,9 @@ button:hover{
 
 .healthBarContainer{
     float: left;
-    display: inline-block;
-    padding-top: 80px;
+    display: inline;
+    padding-top: 61px;
+    padding-left: 15px;
     width: 40%;
 }
 
@@ -75,11 +85,14 @@ button:hover{
 /*enemyHealth*/
 .enemyHealthText{
     float: right;
-    padding: 25px 30px 0 30px;
+    padding: 30px 30px 0 30px;
 }
 
 .enemyHealthBarContainer{
     float: right;
+    display: inline-block;
+    padding-top:;
+    padding-right:;
     width: 40%;
 }
 
@@ -101,14 +114,7 @@ button:hover{
 /*=============================================*/
 
 .main{
-    height: 100vh;
-    width: 101%;
-    background-image: url("/images/CaveBG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: table;
-    background-repeat: no-repeat;
+
 }
 
 /*main classes*/

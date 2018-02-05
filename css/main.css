@@ -1,32 +1,37 @@
-html, body{
-    height: 99.6%;
-    width: 99.9%;
-}
+
 body{
     background-image: url(/images/HomeScreen.gif);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     color: #dedede;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    margin-left: 20px;
+    padding: 5px 40px 5px 40px;
+    animation: 2s linear infinite blink;
+    outline-style: solid;
 }
 
 a:hover{
-    color: grey;
+    color: black;
 }
 
 img{
-    margin-top: 10%;
-    margin-left: 23%;
+    margin-top: 15%;
+    position: relative;
+    height: 292px;
+    margin-bottom: 20px;
 }
 
 /*Classes*/
-
-.logoContainer{
-    height: 65%;
-    width: 60%;
-    background-color: rgba(0,0,0,.5);
-    background-position: center;
-}
 
 /*Animations*/
 @keyframes blink {

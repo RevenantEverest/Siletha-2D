@@ -51,9 +51,10 @@ function handleClickEvent(evnt){                                            //Wh
     
     let damageEnemy = enemyAttack(enemyDamage);
     
-    if(enemyHealth > 0){            //Allow enemy to attack if health is above 0
-        setTimeout(damageEnemy, 1000);
+    if(enemyHealth > 0 && playerHealth > 0){            //Allow enemy to attack if health is above 0
         setTimeout(attackAnimKnightTwo, 1000);
+        setTimeout(damageEnemy, 2000);
+        
     }
     
     if(playerHealth <= 0){
