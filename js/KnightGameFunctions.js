@@ -1,6 +1,7 @@
 function fightSequence(){
-    let combatScript = $(`.combatScript`);
-    $(`.combatScript`).remove();
+    $(`.knightGameFunctions`).remove();
+    $(`#container`).remove();
+    $(`.playerAvatarContainer`).remove();
     $(`body`).append(`<div class="header">
             <div class="healthText"><h1>Health</h1></div>
             <div class="healthBarContainer">
@@ -38,7 +39,7 @@ function fightSequence(){
                 </div>
             </div>
         </div>
-        <script class="combatScript" src="js/combatFunctions.js"></script>`);
+        <script class="knightGameFunctions" src="js/knightGameFunctions"></script>`);
     attackButton();
     potionButton();
 }
@@ -47,8 +48,7 @@ function fightSequence(){
 let enemyHealthDisplay = document.querySelector(`.enemyHealthDisplay`);
 let enemyHealth = storeEnemyHealth();
 let playerHealth = storePlayerHealth();
-let potionUse = storePotionUse();
-const maxPlayerHealth = 100;
+let potionUse =  0;//storePotionUse();
 
 function storePotionUse(){
     let potionUse = 3;
@@ -275,6 +275,11 @@ function fightEnd(){
     $(`.header`).remove();
     $(`.main`).remove();
     $(`.footer`).remove();
+    createAvatar();
+    createGrid(50);
+    enemyHealth = 100;
+    playerHealth = 100;
+    
 }
 
 //======== To Do List ========
@@ -294,14 +299,24 @@ function fightEnd(){
 function createGrid(int) {
     for (let rows = 0; rows < int; rows++) {
         for (let columns = 0; columns < int; columns++) {
-            $(`#container`).append(`<div class="grid"></div>`);
+            if(myMatrix.get(rows, columns) === 1){
+                //$(`#container`).append(`<div class="gridRed"></div>`);
+                let temp = $(`<div class="grid" id="`+rows+columns+`"></div>`);
+                temp.css("background-color", "red");
+                $(`#container`).append(temp);
+            }else{
+                $(`#container`).append(`<div class="grid" id="`+rows+columns+`"></div>`);
+                //console.log(`Adding NotRed`);
+            }
         }
     }
     $(`.grid`).width(760/int);
     $(`.grid`).height(760/int);
+    $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "blue");
 }
 
 function createAvatar(){
+        $(`.knightGameFunctions`).remove();
         $(`body`).append($(`<div id="container">
         </div>
         <div class="playerAvatarContainer">
@@ -320,8 +335,127 @@ function createAvatar(){
         </div>`));
 }
 
+
+//Taken From Eloquent Javascript Chapter 6
+class Matrix {
+  constructor(width, height, content = () => undefined) {
+    this.width = width;
+    this.height = height;
+    this.content = [];
+
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        this.content[y * width + x] = content(x, y);
+      }
+    }
+  }
+
+  get(x, y) {
+    return this.content[y * this.width + x];
+  }
+  set(x, y, value) {
+    this.content[y * this.width + x] = value;
+  }
+}
+
+let myMatrix;
+
+function createMatrix(){
+    myMatrix = new Matrix(50, 50);
+    for(let i = 0; i < myMatrix.width; i++){
+        for(let x = 0; x < myMatrix.height; x++){
+            let temp = RNG(500);
+            if(temp < 10){
+                myMatrix.set(i, x, 1);
+            }else{
+                myMatrix.set(i, x, 0);
+            }
+            console.log(myMatrix.get(i, x));
+        }
+    }
+}
+
+let playerXY = {
+    xpos: 0,
+    ypos: 0,
+};
+
+function playerMovement(direction){
+    $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "rgba(0, 0, 0, .5)");
+    if(direction === `left`){
+        playerXY.ypos -= 1;
+        $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "blue");
+        $(`#` + (playerXY.xpos) + (playerXY.ypos) + 1).css("background-color", "rgba(0, 0, 0, .5)");
+    }
+    else if(direction === `right`){
+        playerXY.ypos += 1;
+        $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "blue");
+        $(`#` + (playerXY.xpos) + (playerXY.ypos) - 1).css("background-color", "rgba(0, 0, 0, .5)");
+    }
+    else if(direction === `up`){
+        playerXY.xpos -= 1;
+        $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "blue");
+        $(`#` + (playerXY.xpos + 1) + (playerXY.ypos)).css("background-color", "rgba(0, 0, 0, .5)");
+    }
+    else if(direction === `down`){
+        playerXY.xpos += 1;
+        $(`#` + playerXY.xpos + playerXY.ypos).css("background-color", "blue");
+        $(`#` + (playerXY.xpos + 1) + (playerXY.ypos)).css("background-color", "rgba(0, 0, 0, .5)");
+    }
+    checkForEnemy();
+}
+
+function checkForEnemy(){
+    if(myMatrix.get(playerXY.xpos,playerXY.ypos) === 1){
+       fightSequence();
+        console.log(`New Please Work`);
+    }
+}
+
+//Modified from W3Schools Example
+function keyPress(event) {
+    var x = event.which || event.keyCode;
+    if(x === 119){
+        playerMovement(`up`);
+    }
+    if(x === 97){
+        playerMovement(`left`);
+    }
+    if(x === 115){
+        playerMovement(`down`);
+    }
+    if(x === 100){
+       playerMovement(`up`);
+    }
+}
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+    
+    e = e || window.event;
+
+    if (e.keyCode == `87`) {
+        playerMovement(`up`);
+    }
+    else if (e.keyCode == `65`) {
+        playerMovement(`left`);
+    }
+    else if (e.keyCode == `83`) {
+       playerMovement(`down`);
+    }
+    else if (e.keyCode == `68`) {
+       playerMovement(`right`);
+    }
+
+}
+
+//document.onkeypress = keyPress(event);
+
 createAvatar();
-createGrid(20);
+createMatrix();
+createGrid(50);
+reload();
 //create grid
 //spawn a color square representing the player
 //be able to move the player

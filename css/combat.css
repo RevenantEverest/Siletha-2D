@@ -354,7 +354,8 @@ a:hover{
 #container {
 	position: relative;
 	top: 30px;
-	outline:2px solid #000;
+	outline:2px double rgba(255,255,255, .5);
+    outline-width: thick;
 	font-size: 0;
     margin-top: 100px;
     margin-left: 650px;
@@ -366,6 +367,16 @@ a:hover{
 }
 
 .grid {
+	margin:0;
+	padding:0;
+	border:none;
+	outline:2px solid #000;
+	display:inline-block;
+    background-color: rgba(0, 0, 0, .5);
+    position: static;
+}
+
+.gridRed {
 	margin:0;
 	padding:0;
 	border:none;
