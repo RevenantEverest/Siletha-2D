@@ -357,11 +357,12 @@ a:hover{
 	outline:2px solid #000;
 	font-size: 0;
     margin-top: 100px;
-    margin-left: 550px;
+    margin-left: 650px;
 	height:760px;
 	width:760px;
 	padding: 0;
 	border: none;
+    position: static
 }
 
 .grid {
@@ -371,4 +372,86 @@ a:hover{
 	outline:2px solid #000;
 	display:inline-block;
     background-color: rgba(0, 0, 0, .5);
+    position: static;
+}
+
+.playerAvatarContainer{
+    display: inherit;
+    margin-top: -43em;
+    margin-left: 30px;;
+    position: static;
+}
+
+.playerIdle{
+    height: 360px;
+    width: 500px;
+    background-image: url("/images/KnightOneStates/Knight%20Idle%20Trans.gif");
+    margin-top: 30px;
+    background-repeat: no-repeat;
+    background-size: 500px;
+    position: static;
+}
+
+.playerStatusContainer{
+    background-color: rgba(0,0,0,.6);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    outline-style:double;
+    outline-width: thick;
+    outline-color: rgba(255, 255, 255, .5);
+    border-radius: 12px;
+}
+
+.playerHealthText{
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    margin-left: 40px;
+}
+
+.playerHealthOutline{
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: medium;
+    margin-top: -3em;
+    margin-bottom: 25px;
+    margin-left: 220px;
+    height: 20px;
+    width: 50%;
+    position: static;
+}
+
+.playerHealthDisplay{
+    height: 20px;
+    width: 100%;
+    background-color: green;
+}
+
+.healthPotions{
+    margin-top: 80px;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 12px;
+}
+
+.healthPotions:hover{
+    background-color: rgba(169, 169, 169,.4);
+    
+}
+
+.healthPotionIcon{
+    height: 100px;
+    width: 100px;
+    margin-left: 1px;
+    background-image: url("/images/Items/Health%20Potion.png");
+    background-size: cover;
+}
+
+.potionCount{
+    color: #dedede;
+    font-family:monospace;
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: 32px;
+    margin-top: 10px;
 }

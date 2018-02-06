@@ -291,18 +291,37 @@ function fightEnd(){
 
 /*============================================= Beginning of Dungeon Crawler =============================================*/
 
-function createGrid(x) {
-    for (let rows = 0; rows < x; rows++) {
-        for (var columns = 0; columns < x; columns++) {
-            $("#container").append("<div class='grid'></div>");
+function createGrid(int) {
+    for (let rows = 0; rows < int; rows++) {
+        for (let columns = 0; columns < int; columns++) {
+            $(`#container`).append(`<div class="grid"></div>`);
         }
     }
-    $(".grid").width(760/x);
-    $(".grid").height(760/x);
+    $(`.grid`).width(760/int);
+    $(`.grid`).height(760/int);
 }
 
-createGrid(20);
+function createAvatar(){
+        $(`body`).append($(`<div id="container">
+        </div>
+        <div class="playerAvatarContainer">
+            <div class="playerStatusContainer">    
+                <h1 class="playerHealthText">HEALTH :</h1>
+            <div class="playerHealthOutline">
+                <div class="playerHealthDisplay"></div>
+            </div>
+            </div>
+            <div class="playerIdle"></div>
+            <div class="healthPotions">
+                <div class="healthPotionIcon">
+                </div>
+                <h1 class="potionCount">10</h1>
+            </div>
+        </div>`));
+}
 
+createAvatar();
+createGrid(20);
 //create grid
 //spawn a color square representing the player
 //be able to move the player
