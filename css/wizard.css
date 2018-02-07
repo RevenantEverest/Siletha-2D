@@ -189,12 +189,12 @@ a:hover{
 /*Knight States*/
 
 .knightIdle{
-    height: 370px;
+    height: 420px;
     width: 500px;
     margin-left: 200px;
-    margin-top: 200px;
+    margin-top: 170px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Idle%20Trans.gif);
+    background-image: url(/images/WizardStates/WizardIdle.gif);
     background-size: 500px;
     background-repeat: no-repeat;
 }
@@ -211,15 +211,15 @@ a:hover{
 }
 
 .knightAttack{
-    height: 370px;
+    height: 430px;
     width: 520px;
     margin-left: 200px;
-    margin-top: 200px;
+    margin-top: 150px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Attack%20Trans.gif);
+    background-image: url(/images/WizardStates/WizardAttack.gif);
     background-size: 530px;
     background-repeat: no-repeat;
-    animation: 1s linear backAndForthOne;
+    /*animation: 1s linear backAndForthOne;*/
 }
 
 .knight2Attack{
@@ -237,12 +237,12 @@ a:hover{
 }
 
 .knightDie{
-    height: 420px;
+    height: 540px;
     width: 520px;
     margin-left: 200px;
-    margin-top: 190px;
+    margin-top: 120px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Die%20Trans.gif);
+    background-image: url(/images/WizardStates/WizardDie.gif);
     background-size: 580px;
     background-repeat: no-repeat;
 }
@@ -346,6 +346,16 @@ a:hover{
   }
 }
 
+@keyframes projectile {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /*=============================================*/
 /*============================================= End of Fight Sequence =============================================*/
 
@@ -394,13 +404,12 @@ a:hover{
 }
 
 .playerIdle{
-    height: 360px;
+    height: 460px;
     width: 500px;
-    background-image: url("/images/KnightOneStates/Knight%20Idle%20Trans.gif");
+    background-image: url(/images/WizardStates/WizardIdle.gif);
     margin-top: 30px;
     background-repeat: no-repeat;
-    background-size: 300px;
-    position: static;
+    background-size: 500px;
 }
 
 .playerStatusContainer{
@@ -438,7 +447,7 @@ a:hover{
 }
 
 .healthPotions{
-    margin-top: 80px;
+    margin-top: 00px;
     height: 100px;
     width: 100px;
     background-color: rgba(255, 255, 255, .6);
@@ -465,4 +474,17 @@ a:hover{
     font-weight: 400;
     margin-left: 32px;
     margin-top: 10px;
+}
+
+.projectile{
+    height: 140px;
+    width: 500px;
+    margin-left: -200px;
+    margin-top: 350px;
+    float: left;
+    background-image: url(/images/Effects/Fireball.png);
+    background-size: 350px;
+    background-repeat: no-repeat;
+    animation: 1s linear projectile;
+    position: static;
 }
