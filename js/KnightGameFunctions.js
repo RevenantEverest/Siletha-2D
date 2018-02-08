@@ -42,6 +42,8 @@ function fightSequence(){
         <script class="knightGameFunctions" src="js/knightGameFunctions"></script>`);
     attackButton();
     potionButton();
+    mainThemeStop();
+    battleTheme();
 }
 
 //======== Global Variables ========
@@ -128,6 +130,7 @@ function handleClickEvent(evnt){                                            //Wh
 
 function handlePotionClick(evnt){
     healPlayer();
+    usePotion();
     console.log(`Should heal`);
 }
 /*======== End ========*/
@@ -139,6 +142,7 @@ function takeDamage(int){
     
     enemyHealth -= int;
     enemyHealthDisplay.style.width = (enemyHealth + `%`);
+    swordHitPlate();
 }
 
 function enemyAttack(int){                                                     //Enemy Deals Damage
@@ -225,7 +229,7 @@ function attackAnimKnightTwo(){                                              //K
     let idle = document.querySelector(`.knight2Idle`);
     document.querySelector(`.spriteContainer`).removeChild(idle);
     $(`.spriteContainer`).append(`<div class="knight2Attack"></div>`);
-    
+    axeHitPlate();
     
     setTimeout(setIdleKnightTwo, 1000);
 }
@@ -279,6 +283,8 @@ function fightEnd(){
     createGrid(50);
     enemyHealth = 100;
     playerHealth = 100;
+    battleThemeStop();
+    mainTheme();
     
 }
 
@@ -450,12 +456,48 @@ function checkKey(e) {
 
 }
 
-//document.onkeypress = keyPress(event);
+function mainTheme(){
+    let theme = document.querySelector(`.mainTheme`);
+    theme.play();
+}
+
+function mainThemeStop(){
+    let theme = document.querySelector(`.mainTheme`);
+    theme.pause();
+}
+
+function battleTheme(){
+    let theme = document.querySelector(`.battleTheme`);
+    theme.currentTime = 0;
+    theme.play();
+}
+
+function battleThemeStop(){
+    let theme = document.querySelector(`.battleTheme`);
+    theme.pause();
+}
+
+function axeHitPlate(){
+    let theme = document.querySelector(`.axeHitPlate`);
+    theme.currentTime = 0;
+    theme.play();
+}
+
+function swordHitPlate(){
+    let theme = document.querySelector(`.swordHitPlate`);
+    theme.currentTime = 0;
+    theme.play();
+}
+
+function usePotion(){
+    let theme = document.querySelector(`.usePotion`);
+    theme.currentTime = 0;
+    theme.play();
+}
+
+mainTheme();
 
 createAvatar();
 createMatrix();
 createGrid(50);
 reload();
-//create grid
-//spawn a color square representing the player
-//be able to move the player

@@ -31,8 +31,9 @@ function seven(){
     $(`button`).remove();
     $(`div`).append(`<h1 class="seven">But now, the wind is colder. The nights are longer and the shadows are darker. Rumors say the Unspeakable is back to claim Acirhia as it's own. Is it time for a new hero to come out of the shadows, and save us once more?</h1>`);
     $(`body`).append(`<span>
-            <a href="chooseClass.html">Begin Journey...</a>
+            <button class="startJourney">Begin Journey...</button>
         </span>`);
+    startButton();
 }
 
 /*======== Transition Functions ========*/
@@ -89,9 +90,25 @@ function nextButton(){                                                    //Give
     
 }
 
-//function temp(){
-//    let next = document.querySelector(`.nextButton`);
-//    next.onClick();
-//}
+function startButton(){
+    let startJourney = document.querySelector(`.startJourney`);
+    startJourney.addEventListener(`click`, function(){
+        play();
+        setTimeout(function(){
+            window.location.href = `chooseClass.html`;      
+        }, 1000);
+    });
+}
 
+function play(){
+    let theme = document.querySelector(`.start`);
+    theme.play();
+}
+
+function introTheme(){
+    let theme = document.querySelector(`.mainTheme`);
+    theme.play();
+}
+
+introTheme();
 nextButton();
