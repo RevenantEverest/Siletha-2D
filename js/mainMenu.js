@@ -4,10 +4,12 @@ function menuTheme(){
 }
 
 function play(){
-    setTimeout(function(){
+    /*setTimeout(function(){
         let theme = document.querySelector(`.play`);
         theme.play();
-    }, 1000);
+    }, 1000);*/
+    let theme = document.querySelector(`.play`);
+        theme.play();
 }
 
 function playButton(){

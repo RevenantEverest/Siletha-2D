@@ -4,6 +4,48 @@ body{
     background-repeat: no-repeat;
 }
 
+.knightClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 370px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.wizardClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 285px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.archerClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 280px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
 .chooseClassContainer{
     margin-top: 200px;
     margin-left: 650px;
