@@ -8,7 +8,7 @@ body{
     background-color: black;
     height: 10vh;
     width: 99.4%;
-    background-image: url("/images/Forest%20Pixel%20BG.jpg");
+    background-image: url("../images/Forest%20Pixel%20BG.jpg");
     background-size: cover;
     background-position: center;
     /*background-attachment: fixed;*/
@@ -58,7 +58,7 @@ a:hover{
     height: 80px;
     width: 80px;
     margin-left: 1px;
-    background-image: url("/images/Items/Health%20Potion.png");
+    background-image: url("../images/Items/Health%20Potion.png");
     background-size: cover;
     
     
@@ -194,7 +194,7 @@ a:hover{
     margin-left: 200px;
     margin-top: 200px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Idle%20Trans.gif);
+    background-image: url(../images/KnightOneStates/Knight%20Idle%20Trans.gif);
     background-size: 500px;
     background-repeat: no-repeat;
 }
@@ -205,7 +205,7 @@ a:hover{
     float: right;
     margin-right: 200px;
     margin-top: 220px;
-    background-image: url(/images/KnightTwoStates/Knight2%20Idle%20Trans.gif);
+    background-image: url(../images/KnightTwoStates/Knight2%20Idle%20Trans.gif);
     background-size: 400px;
     background-repeat: no-repeat;
 }
@@ -216,7 +216,7 @@ a:hover{
     margin-left: 200px;
     margin-top: 200px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Attack%20Trans.gif);
+    background-image: url(../images/KnightOneStates/Knight%20Attack%20Trans.gif);
     background-size: 530px;
     background-repeat: no-repeat;
     animation: 1s linear backAndForthOne;
@@ -229,7 +229,7 @@ a:hover{
     margin-right: 90px;
     margin-top: 150px;
     margin-bottom: 30px;
-    background-image: url(/images/KnightTwoStates/Knight2%20Attack%20Trans.gif);
+    background-image: url(../images/KnightTwoStates/Knight2%20Attack%20Trans.gif);
     background-size: 420px;
     background-repeat: no-repeat;
     animation: 1s linear backAndForthTwo;
@@ -242,7 +242,7 @@ a:hover{
     margin-left: 200px;
     margin-top: 190px;
     float: left;
-    background-image: url(/images/KnightOneStates/Knight%20Die%20Trans.gif);
+    background-image: url(../images/KnightOneStates/Knight%20Die%20Trans.gif);
     background-size: 580px;
     background-repeat: no-repeat;
 }
@@ -253,7 +253,7 @@ a:hover{
     float: right;
     margin-right: 100px;
     margin-top: 200px;
-    background-image: url(/images/KnightTwoStates/Knight2%20Die%20Trans.gif);
+    background-image: url(../images/KnightTwoStates/Knight2%20Die%20Trans.gif);
     background-size: 550px;
     background-repeat: no-repeat;
 }
@@ -396,7 +396,7 @@ a:hover{
 .playerIdle{
     height: 360px;
     width: 500px;
-    background-image: url("/images/KnightOneStates/Knight%20Idle%20Trans.gif");
+    background-image: url("../images/KnightOneStates/Knight%20Idle%20Trans.gif");
     margin-top: 80px;
     background-repeat: no-repeat;
     background-size: 500px;
@@ -454,7 +454,7 @@ a:hover{
     height: 100px;
     width: 100px;
     margin-left: 1px;
-    background-image: url("/images/Items/Health%20Potion.png");
+    background-image: url("../images/Items/Health%20Potion.png");
     background-size: cover;
 }
 

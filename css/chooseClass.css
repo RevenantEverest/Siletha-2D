@@ -1,5 +1,5 @@
 body{
-    background-image: url("/images/Forest%20Campfire.jpg");
+    background-image: url("../images/Forest%20Campfire.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -80,7 +80,7 @@ body{
     height: 250px;
     width: 250px;
     /*background-color: rgba(255,255,225,.8);*/
-    background-image: url(/images/Classes/KnightClass.gif);
+    background-image: url(../images/Classes/KnightClass.gif);
     background-size: 250px;
     background-repeat: no-repeat;
     margin-left: 325px;
@@ -107,7 +107,7 @@ body{
     height: 250px;
     width: 250px;
     /*background-color: rgba(255,255,225,.8);*/
-    background-image: url(/images/Classes/WizardClass.gif);
+    background-image: url(../images/Classes/WizardClass.gif);
     background-size: 250px;
     background-repeat: no-repeat;
     margin-left: 780px;
@@ -134,7 +134,7 @@ body{
     height: 250px;
     width: 250px;
     /*background-color: rgba(255,255,225,.8);*/
-    background-image: url(/images/Classes/ArcherClass.gif);
+    background-image: url(../images/Classes/ArcherClass.gif);
     background-size: 250px;
     background-repeat: no-repeat;
     margin-left: 1234px;
