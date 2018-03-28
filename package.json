@@ -1,0 +1,28 @@
+{
+  "name": "siletha-2d",
+  "version": "1.0.0",
+  "description": "Student included a readme file with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RevenantEverest/Siletha-2D.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RevenantEverest/Siletha-2D/issues"
+  },
+  "homepage": "https://github.com/RevenantEverest/Siletha-2D#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.2",
+    "pg-promise": "^8.2.2"
+  }
+}
