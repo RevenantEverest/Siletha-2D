@@ -1,0 +1,147 @@
+body{
+    background-image: url("../images/Forest%20Campfire.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.knightClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 370px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.wizardClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 285px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.archerClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 280px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.chooseClassContainer{
+    margin-top: 200px;
+    margin-left: 650px;
+    width: 500px;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 32px;
+    position: static;
+}
+
+.chooseClassText{
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    text-align: center;
+    color: #dedede;
+    padding: 10px;
+    position: static;
+}
+
+.knight{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 300px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageKnight{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/KnightClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 325px;
+    margin-top: -275px;
+    position: static;
+}
+
+.knight:hover{
+    background-color: rgba(255,255,255,.8);
+}
+
+.wizard{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 150px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageWizard{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/WizardClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 780px;
+    margin-top: -251px;
+    position: static;
+}
+
+.wizard:hover{
+    background-color: rgba(255,255,255,.8);
+}
+
+.archer{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 150px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageArcher{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/ArcherClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 1234px;
+    margin-top: -251px;
+    position: static;
+}
+
+.archer:hover{
+    background-color: rgba(255,255,255,.8);
+}

@@ -1,0 +1,77 @@
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+/*======== Home Page ========*/
+.HomePage{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../images/HomeScreen.gif);
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    /* bottom: 0;
+    right: 0; */
+    overflow: auto;
+    z-index: 10;
+    color: #dedede;
+    text-align: center;
+}
+
+/* a{
+    text-decoration: none;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    margin-left: 20px;
+    padding: 5px 40px 5px 40px;
+    animation: 2s linear infinite blink;
+    outline-style: solid;
+} */
+
+/* a:hover{
+    color: black;
+} */
+
+img{
+  margin-top: 15%;;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button{
+    text-decoration: none;
+    color: black;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    margin-left: 1%;
+    padding: 5px 40px 5px 40px;
+    animation: 2s linear infinite blink;
+    outline-style: solid;
+    outline-color: black;
+}
+
+button:hover{
+    color: #dedede;
+    outline-style: solid;
+    outline-color: white;
+    background-color: black;
+}
+
+/*Animations*/
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
