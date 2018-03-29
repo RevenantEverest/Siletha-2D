@@ -18,6 +18,7 @@ class HomePage extends Component {
   constructor() {
     super();
     this.state = {
+      fadeOut: '',
       fireRedirect: false
     }
   }
@@ -34,18 +35,21 @@ class HomePage extends Component {
   handlePlayButton() {
     let HomePagePlayButtonSound = document.querySelector('.HomePage-audio-playButtonClick');
     HomePagePlayButtonSound.play();
+    this.setState({
+      fadeOut: 'HomePage-Contents-fadeOut'
+    })
     setTimeout(() => {
       this.setState({
         fireRedirect: true
       })
-    },1000)
+    },2000)
   }
 
   render() {
     return(
       <div className="HomePage">
-        <img className="HomePage-Logo" src={Logo}></img>
-        <button className="HomePage-playButton" onClick={(e) => this.handlePlayButton()}>Play</button>
+        <img className={`HomePage-Logo ${this.state.fadeOut}`} src={Logo}></img>
+        <button className={`HomePage-playButton ${this.state.fadeOut}`} onClick={(e) => this.handlePlayButton()}>Play</button>
         <div className="HomePage-audio">
           <audio className="HomePage-audio-main" src={HomePageTheme}></audio>
           <audio className="HomePage-audio-playButtonClick" src={HomePagePlayButtonSound}></audio>

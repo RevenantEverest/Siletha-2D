@@ -2,67 +2,271 @@ html, body {
   height: 100vh;
   width: 100vw;
   margin: 0;
+  background-color: black;
 }
 
-/*======== Home Page ========*/
-.HomePage{
-    height: 100vh;
-    width: 100vw;
-    background-image: url(../images/HomeScreen.gif);
-    background-size: 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    top: 0;
-    left: 0;
-    /* bottom: 0;
-    right: 0; */
-    overflow: auto;
-    z-index: 10;
-    color: #dedede;
-    text-align: center;
+.HomePage, .Story{
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/HomeScreen.gif);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  text-align: center;
 }
 
-/* a{
+.HomePage-Contents-fadeOut {
+  animation: 2s linear fadeOut;
+}
+
+.Story-Contents-Container-fadeIn {
+  height: 30%;
+  width: 50%;
+  position: absolute;
+  margin-top: 25%;
+  margin-left: 25%;
+  background-color: rgba(0,0,0,.6);
+  background-attachment: inherit;
+  border-radius: 32px;
+  animation: 2s linear fadeIn;
+}
+
+.Story-Contents-Container-fadeOut {
+  height: 30%;
+  width: 50%;
+  position: absolute;
+  margin-top: 25%;
+  margin-left: 25%;
+  background-color: rgba(0,0,0,.6);
+  background-attachment: inherit;
+  border-radius: 32px;
+  animation: 2s linear fadeOut;
+}
+
+.Story-Contents {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.Story-next-button-display{
     text-decoration: none;
-    color: #dedede;
+    color: black;
     font-family: "Raleway", sans-serif;
     font-weight: 800;
-    font-size: 30px;
-    margin-left: 20px;
-    padding: 5px 40px 5px 40px;
-    animation: 2s linear infinite blink;
+    font-size: 15px;
+    margin-top: 42%;
+    margin-left: 40%;
+    padding: 0.5% 2% 0.5% 2%;
+    animation: 5s linear fadeIn;
     outline-style: solid;
-} */
+    outline-color: black;
+}
 
-/* a:hover{
-    color: black;
-} */
+.Story-next-button-hidden {
+  display: none;
+}
 
-img{
+.Story-begin-button-display {
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  margin-top: 42%;
+  margin-left: 40%;
+  padding: 0.5% 1% 0.5% 1%;
+  text-decoration: none;
+  outline-style: solid;
+  outline-width: thick;
+  color: #dedede;
+  background-color: rgba(0,0,0,.6);
+}
+
+.Story-begin-button-hidden {
+  display: none;
+}
+
+.HomePage-playButton:hover, .Story-next-button-display:hover, .Story-begin-button-display:hover {
+  color: #dedede;
+  outline-style: solid;
+  outline-color: white;
+  background-color: black;
+}
+
+.HomePage-Logo {
   margin-top: 15%;;
   width: 100%;
   margin-bottom: 20px;
 }
 
-button{
+.HomePage-playButton{
     text-decoration: none;
     color: black;
     font-family: "Raleway", sans-serif;
     font-weight: 800;
     font-size: 30px;
     margin-left: 1%;
-    padding: 5px 40px 5px 40px;
-    animation: 2s linear infinite blink;
+    padding: 0.5% 2% 0.5% 2%;
+    animation: 4s linear fadeIn;
     outline-style: solid;
     outline-color: black;
 }
 
-button:hover{
-    color: #dedede;
-    outline-style: solid;
-    outline-color: white;
-    background-color: black;
+/*======== Choose Class ========*/
+
+.ChooseClass {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/ForestCampfire.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  text-align: center;
 }
+
+.knightClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 370px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.wizardClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 285px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.archerClass{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 280px;
+    color: #dedede;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    outline-style: solid;
+    outline-color: #dedede;
+    outline-width: thick;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(0,0,0,.8);
+}
+
+.chooseClassContainer{
+    margin-top: 200px;
+    margin-left: 650px;
+    width: 500px;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 32px;
+    position: static;
+}
+
+.chooseClassText{
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    text-align: center;
+    color: #dedede;
+    padding: 10px;
+    position: static;
+}
+
+.knight{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 300px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageKnight{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/KnightClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 325px;
+    margin-top: -275px;
+    position: static;
+}
+
+.knight:hover{
+    background-color: rgba(255,255,255,.8);
+}
+
+.wizard{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 150px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageWizard{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/WizardClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 780px;
+    margin-top: -251px;
+    position: static;
+}
+
+.wizard:hover{
+    background-color: rgba(255,255,255,.8);
+}
+
+.archer{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 164px;
+    margin-left: 150px;
+    margin-top: 100px;
+    position: static;
+    align-content: center;
+}
+
+.innerImageArcher{
+    height: 250px;
+    width: 250px;
+    /*background-color: rgba(255,255,225,.8);*/
+    background-image: url(../images/Classes/ArcherClass.gif);
+    background-size: 250px;
+    background-repeat: no-repeat;
+    margin-left: 1234px;
+    margin-top: -251px;
+    position: static;
+}
+
+.archer:hover{
+    background-color: rgba(255,255,255,.8);
+}
+
+/*-------- END --------*/
 
 /*Animations*/
 @keyframes blink {
@@ -72,6 +276,28 @@ button:hover{
   }
 
   50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0%,
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  100% {
     opacity: 0;
   }
 }
