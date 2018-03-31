@@ -42,17 +42,23 @@ class ChooseClass extends Component {
     return(
       <div className="ChooseClass">
         <div className="ChooseClass-Container">
-            <h1 className="ChooseClass-text">Choose Your Class:</h1>
+          <h1 className="ChooseClass-text">Choose Your Class:</h1>
+          <div className="ChooseClass-knight">
+            <div class="innerImageKnight"></div>
+            <button className="ChooseClass-knight-button" onClick={(e) => this.handleKnightButton()}></button>
+            <h1 class="knightClass">KNIGHT</h1>
+          </div>
+          <div className="ChooseClass-wizard">
+            <div class="innerImageWizard"></div>
+            <button className="ChooseClass-wizard-button" onClick={(e) => this.handleWizardButton()}></button>
+            <h1 class="wizardClass">WIZARD</h1>
+          </div>
+          <div className="ChooseClass-archer">
+            <button className="ChooseClass-archer-button" onClick={(e) => this.handleArcherButton()}></button>
+            <div class="innerImageArcher"></div>
+            <h1 class="archerClass">ARCHER</h1>
+          </div>
         </div>
-        <button className="ChooseClass-knight" onClick={(e) => this.handleKnightButton()}></button>
-        <button className="ChooseClass-wizard" onClick={(e) => this.handleWizardButton()}></button>
-        <button className="ChooseClass-archer" onClick={(e) => this.handleArcherButton()}></button>
-        <div class="innerImageKnight"></div>
-        <div class="innerImageWizard"></div>
-        <div class="innerImageArcher"></div>
-        <h1 class="knightClass">KNIGHT</h1>
-        <h1 class="wizardClass">WIZARD</h1>
-        <h1 class="archerClass">ARCHER</h1>
         <div className="ChooseClass-audio">
           <audio className="ChooseClass-audio-mainTheme" src={ChooseClassTheme}></audio>
           <audio className="ChooseClass-audio-buttonPress" src={ButtonPress}></audio>
