@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 
+//Audio Imports
+import mainTheme from '../../../public/sounds/dungeon';
+
 class Wizard extends Component {
+
+  componentDidMount() {
+    this.playTheme();
+  }
+
+  playTheme() {
+    let mainTheme = document.querySelector('.Wizard-audio-mainTheme');
+    mainTheme.play();
+  }
 
   render() {
     return(
       <div className="Wizard">
-        <h1>Wizard Page</h1>
         <div className="Wizard-audio">
-          <audio className="mainTheme" src="Sounds/dungeon"></audio>
-          <audio className="battleTheme" src="Sounds/Epic%20Fantasy%20Music%20-%20Ancient%20Awakening.wav"></audio>
-          <audio className="fireBall" src="Sounds/Effects/Weapons/Fireball.wav"></audio>
-          <audio className="axeHitFlesh" src="Sounds/Effects/Weapons/AxeHitFlesh"></audio>
+          <audio className="Wizard-audio-mainTheme" src={mainTheme}></audio>
+
           <audio className="usePotion" src="Sounds/Effects/UI/UsePotion.wav"></audio>
         </div>
       </div>

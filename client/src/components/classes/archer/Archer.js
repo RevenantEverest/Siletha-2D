@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 
+//Audio Imports
+import mainTheme from '../../../public/sounds/dungeon';
+
 class Archer extends Component {
+
+  componentDidMount() {
+    this.playTheme();
+  }
+
+  playTheme() {
+    let mainTheme = document.querySelector('.Archer-audio-mainTheme');
+    mainTheme.play();
+  }
 
   render() {
     return(
       <div className="Archer">
-        <h1>Archer Page</h1>
         <div className="Archer-audio">
-          <audio className="mainTheme" src="Sounds/dungeon"></audio>
-          <audio className="battleTheme" src="Sounds/Epic%20Fantasy%20Music%20-%20Ancient%20Awakening.wav"></audio>
-          <audio className="shootArrow" src="Sounds/Effects/Weapons/ArrowShot"></audio>
-          <audio className="axeHitFlesh" src="Sounds/Effects/Weapons/AxeHitFlesh"></audio>
+          <audio className="Archer-audio-mainTheme" src={mainTheme}></audio>
           <audio className="usePotion" src="Sounds/Effects/UI/UsePotion.wav"></audio>
         </div>
       </div>

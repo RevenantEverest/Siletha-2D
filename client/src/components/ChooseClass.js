@@ -20,22 +20,45 @@ class ChooseClass extends Component {
     }
   }
 
+  componentDidMount() {
+    this.playTheme();
+  }
+
+  playTheme() {
+    let mainTheme = document.querySelector('.ChooseClass-audio-mainTheme');
+    mainTheme.play();
+  }
+
+  buttonPress() {
+    let buttonPress = document.querySelector('.ChooseClass-audio-buttonPress');
+    buttonPress.play();
+  }
+
   handleKnightButton() {
-    this.setState({
-      fireRedirectKnight: true
-    })
+    this.buttonPress();
+    setTimeout(() => {
+      this.setState({
+        fireRedirectKnight: true
+      })
+    }, 1000)
   }
 
   handleWizardButton() {
-    this.setState({
-      fireRedirectWizard: true
-    })
+    this.buttonPress();
+    setTimeout(() => {
+      this.setState({
+        fireRedirectWizard: true
+      })
+    } ,1000)
   }
 
   handleArcherButton() {
-    this.setState({
-      fireRedirectArcher: true
-    })
+    this.buttonPress();
+    setTimeout(() => {
+      this.setState({
+        fireRedirectArcher: true
+      })
+    }, 1000)
   }
 
   render() {
@@ -44,19 +67,22 @@ class ChooseClass extends Component {
         <div className="ChooseClass-Container">
           <h1 className="ChooseClass-text">Choose Your Class:</h1>
           <div className="ChooseClass-knight">
-            <div class="innerImageKnight"></div>
-            <button className="ChooseClass-knight-button" onClick={(e) => this.handleKnightButton()}></button>
-            <h1 class="knightClass">KNIGHT</h1>
+            <button className="ChooseClass-knight-button" onClick={(e) => this.handleKnightButton()}>
+              <div className="ChooseClass-knight-inner-image"></div>
+            </button>
+            <h1 className="ChooseClass-knight-text">KNIGHT</h1>
           </div>
           <div className="ChooseClass-wizard">
-            <div class="innerImageWizard"></div>
-            <button className="ChooseClass-wizard-button" onClick={(e) => this.handleWizardButton()}></button>
-            <h1 class="wizardClass">WIZARD</h1>
+            <button className="ChooseClass-wizard-button" onClick={(e) => this.handleWizardButton()}>
+              <div className="ChooseClass-wizard-inner-image"></div>
+            </button>
+            <h1 className="ChooseClass-wizard-text">WIZARD</h1>
           </div>
           <div className="ChooseClass-archer">
-            <button className="ChooseClass-archer-button" onClick={(e) => this.handleArcherButton()}></button>
-            <div class="innerImageArcher"></div>
-            <h1 class="archerClass">ARCHER</h1>
+            <button className="ChooseClass-archer-button" onClick={(e) => this.handleArcherButton()}>
+              <div className="ChooseClass-archer-inner-image"></div>
+            </button>
+            <h1 className="ChooseClass-archer-text">ARCHER</h1>
           </div>
         </div>
         <div className="ChooseClass-audio">
