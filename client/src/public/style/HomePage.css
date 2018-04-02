@@ -257,7 +257,10 @@ html, body {
 
 /*======== Knight ========*/
 
-
+#Knight-container {
+  background-color: #dedede;
+  /* color: #dedede; */
+}
 
 /*-------- END --------*/
 
@@ -305,4 +308,14 @@ html, body {
   100% {
     opacity: 0;
   }
+}
+
+.grid {
+	margin:0;
+	padding:0;
+	border:none;
+	outline:2px solid #000;
+	display:inline-block;
+  background-color: rgba(0, 0, 0, .5);
+  position: static;
 }
