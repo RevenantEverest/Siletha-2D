@@ -12,6 +12,7 @@ class Knight extends Component {
     super()
     this.state = {
       myMatrix: null,
+      matrixCreated: false,
       playerXYPos: {xpos: 0, ypos: 0},
     }
 
@@ -22,8 +23,16 @@ class Knight extends Component {
   }
 
   componentDidMount() {
+    console.log('i was called');
     this.playTheme();
-    this.createMatrixState();
+    this.setState({
+      myMatrix: new Matrix(20,20)
+    }, () => {
+      this.createMatrix();
+      this.setState({
+        matrixCreated: true
+      })
+    });
   }
 
   playTheme() {
@@ -32,43 +41,68 @@ class Knight extends Component {
   }
 
   createGrid(int) {
-    this.state.myMatrix.width.map((el, id) => )
-      // change to map for (let rows = 0; rows < int; rows++) {
-          //change to map for (let columns = 0; columns < int; columns++) {
-              if(this.state.myMatrix.get(rows, columns) === 1){
-                  let temp = <div className="grid" id={``+rows+columns+``}></div>;
-                  // temp.css("background-color", "red");
-                  // document.querySelector(`#Knight-container`).append(temp);
-                  // return the elements you want in the React app to render
-              }else{
-                let something = <div class="grid" id="`+rows+columns+`"></div>
-                  // document.querySelector(`#Knight-container`).append(something);
-              }
+    let result = this.state.myMatrix.content.map((rows , idx)=> {
+      return (
+        <div className='row-cont' key={idx}>
+          {
+            this.state.myMatrix.content.map((columns, idxx) => <div className="cell" key={idxx}>X</div>)
           }
-      }
+        </div>
+      )
+    });
+    return result;
+    //     if(this.state.myMatrix.get(rows, columns) === 1) {
+    //       return <div className="grid gridEnemy"></div>
+    //     }else {
+    //       return <div className="grid gridBlank"></div>
+    //     }
+    //   })
+    // })
+      // let temp = [];
+      // let something = [];
+      // for (let rows = 0; rows < int; rows++) {
+          // for (let columns = 0; columns < int; columns++) {
+              // if(this.state.myMatrix.get(rows, columns) === 1){
+                  // temp.push(<div className="grid gridEnemy"></div>)
+              // }else{
+              //   something.push(<div className="grid gridBlank"></div>)
+              // }
+          // }
+        // temp.forEach(el => {
+          // console.log('fuck you => ', el);
+          // return el
+        // })
+        // something.map(el => {se{
+              //   s
+        //   return el
+        // })
+      } // end create grid
 
-      this.createGridTwo(20);
-  }
+      // this.createGridTwo(20);
 
-  createGridTwo(int) {
-    document.querySelector(`.grid`).width(760/int);
-    document.querySelector(`.grid`).height(760/int);
-    document.querySelector(`#` + this.state.playerXYPos.xpos + this.state.playerXYPos.ypos).css("background-color", "blue");
-  }
+      //document.querySelector(`.grid`).width(760/int);
+      //document.querySelector(`.grid`).height(760/int);
+      //document.querySelector(`#` + this.state.playerXYPos.xpos + this.state.playerXYPos.ypos).css("background-color", "blue");
+
+  // createGridTwo(int) {
+  //   document.querySelector(`.grid`).width(760/int);
+  //   document.querySelector(`.grid`).height(760/int);
+  //   document.querySelector(`#` + this.state.playerXYPos.xpos + this.state.playerXYPos.ypos).css("background-color", "blue");
+  // }
 
   RNG(int){
       let numGen = Math.floor(Math.random() * int);
       return numGen;
   }
 
-  createMatrixState(){
-    let myMatrix = new Matrix(20,20);
-    this.setState({
-      myMatrix: myMatrix
-    }, () => {
-      this.createMatrix()
-    })
-  }
+  // createMatrixState(){
+  //   this.setState({
+  //     myMatrix: new Matrix(20, 20)
+  //   }, () => {
+  //     // console.log(this.state.myMatrix.content)
+  //     this.createMatrix()
+  //   })
+  // }
 
   createMatrix() {
     for(let i = 0; i < this.state.myMatrix.width; i++){
@@ -90,11 +124,11 @@ class Knight extends Component {
     return(
       <div className="Knight">
         <div id="Knight-container">
-          {/* {this.createGrid(20)} */}
+          {this.state.matrixCreated ? this.createGrid(20) : ''}
         </div>
         <div className="Knight-audio">
           <audio className="Knight-audio-mainTheme" src={mainTheme}></audio>
-          <audio className="Knight0audio-usePotion" src={usePotion}></audio>
+          <audio className="Knight-audio-usePotion" src={usePotion}></audio>
         </div>
       </div>
     );

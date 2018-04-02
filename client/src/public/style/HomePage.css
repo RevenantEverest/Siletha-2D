@@ -313,9 +313,14 @@ html, body {
 .grid {
 	margin:0;
 	padding:0;
-	border:none;
+	border-style: solid;
+  border-color: grey;
 	outline:2px solid #000;
 	display:inline-block;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: white;
   position: static;
+}
+
+.gridEnemy {
+  background-color: red;
 }
