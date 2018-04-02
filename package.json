@@ -19,6 +19,7 @@
   "homepage": "https://github.com/RevenantEverest/Siletha-2D#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "method-override": "^2.3.10",
     "morgan": "^1.9.0",

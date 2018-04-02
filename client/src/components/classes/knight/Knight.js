@@ -4,6 +4,7 @@ import Matrix from '../../../JavaScript/Matrix';
 
 //Audio Imports
 import mainTheme from '../../../public/sounds/dungeon';
+import usePotion from '../../../public/sounds/Effects/UI/UsePotion.wav';
 
 class Knight extends Component {
 
@@ -11,10 +12,7 @@ class Knight extends Component {
     super()
     this.state = {
       myMatrix: null,
-      playerXPos: 0,
-      playerYPos: 0,
-      GridA: null,
-      GridB: null
+      playerXYPos: {xpos: 0, ypos: 0},
     }
 
     let playerXY = {
@@ -34,33 +32,28 @@ class Knight extends Component {
   }
 
   createGrid(int) {
-      // // change to map for (let rows = 0; rows < int; rows++) {
-      //     //change to map for (let columns = 0; columns < int; columns++) {
-      //         if(this.state.myMatrix.get(rows, columns) === 1){
-      //             let temp = <div className="grid" id={``+rows+columns+``}></div>;
-      //             // temp.css("background-color", "red");
-      //             // document.querySelector(`#Knight-container`).append(temp);
-      //             //this.setState({
-      //               //GridA: temp
-      //             //})
-      //             // return the elements you want in the React app to render
-      //         }else{
-      //           let something = <div class="grid" id="`+rows+columns+`"></div>
-      //             // document.querySelector(`#Knight-container`).append(something);
-      //             this.setState({
-      //               GridB: something
-      //             })
-      //         }
-      //     }
-      // }
+    this.state.myMatrix.width.map((el, id) => )
+      // change to map for (let rows = 0; rows < int; rows++) {
+          //change to map for (let columns = 0; columns < int; columns++) {
+              if(this.state.myMatrix.get(rows, columns) === 1){
+                  let temp = <div className="grid" id={``+rows+columns+``}></div>;
+                  // temp.css("background-color", "red");
+                  // document.querySelector(`#Knight-container`).append(temp);
+                  // return the elements you want in the React app to render
+              }else{
+                let something = <div class="grid" id="`+rows+columns+`"></div>
+                  // document.querySelector(`#Knight-container`).append(something);
+              }
+          }
+      }
 
-      // this.createGridTwo(20);
+      this.createGridTwo(20);
   }
 
   createGridTwo(int) {
     document.querySelector(`.grid`).width(760/int);
     document.querySelector(`.grid`).height(760/int);
-    document.querySelector(`#` + this.state.playerXPos + this.state.playerYPos).css("background-color", "blue");
+    document.querySelector(`#` + this.state.playerXYPos.xpos + this.state.playerXYPos.ypos).css("background-color", "blue");
   }
 
   RNG(int){
@@ -97,11 +90,11 @@ class Knight extends Component {
     return(
       <div className="Knight">
         <div id="Knight-container">
-          {this.createGrid(20)}
+          {/* {this.createGrid(20)} */}
         </div>
         <div className="Knight-audio">
           <audio className="Knight-audio-mainTheme" src={mainTheme}></audio>
-          {/* <audio className="Knight0audio-usePotion" src="Sounds/Effects/UI/UsePotion.wav"></audio> */}
+          <audio className="Knight0audio-usePotion" src={usePotion}></audio>
         </div>
       </div>
     );

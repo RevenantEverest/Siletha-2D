@@ -7,9 +7,8 @@ DROP TABLE IF EXISTS inventory;
 
 CREATE TABLE items (
 item_id INT,
-item_type VARCHAR(255),
 item_name VARCHAR(255),
-item_sprite VARCHAR(255)
+item_type VARCHAR(255)
 );
 
 CREATE TABLE users (
