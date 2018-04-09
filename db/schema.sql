@@ -22,9 +22,14 @@ CREATE TABLE characters (
 user_id INT,
 character_id SERIAL PRIMARY KEY,
 name VARCHAR(255),
-class VARCHAR(255),
+class_id INT,
 experience INT,
 level INT
+);
+
+CREATE TABLE classes (
+  class_id SERIAL PRIMARY KEY,
+  class_name VARCHAR(255)
 );
 
 CREATE TABLE inventory (
