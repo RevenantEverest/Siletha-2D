@@ -255,12 +255,9 @@ html, body {
 
 /*-------- END --------*/
 
-/*======== Knight ========*/
+/*======== Knight ========
 
-#Knight-container {
-  background-color: #dedede;
-  /* color: #dedede; */
-}
+
 
 /*-------- END --------*/
 
@@ -277,6 +274,7 @@ html, body {
 /*-------- END --------*/
 
 /*Animations*/
+
 @keyframes blink {
   0%,
   100% {
@@ -310,17 +308,25 @@ html, body {
   }
 }
 
-.grid {
-	margin:0;
-	padding:0;
-	border-style: solid;
-  border-color: grey;
-	outline:2px solid #000;
-	display:inline-block;
+.Grid{
+  
   background-color: white;
-  position: static;
+  display: flex;
+  flex-direction: row;
 }
 
-.gridEnemy {
+.cellEnemy {
+  height: 10px;
+  width: 10px;
+  border-style: solid;
+  border-color: black;
   background-color: red;
+}
+
+.cellBlank {
+  height: 10px;
+  width: 10px;
+  border-style: solid;
+  border-color: black;
+  background-color: grey;
 }

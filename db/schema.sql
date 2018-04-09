@@ -41,3 +41,8 @@ stamina INT,
 defense INT,
 intellect INT
 );
+
+CREATE TABLE currency (
+  character_id INT,
+  gold INT
+);
