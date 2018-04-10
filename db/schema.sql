@@ -4,9 +4,12 @@ DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS inventory;
+DROP TABLE IF EXISTS classes;
+DROP TABLE IF EXISTS stats;
+DROP TABLE IF EXISTS currency;
 
 CREATE TABLE items (
-item_id INT,
+item_id SERIAL PRIMARY KEY,
 item_name VARCHAR(255),
 item_type VARCHAR(255)
 );
@@ -28,13 +31,12 @@ level INT
 );
 
 CREATE TABLE classes (
-  class_id SERIAL PRIMARY KEY,
-  class_name VARCHAR(255)
+class_id SERIAL PRIMARY KEY,
+class_name VARCHAR(255)
 );
 
 CREATE TABLE inventory (
 character_id INT,
-inventory_id INT,
 item_id INT,
 isEquipped BOOLEAN
 );

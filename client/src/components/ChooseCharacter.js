@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 
 import services from '../services/apiServices';
+
+import Game from './Game';
 
 class ChooseCharacter extends Component {
 
@@ -11,8 +13,12 @@ class ChooseCharacter extends Component {
       userData: this.props.userData,
       apiData: null,
       apiDataRecieved: false,
-      createCharacterRedirect: false
+      createCharacterRedirect: false,
+      playGameRedirect: false,
+      modalOpen: false
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDeleteSubmit = this.handleDeleteSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +32,46 @@ class ChooseCharacter extends Component {
       .catch(err => {
         console.log(err)
       })
+  }
+
+    openModal() {
+    let modal = document.querySelector('.simpleModal');
+    modal.style.display = "block";
+    this.setState({
+      modalOpen: true
+    })
+  }
+
+  closeModal() {
+   console.log('Hello I Should Be Closing')
+    let modal = document.querySelector('.simpleModal');
+    modal.style.display = "none";
+    this.setState({
+      modalOpen: false
+    })
+  }
+
+  handleChange(e) {
+    console.log('HANDLE CHANGE--->', e)
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleDeleteSubmit(e) {
+    e.preventDefault();
+    console.log('handle delete submit--->', e);
+    console.log(this.state.character_id);
+    services.deleteCharacter(this.state.character_id)
+      .then(() => {
+        console.log(`Character ${this.state.character_id} deleted`);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      window.location.reload()
   }
 
   renderCharacters() {
@@ -46,10 +92,17 @@ class ChooseCharacter extends Component {
           break;
       }
       return(
-        <div className={`ChooseCharacter-characterList-contents-characters character-${idx}`} key={idx} onClick={(e) => this.handleCharacterSelection(idx)}>
+        <div className={`ChooseCharacter-characterList-contents-characters character-${el.character_id}`} key={idx} onClick={(e) => this.handleCharacterSelection(el.character_id)}>
           <div className="ChooseCharacter-characterList-contents-characters-text">
             <h3>{el.name}</h3>
             <h3>Level: {el.level} {class_name}</h3>
+            <form onSubmit={this.handleDeleteSubmit}>
+              <label className="ChooseCharacter-contents-characters-label">
+                You sure you want to delete {el.name}?
+                <input type="radio" name="character_id" value={`${el.character_id}`} onChange={this.handleChange} />
+              </label>
+              <input type="submit" value="Delete" />
+            </form>
           </div>
         </div>
       );
@@ -78,27 +131,31 @@ class ChooseCharacter extends Component {
   }
 
   handleCharacterSelection(id) {
-    console.log(id);
     let button = document.querySelector(`.character-${id}`);
-    if(button.style.backgroundColor === "#333333") {
-      console.log("True");
-      button.style.backgroundColor = "#1a1a1a"
-    }else {
-      console.log("False");
-      button.style.backgroundColor = "#333333"
-    }
+    button.backgroundColor = "#333333";
+    this.setState({
+      character_id: id
+    }, () => {
+      console.log('State =>', this.state.character_id);
+    })
+
   }
 
   handlePlayButton() {
-
+    let character_id = parseInt(this.state.character_id, 10)
+    this.props.setCharacter(character_id)
   }
 
   render() {
     return(
       <div className="ChooseCharacter">
-        {this.state.apiDataRecieved ? this.renderCharacters() : ''}
-        <button className="ChooseCharacter-play-button" onClick={(e) => this.handlePlayButton()}>Play</button>
-        {this.state.createCharacterRedirect ? <Redirect to="/CreateCharacter" /> : ''}
+        <Router>
+          <div className="ChooseCharacter-router">
+            {this.state.apiDataRecieved ? this.renderCharacters() : ''}
+            <button className="ChooseCharacter-play-button" onClick={(e) => this.handlePlayButton()}>Play</button>
+            {this.state.createCharacterRedirect ? <Redirect to="/CreateCharacter" /> : ''}
+          </div>
+        </Router>
       </div>
     );
   }

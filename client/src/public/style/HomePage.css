@@ -274,13 +274,13 @@ html, body {
   width: auto;
   background-color: rgba(0,0,0,.8);
   position: absolute;
-  padding: 0.1% 12% 0.1% 12%;
+  padding: 0.1% 8% 0.1% 8%;
   border-radius: 16px;
   border-style: double;
   border-color: rgba(255,255,255,.5);
   border-width: thick;
   margin-top: 1%;
-  margin-left: 30%;
+  margin-left: 35%;
   font-weight: 800;
 }
 
@@ -293,7 +293,7 @@ html, body {
   float: right;
   padding: 2% 13% 2% 2%;
   margin-top: 2%;
-  margin-right: 5%;
+  margin-right: 2%;
   background-color: rgba(0,0,0,.7);
   border-style: double;
   border-color: rgba(255,255,255,.5);
@@ -303,7 +303,7 @@ html, body {
 }
 
 .ChooseCharacter-characterList-contents {
-  width: 250%;
+  width: 150%;
 }
 
 .ChooseCharacter-characterList-contents-characters {
@@ -361,6 +361,10 @@ html, body {
 
 .ChooseCharacter-play-button:hover {
   background-color: #ff4000;
+}
+
+.ChooseCharacter-contents-characters-label {
+  color: #dedede;
 }
 
 /*-------- END --------*/
@@ -439,5 +443,44 @@ html, body {
   width: 30px;
   border-style: solid;
   border-color: black;
-  background-color: rgba(0,0,0,0.5);
+  background-image: url(../images/Tiles/grass20.png)
 }
+
+/*======== Modal ========*/
+
+.simpleModal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: .5s linear fadeIn;
+}
+
+.modalContent{
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  padding: 20px;
+  height: 40%;
+  width: 20%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+.closeButton{
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+.closeButton:hover, .closeButton:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*-------- END --------*/

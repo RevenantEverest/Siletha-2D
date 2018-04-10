@@ -3,13 +3,14 @@ const services = {};
 
 
 /*======== Characters ========*/
+
 services.getAllCharacters = (data) => {
   return axios.get(`/characters`)
 };
 
 services.getCharactersByUserId = (id) => {
   return axios.get(`characters/user/${id}`)
-}
+};
 
 services.createCharacter = (data) => {
   return axios({
@@ -23,7 +24,27 @@ services.createCharacter = (data) => {
       level: data.level
     }
   })
-}
+};
+
+services.deleteCharacter = (data) => {
+  return axios({
+    method: 'DELETE',
+    url: `/characters/${data}`,
+    data: {
+      character_id: data
+    }
+  })
+};
+
+/*-------- END --------*/
+
+/*======== Inventory ========*/
+
+services.getInventoryByCharacterId = (data) => {
+  console.log('apiServices =>', data);
+  return axios.get(`/inventory/${data}`)
+};
+
 /*-------- END --------*/
 
 export default services;

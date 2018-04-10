@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const characterRouter = require('./routes/characterRoutes');
+const inventoryRouter = require('./routes/inventoryRoutes');
 
 app.use(methodOverride('_method'));
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/characters', characterRouter);
+app.use('/inventory', inventoryRouter);
 app.use('/', (req, res) => {
   res.json({
     message: "Up and running"

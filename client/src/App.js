@@ -10,7 +10,7 @@ import Story from './components/Story';
 import ChooseCharacter from './components/ChooseCharacter';
 import CreateCharacter from './components/CreateCharacter';
 
-import Game from './components/Game';
+import DummyComponent from './components/DummyComponent';
 
 class App extends Component {
 
@@ -28,16 +28,18 @@ class App extends Component {
           <div className="App-Routes-Container">
             <Route exact path="/" component={HomePage} />
             <Route path="/Story" component={Story} />
-
-            <Route exact path="/ChooseCharacter" component={
-              () => (<ChooseCharacter userData={this.state.userData} />
+            <Route path="/Game" component={
+              () => (<DummyComponent userData={this.state.userData} />
             )} />
+
+
+            {/* <Route exact path="/ChooseCharacter" component={
+              () => (<ChooseCharacter userData={this.state.userData} />
+            )} /> */}
 
             <Route exact path="/CreateCharacter" component={
               () => (<CreateCharacter userData={this.state.userData} />
             )} />
-
-            <Route exact path="/Game" component={Game} />
           </div>
         </Router>
       </div>
