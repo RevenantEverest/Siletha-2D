@@ -15,8 +15,8 @@ module.exports = {
   },
 
   save(character) {
-    return db.one(`INSERT INTO characters (user_id, character_id, name, class_id, experience, level)
-    VALUES ($/user_id/, $/character_id/, $/name/, $/class_id/, $/experience/, $/level/)
+    return db.one(`INSERT INTO characters (user_id, name, class_id, experience, level)
+    VALUES ($/user_id/, $/name/, $/class_id/, $/experience/, $/level/)
     RETURNING *`, character)
   },
 

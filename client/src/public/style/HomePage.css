@@ -3,6 +3,7 @@ html, body {
   width: 100vw;
   margin: 0;
   background-color: black;
+  color: #dedede;
 }
 
 .HomePage, .Story{
@@ -255,21 +256,127 @@ html, body {
 
 /*-------- END --------*/
 
-/*======== Knight ========
+/*======== ChooseCharacter ========*/
 
+.ChooseCharacter {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/ChooseClassCastle.gif);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  font-family: "Raleway", sans-serif;
+}
 
+.ChooseCharacter-characterList-header-container {
+  height: auto;
+  width: auto;
+  background-color: rgba(0,0,0,.8);
+  position: absolute;
+  padding: 0.1% 12% 0.1% 12%;
+  border-radius: 16px;
+  border-style: double;
+  border-color: rgba(255,255,255,.5);
+  border-width: thick;
+  margin-top: 1%;
+  margin-left: 30%;
+  font-weight: 800;
+}
+
+.ChooseCharacter-characterList-header {
+
+}
+
+.ChooseCharacter-characterList-container {
+  height: 700px;
+  float: right;
+  padding: 2% 13% 2% 2%;
+  margin-top: 2%;
+  margin-right: 5%;
+  background-color: rgba(0,0,0,.7);
+  border-style: double;
+  border-color: rgba(255,255,255,.5);
+  border-width: thick;
+  border-radius: 16px;
+  overflow-y: scroll;
+}
+
+.ChooseCharacter-characterList-contents {
+  width: 250%;
+}
+
+.ChooseCharacter-characterList-contents-characters {
+  height: 10%;
+  display: block;
+  background-color: #1a1a1a;
+  margin: 5%;
+  border-radius: 16px;
+}
+
+.ChooseCharacter-characterList-contents-characters:hover {
+  cursor: pointer;
+  background-color: #404040;
+}
+
+.ChooseCharacter-characterList-contents-characters-text {
+  padding: 2%;
+}
+
+.ChooseCharacter-create-character-button {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  text-shadow: none;
+  background-color: #cc3300;
+  color: #dedede;
+  margin-left: 1%;
+  border-radius: 16px;
+  border-style: double;
+  margin-top: 45%;
+  margin-left: 72%;
+  font-size: 20px;
+  padding: 0.5% 3% 0.5% 3%;
+  position: absolute;
+}
+
+.ChooseCharacter-create-character-button:hover {
+  background-color: #ff4000;
+}
+
+.ChooseCharacter-play-button {
+  position: absolute;
+  margin-left: 42%;
+  margin-top: 45%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  text-shadow: none;
+  background-color: #cc3300;
+  color: #dedede;
+  border-radius: 32px;
+  border-style: double;
+  font-size: 40px;
+  padding: 0.5% 4% 0.5% 4%;
+  position: absolute;
+}
+
+.ChooseCharacter-play-button:hover {
+  background-color: #ff4000;
+}
 
 /*-------- END --------*/
 
-/*======== Wizard ========*/
+/*======== Game ========*/
 
-
-
-/*-------- END --------*/
-
-/*======== Archer ========*/
-
-
+.Game {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/ForestPixelBG.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  font-family: "Raleway", sans-serif;
+}
 
 /*-------- END --------*/
 
@@ -309,24 +416,28 @@ html, body {
 }
 
 .Grid{
-  
-  background-color: white;
   display: flex;
+  position: absolute;
+  margin-top: 5%;
+  margin-left: 50%;
   flex-direction: row;
+  border-style: double;
+  border-width: thick;
+  border-color: rgba(255,255,255,0.5)
 }
 
 .cellEnemy {
-  height: 10px;
-  width: 10px;
+  height: 30px;
+  width: 30px;
   border-style: solid;
   border-color: black;
   background-color: red;
 }
 
 .cellBlank {
-  height: 10px;
-  width: 10px;
+  height: 30px;
+  width: 30px;
   border-style: solid;
   border-color: black;
-  background-color: grey;
+  background-color: rgba(0,0,0,0.5);
 }

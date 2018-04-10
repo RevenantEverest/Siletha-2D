@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import NC from './Narritive';
+import NC from '../Narritive';
 
 //Audio Imports
 import StoryTheme from '../public/sounds/KH2DB.wav';
 import StoryButtonPress from '../public/sounds/buttonPress';
+
+let updateCurrentNarritive = 0;
 
 class Story extends Component {
 
@@ -38,7 +36,7 @@ class Story extends Component {
   }
 
   handleNextButton() {
-    let updateCurrentNarritive = this.state.currentNarritive += 1;
+    updateCurrentNarritive++
     if(updateCurrentNarritive <= 6) {
       this.setState({
         currentNarritive: updateCurrentNarritive
@@ -50,6 +48,7 @@ class Story extends Component {
         beginButton: 'Story-begin-button-display'
       })
     }
+    return updateCurrentNarritive
   }
 
   handleUpdateNarritive() {

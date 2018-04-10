@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect } from 'react-router-dom';
-import HomePageCSS from '../public/style/HomePage.css'
-
+import { Redirect } from 'react-router-dom';
 //Image Imports
 import Logo from '../public/images/Logo.png';
 
@@ -48,7 +42,7 @@ class HomePage extends Component {
   render() {
     return(
       <div className="HomePage">
-        <img className={`HomePage-Logo ${this.state.fadeOut}`} src={Logo}></img>
+        <img className={`HomePage-Logo ${this.state.fadeOut}`} src={Logo} alt=''></img>
         <button className={`HomePage-playButton ${this.state.fadeOut}`} onClick={(e) => this.handlePlayButton()}>Play</button>
         <div className="HomePage-audio">
           <audio className="HomePage-audio-main" src={HomePageTheme}></audio>
