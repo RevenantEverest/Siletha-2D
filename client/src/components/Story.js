@@ -88,7 +88,7 @@ class Story extends Component {
             <audio className="Story-audio-mainTheme" src={StoryTheme}></audio>
             <audio className="Story-audio-buttonPress" src={StoryButtonPress}></audio>
           </div>
-          {this.state.fireRedirect ? <Redirect to="/ChooseClass"/> : ''}
+          {this.state.fireRedirect ? <Redirect to="/Game"/> : ''}
       </div>
     );
   }

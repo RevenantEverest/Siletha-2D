@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 
 import services from '../services/apiServices';
 
-import Game from './Game';
+import CreateCharacter from './CreateCharacter';
+import Game from './game/Game';
 
 class ChooseCharacter extends Component {
 
@@ -34,7 +35,7 @@ class ChooseCharacter extends Component {
       })
   }
 
-    openModal() {
+  openModal() {
     let modal = document.querySelector('.simpleModal');
     modal.style.display = "block";
     this.setState({
@@ -118,16 +119,10 @@ class ChooseCharacter extends Component {
             {CharacterNames}
           </div>
         </div>
-        <button className="ChooseCharacter-create-character-button" onClick={(e) => this.handleCreateCharacterButton()}>Create Character</button>
+        <button className="ChooseCharacter-create-character-button" onClick={(e) => this.openModal()}>Create Character</button>
       </div>
     );
 
-  }
-
-  handleCreateCharacterButton() {
-    this.setState({
-      createCharacterRedirect: true
-    })
   }
 
   handleCharacterSelection(id) {
@@ -153,7 +148,16 @@ class ChooseCharacter extends Component {
           <div className="ChooseCharacter-router">
             {this.state.apiDataRecieved ? this.renderCharacters() : ''}
             <button className="ChooseCharacter-play-button" onClick={(e) => this.handlePlayButton()}>Play</button>
-            {this.state.createCharacterRedirect ? <Redirect to="/CreateCharacter" /> : ''}
+
+            <div className="simpleModal">
+              <div className="modalContent">
+                <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
+                <h1 className="modalHeading">Create Character</h1>
+                <br></br>
+                <br></br>
+                <CreateCharacter userData={this.state.userData}/>
+              </div>
+            </div>
           </div>
         </Router>
       </div>

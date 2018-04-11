@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Grid from './Grid';
+import Grid from '../Grid';
 
-import services from '../services/apiServices';
+import services from '../../services/apiServices';
 
 class Game extends Component {
 
@@ -53,6 +53,8 @@ class Game extends Component {
         <div className="Game-Inventory-container">
           <div className="Game-Inventory-container">
             {this.state.apiDataRecieved ? this.renderInventory() : ''}
+            <button onClick={this.props.triggerFight}>Fight</button>
+            <button onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
           </div>
         </div>
       </div>

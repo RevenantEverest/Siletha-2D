@@ -39,9 +39,7 @@ class CreateCharacter extends Component {
     }
     services.createCharacter(data)
       .then(result => {
-        this.setState({
-          fireRedirect: true
-        })
+        window.location.reload();
       })
       .catch(err => {
         console.log(err);
@@ -53,6 +51,9 @@ class CreateCharacter extends Component {
       <div className="CreateCharacter">
         <form className="CreateCharacter-form" onSubmit={this.handleSubmit}>
           <input className="CreateCharacter-input-name" type="text" name="name" onChange={this.handleChange} placeholder="Character Name" />
+          <br></br>
+          <br></br>
+          <br></br>
           <label>
             <input className="CreateCharacter-input-class" type="radio" name="class_id" value="1" onChange={this.handleChange} />
             Knight
@@ -65,9 +66,10 @@ class CreateCharacter extends Component {
             <input className="CreateCharacter-input-class" type="radio" name="class_id" value="3" onChange={this.handleChange} />
             Archer
           </label>
+          <br></br>
+          <br></br>
           <input className="CreateCharacter-input-submit" type="submit" value="Create" />
         </form>
-        {this.state.fireRedirect ? <Redirect to='/ChooseCharacter' /> : ''}
       </div>
     );
   }

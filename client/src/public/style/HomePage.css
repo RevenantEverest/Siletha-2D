@@ -369,6 +369,30 @@ html, body {
 
 /*-------- END --------*/
 
+/*======== Create Character ========*/
+
+.CreateCharacter-form {
+  text-align: center;
+}
+
+label {
+  color: black;
+  font-family: "Raleway", sans-serif;
+}
+
+.CreateCharacter-input-name {
+  height: 3vh;
+  width: 80%;
+  padding: 2%;
+  border-color: black;
+  border-width: thick;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+/*-------- END --------*/
+
 /*======== Game ========*/
 
 .Game {
@@ -380,6 +404,52 @@ html, body {
   background-repeat: no-repeat;
   color: #dedede;
   font-family: "Raleway", sans-serif;
+}
+
+/*-------- END --------*/
+
+/*======== Fight ========*/
+
+.Fight {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/ForestPixelBG.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  font-family: "Raleway", sans-serif;
+}
+
+.Fight-healthBars-container {
+  height: 15vh;
+  width: 99%;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+  border-style: double;
+  border-color: #dedede;
+}
+
+.Fight-player-avatar {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/knight/KnightOneStates/KnightIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-enemy-avatar {
+  height: 42vh;
+  width: 25%;
+  top: 25%;
+  left: 60%;
+  position: absolute;
+  background-image: url(../images/knight/KnightTwoStates/Knight2Idle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 /*-------- END --------*/
@@ -469,6 +539,11 @@ html, body {
   height: 40%;
   width: 20%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+  text-align: center;
+}
+
+.modalHeading {
+  color: black;
 }
 
 .closeButton{
