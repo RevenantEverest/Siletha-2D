@@ -21,9 +21,25 @@ services.createCharacter = (data) => {
       name: data.name,
       class_id: data.class_id,
       experience: data.experience,
-      level: data.level
+      level: data.level,
+      gold: data.gold
     }
   })
+};
+
+services.updateCharacterExperience = (data) => {
+  return axios({
+    method: 'PUT',
+    url: `/characters/experience`,
+    data: {
+      character_id: data.character_id,
+      experience: data.exp
+    }
+  })
+};
+
+services.getCharacterInfo = (data) => {
+  return axios.get(`characters/${data}`);
 };
 
 services.deleteCharacter = (data) => {
@@ -43,6 +59,27 @@ services.deleteCharacter = (data) => {
 services.getInventoryByCharacterId = (data) => {
   console.log('apiServices =>', data);
   return axios.get(`/inventory/${data}`)
+};
+
+services.addItem = (data) => {
+  return axios({
+    method: 'POST',
+    url: `/inventory/${data.character_id}`,
+    data: {
+      character_id: data.character_id,
+      item_id: data.item_id
+    }
+  })
+};
+
+services.removeItem = (data) => {
+  return axios({
+    method: 'delete',
+    url: '/inventory',
+    data: {
+      entry_id: data.entry_id
+    }
+  })
 };
 
 /*-------- END --------*/

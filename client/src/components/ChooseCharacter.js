@@ -20,6 +20,7 @@ class ChooseCharacter extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDeleteSubmit = this.handleDeleteSubmit.bind(this);
+    this.createCharacter = this.createCharacter.bind(this);
   }
 
   componentDidMount() {
@@ -68,11 +69,11 @@ class ChooseCharacter extends Component {
     services.deleteCharacter(this.state.character_id)
       .then(() => {
         console.log(`Character ${this.state.character_id} deleted`);
+        this.componentDidMount();
       })
       .catch(err => {
         console.log(err);
       })
-      window.location.reload()
   }
 
   renderCharacters() {
@@ -99,7 +100,6 @@ class ChooseCharacter extends Component {
             <h3>Level: {el.level} {class_name}</h3>
             <form onSubmit={this.handleDeleteSubmit}>
               <label className="ChooseCharacter-contents-characters-label">
-                You sure you want to delete {el.name}?
                 <input type="radio" name="character_id" value={`${el.character_id}`} onChange={this.handleChange} />
               </label>
               <input type="submit" value="Delete" />
@@ -114,9 +114,11 @@ class ChooseCharacter extends Component {
         <div className="ChooseCharacter-characterList-header-container">
           <h1 className="ChooseCharacter-characterList-header">Characters</h1>
         </div>
-        <div className="ChooseCharacter-characterList-container">
-          <div className="ChooseCharacter-characterList-contents">
-            {CharacterNames}
+        <div className="ChooseCharacter-characterList-container-container">
+          <div className="ChooseCharacter-characterList-container">
+            <div className="ChooseCharacter-characterList-contents">
+              {CharacterNames}
+            </div>
           </div>
         </div>
         <button className="ChooseCharacter-create-character-button" onClick={(e) => this.openModal()}>Create Character</button>
@@ -141,6 +143,11 @@ class ChooseCharacter extends Component {
     this.props.setCharacter(character_id)
   }
 
+  createCharacter() {
+    this.closeModal();
+    this.componentDidMount();
+  }
+
   render() {
     return(
       <div className="ChooseCharacter">
@@ -155,7 +162,7 @@ class ChooseCharacter extends Component {
                 <h1 className="modalHeading">Create Character</h1>
                 <br></br>
                 <br></br>
-                <CreateCharacter userData={this.state.userData}/>
+                <CreateCharacter userData={this.state.userData} createCharacter={this.createCharacter} />
               </div>
             </div>
           </div>

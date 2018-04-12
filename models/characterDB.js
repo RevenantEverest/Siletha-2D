@@ -15,15 +15,24 @@ module.exports = {
   },
 
   save(character) {
-    return db.one(`INSERT INTO characters (user_id, name, class_id, experience, level)
-    VALUES ($/user_id/, $/name/, $/class_id/, $/experience/, $/level/)
+    return db.one(`INSERT INTO characters (user_id, name, class_id, experience, level, gold)
+    VALUES ($/user_id/, $/name/, $/class_id/, $/experience/, $/level/, $/gold/)
     RETURNING *`, character)
   },
 
-  update(character) {
+  // updateCharacterName(character) {
+  //   return db.one(`UPDATE characters
+  //     SET
+  //     name = $/name/
+  //     WHERE character_id = $/character_id/
+  //     RETURNING *`, character)
+  // },
+
+  updateExperience(character) {
+    console.log("Hitting it big, in DB");
     return db.one(`UPDATE characters
       SET
-      name = $/name/
+      experience = $/experience/
       WHERE character_id = $/character_id/
       RETURNING *`, character)
   },

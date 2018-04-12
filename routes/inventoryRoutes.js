@@ -4,10 +4,9 @@ const inventoryRouter = express.Router();
 
 inventoryRouter.route(`/:id`)
   .get(inventoryController.getByCharacterId)
-  // .delete(inventoryController.deleteItem)
+  .post(inventoryController.getItem)
 
-// inventoryRouter.route('/')
-//   .get(inventoryController)
-//   .post(inventoryController.create)
+inventoryRouter.route('/')
+  .delete(inventoryController.removeItem)
 
 module.exports = inventoryRouter;

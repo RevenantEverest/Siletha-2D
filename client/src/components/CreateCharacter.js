@@ -35,11 +35,12 @@ class CreateCharacter extends Component {
       name: this.state.name,
       class_id: this.state.class_id,
       experience: 0,
-      level: 1
+      level: 1,
+      gold: 100
     }
     services.createCharacter(data)
       .then(result => {
-        window.location.reload();
+        this.props.createCharacter();
       })
       .catch(err => {
         console.log(err);

@@ -54,11 +54,25 @@ module.exports = {
       })
   },
 
-  update(req, res, next) {
-    characterDB.update(req.body)
+  updateCharacterName(req, res, next) {
+    characterDB.updateCharacterName(req.body)
       .then((character) => {
         res.json({
           message: "Updating character",
+          data: character
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
+  updateCharacterExperience(req, res, next) {
+    console.log("Hitting Controller");
+    characterDB.updateExperience(req.body)
+      .then((character) => {
+        res.json({
+          message: "Updating character experience",
           data: character
         })
       })

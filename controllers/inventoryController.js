@@ -13,4 +13,23 @@ module.exports = {
         next(err);
       })
   },
+
+  getItem(req, res, next) {
+    inventoryDB.save(req.body)
+      .then((item) => {
+        res.json({
+          message: "Adding item to inventory",
+          data: item
+        })
+      })
+      .catch(err => {
+        next(err)
+      })
+  },
+
+  removeItem(req, res, next) {
+    inventoryDB.deleteItem(req.body)
+      .then(() => next())
+      .catch(err => next(err))
+  }
 };

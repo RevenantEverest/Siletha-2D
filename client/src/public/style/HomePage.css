@@ -114,149 +114,7 @@ html, body {
 
 /*-------- END --------*/
 
-/*======== Choose Class ========*/
-
-.ChooseClass {
-  height: 100vh;
-  width: 100vw;
-  background-image: url(../images/ChooseClassCastle.gif);
-  background-size: 100%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: #dedede;
-  text-align: center;
-}
-
-.ChooseClass-Container{
-  margin-top: 35%;
-  margin-left: 35%;
-  width: 30%;
-  background-color: rgba(0,0,0,.8);
-  border-radius: 32px;
-  position: absolute;
-}
-
-.ChooseClass-knight{
-    display: inline-block;
-    margin-top: -80%;
-    margin-left: -80%;
-    color: #dedede;
-    font-family: "Raleway", sans-serif;
-    font-weight: 900;
-    outline-style: solid;
-    outline-color: #dedede;
-    outline-width: thick;
-    padding: 5px 20px 5px 20px;
-    background-color: rgba(0,0,0,.8);
-    position: absolute;
-}
-
-.ChooseClass-knight-inner-image {
-  margin-top: 5%;
-  height: 20vh;
-  width: 10vw;
-  background-image: url(../images/Classes/KnightClass.gif);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border-radius: 32px;
-}
-
-.ChooseClass-knight-button {
-  background-color: rgba(0,0,0,.5);
-  border: none;
-  border-radius: 50%;
-  margin-top: 10%;
-}
-
-.ChooseClass-knight-button:hover {
-  background-color: grey;
-}
-
-.ChooseClass-wizard{
-    display: inline-block;
-    margin-top: -80%;
-    margin-left: -20%;
-    color: #dedede;
-    font-family: "Raleway", sans-serif;
-    font-weight: 900;
-    outline-style: solid;
-    outline-color: #dedede;
-    outline-width: thick;
-    padding: 5px 20px 5px 20px;
-    background-color: rgba(0,0,0,.8);
-    position: absolute;
-}
-
-.ChooseClass-wizard-inner-image {
-  margin-top: 5%;
-  height: 20vh;
-  width: 10vw;
-  background-image: url(../images/Classes/WizardClass.gif);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border-radius: 32px;
-}
-
-.ChooseClass-wizard-button {
-  background-color: rgba(0,0,0,.5);
-  border: none;
-  border-radius: 50%;
-  margin-top: 10%;
-}
-
-.ChooseClass-wizard-button:hover {
-  background-color: grey;
-}
-
-.ChooseClass-archer{
-    display: inline-block;
-    margin-top: -80%;
-    margin-left: 40%;
-    color: #dedede;
-    font-family: "Raleway", sans-serif;
-    font-weight: 900;
-    outline-style: solid;
-    outline-color: #dedede;
-    outline-width: thick;
-    padding: 0.2% 5% 0.2% 5%;
-    background-color: rgba(0,0,0,.8);
-    position: absolute;
-}
-
-.ChooseClass-archer-inner-image {
-  margin-top: 5%;
-  height: 20vh;
-  width: 10vw;
-  background-image: url(../images/Classes/ArcherClass.gif);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border-radius: 32px;
-}
-
-.ChooseClass-archer-button {
-  background-color: rgba(0,0,0,.5);
-  border: none;
-  border-radius: 50%;
-  margin-top: 10%;
-}
-
-.ChooseClass-archer-button:hover {
-  background-color: grey;
-}
-
-
-.ChooseClass-text{
-    font-family: "Raleway", sans-serif;
-    font-weight: 800;
-    font-size: 25px;
-    text-align: center;
-    color: #dedede;
-    padding: 2%;
-}
-
-/*-------- END --------*/
-
-/*======== ChooseCharacter ========*/
+/*======== Choose Character ========*/
 
 .ChooseCharacter {
   height: 100vh;
@@ -288,12 +146,11 @@ html, body {
 
 }
 
-.ChooseCharacter-characterList-container {
-  height: 700px;
+.ChooseCharacter-characterList-container-container {
+  height: 75vh;
+  margin-right: 2%;
   float: right;
   padding: 2% 13% 2% 2%;
-  margin-top: 2%;
-  margin-right: 2%;
   background-color: rgba(0,0,0,.7);
   border-style: double;
   border-color: rgba(255,255,255,.5);
@@ -302,12 +159,16 @@ html, body {
   overflow-y: scroll;
 }
 
+.ChooseCharacter-characterList-container {
+}
+
 .ChooseCharacter-characterList-contents {
   width: 150%;
 }
 
 .ChooseCharacter-characterList-contents-characters {
   height: 10%;
+  min-width: 130%;
   display: block;
   background-color: #1a1a1a;
   margin: 5%;
@@ -320,7 +181,7 @@ html, body {
 }
 
 .ChooseCharacter-characterList-contents-characters-text {
-  padding: 2%;
+  padding: 3% 10% 3% 10%;
 }
 
 .ChooseCharacter-create-character-button {
@@ -406,6 +267,60 @@ label {
   font-family: "Raleway", sans-serif;
 }
 
+/*Knight*/
+.Game-avatar-knight {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 5%;
+  position: absolute;
+  background-image: url(../images/knight/KnightOneStates/KnightIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*Wizard*/
+.Game-avatar-wizard {
+  height: 48vh;
+  width: 30%;
+  top: 20%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/WizardStates/WizardIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*Archer*/
+.Game-avatar-archer {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/archer/ArcherStates/ArcherIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*-------- END --------*/
+
+/*======== Inventory ========*/
+
+.Inventory {
+  height: 30vh;
+  padding: 2%;
+  overflow-y: scroll;
+  border-style: double;
+  border-color: black;
+  border-width: thick;
+}
+
+.Inventory-contents-items-name {
+  color: black;
+  font-weight: 400;
+}
+
 /*-------- END --------*/
 
 /*======== Fight ========*/
@@ -430,7 +345,14 @@ label {
   border-color: #dedede;
 }
 
-.Fight-player-avatar {
+/*======== Fight: PLAYER ONE ========*/
+.Fight-player-attacks-container {
+  position: absolute;
+  top: 25%;
+}
+
+/*Knight*/
+.Fight-player-avatar-knight-idle {
   height: 42vh;
   width: 30%;
   top: 25%;
@@ -441,7 +363,124 @@ label {
   background-size: 100%;
 }
 
-.Fight-enemy-avatar {
+.Fight-player-avatar-knight-attack {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/knight/KnightOneStates/KnightAttack.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear backAndForthOne;
+}
+
+.Fight-player-avatar-knight-die {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/knight/KnightOneStates/KnightDie.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*Wizard*/
+.Fight-player-avatar-wizard-idle {
+  height: 48vh;
+  width: 30%;
+  top: 20%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/WizardStates/WizardIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-player-avatar-wizard-attack {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/WizardStates/WizardAttack.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-player-avatar-wizard-projectile {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/Effects/Fireball.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear backAndForthOne;
+}
+
+.Fight-player-avatar-wizard-die {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/WizardStates/WizardDie.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*Archer*/
+.Fight-player-avatar-archer-idle {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/archer/ArcherStates/ArcherIdle.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-player-avatar-archer-attack {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/archer/ArcherStates/ArcherAttack.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-player-avatar-archer-projectile {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/Effects/Arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear backAndForthOne;
+}
+
+.Fight-player-avatar-archer-die {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/archer/ArcherStates/ArcherDies.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*======== Fight: ENEMY ========*/
+
+.Fight-enemy-avatar-idle {
   height: 42vh;
   width: 25%;
   top: 25%;
@@ -450,6 +489,35 @@ label {
   background-image: url(../images/knight/KnightTwoStates/Knight2Idle.gif);
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.Fight-enemy-avatar-attack {
+  height: 48vh;
+  width: 25%;
+  top: 20%;
+  left: 60%;
+  position: absolute;
+  background-image: url(../images/knight/KnightTwoStates/Knight2Attack.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear backAndForthTwo;
+}
+
+.Fight-enemy-avatar-die {
+  height: 49vh;
+  width: 35%;
+  top: 25%;
+  left: 60%;
+  position: absolute;
+  background-image: url(../images/knight/KnightTwoStates/Knight2Die.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.back-to-game {
+  position: absolute;
+  top: 20%;
+  left: 2%;
 }
 
 /*-------- END --------*/
@@ -489,6 +557,46 @@ label {
   }
 }
 
+@keyframes backAndForthOne {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(120%);
+  }
+
+  75% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes backAndForthTwo {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-120%);
+  }
+
+  75% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/*-------- END --------*/
+
+/*======== Reusable Assets: GRID ========*/
+
 .Grid{
   display: flex;
   position: absolute;
@@ -515,8 +623,9 @@ label {
   border-color: black;
   background-image: url(../images/Tiles/grass20.png)
 }
+/*-------- END --------*/
 
-/*======== Modal ========*/
+/*======== Reused Assets: MODAL ========*/
 
 .simpleModal{
   display: none;
@@ -536,7 +645,7 @@ label {
   background-color: #f4f4f4;
   margin: 10% auto;
   padding: 20px;
-  height: 40%;
+  height: 46%;
   width: 20%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
   text-align: center;

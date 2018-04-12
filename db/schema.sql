@@ -27,7 +27,8 @@ character_id SERIAL PRIMARY KEY,
 name VARCHAR(255),
 class_id INT,
 experience INT,
-level INT
+level INT,
+gold INT
 );
 
 CREATE TABLE classes (
@@ -37,6 +38,7 @@ class_name VARCHAR(255)
 
 CREATE TABLE inventory (
 character_id INT,
+entry_id SERIAL PRIMARY KEY,
 item_id INT,
 isEquipped BOOLEAN
 );

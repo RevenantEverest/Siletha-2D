@@ -12,7 +12,7 @@ module.exports = {
   },
 
   deleteItem(data) {
-    return db.none(`DELETE FROM inventory WHERE item_id = $/item_id/ AND character_id = $/character_id/`, data)
+    return db.none(`DELETE FROM inventory WHERE entry_id = $/entry_id/`, data)
   }
 
 };

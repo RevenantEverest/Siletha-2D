@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import services from '../services/apiServices';
 
 import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 
@@ -13,7 +14,9 @@ class DummyComponent extends Component {
       userData: this.props.userData,
       renderChooseCharacter: true,
       renderGame: false,
-      renderFight: false
+      renderFight: false,
+      characterInfo: null,
+      playerHealth: 100
     }
     this.setCharacter = this.setCharacter.bind(this);
     this.triggerFight = this.triggerFight.bind(this);
@@ -21,12 +24,31 @@ class DummyComponent extends Component {
     this.triggerCharacterSelection = this.triggerCharacterSelection.bind(this);
   }
 
+  getCharacterInfo(id) {
+    services.getCharacterInfo(id)
+      .then(result => {
+        this.setState({
+          characterInfo: result.data.data,
+
+        }, () => {
+          this.setState({
+            renderGame: true
+          })
+          console.log('Character Info', this.state)
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   setCharacter(id) {
     this.setState({
       character_id: id,
-      renderChooseCharacter: false,
-      renderGame: true
+      renderChooseCharacter: false
     })
+    this.getCharacterInfo(id)
+
   }
 
   triggerFight() {
@@ -55,8 +77,8 @@ class DummyComponent extends Component {
     return(
       <div>
         {this.state.renderChooseCharacter ? <ChooseCharacter userData={this.state.userData} setCharacter={this.setCharacter} /> : ''}
-        {this.state.renderGame ? <Game character_id={this.state.character_id} triggerFight={this.triggerFight} triggerCharacterSelection={this.triggerCharacterSelection}/> : ''}
-        {this.state.renderFight ? <Fight character_id={this.state.character_id} triggerGame={this.triggerGame} /> : ''}
+        {this.state.renderGame ? <Game characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerFight={this.triggerFight} triggerCharacterSelection={this.triggerCharacterSelection} playerHealth={this.state.playerHealth} /> : ''}
+        {this.state.renderFight ? <Fight characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerGame={this.triggerGame} playerHealth={this.state.playerHealth} /> : ''}
       </div>
     );
   }

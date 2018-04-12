@@ -5,10 +5,14 @@ const characterRouter = express.Router();
 
 characterRouter.get(`/user/:id`, characterController.getOneByUserId)
 
+characterRouter.route(`/experience`)
+  .put(characterController.updateCharacterExperience)
+
 characterRouter.route(`/:id`)
   .get(characterController.getOne)
-  .put(characterController.update)
+  // .put(characterController.updateCharacterName)
   .delete(characterController.delete)
+
 
 characterRouter.route(`/`)
   .get(characterController.index)
