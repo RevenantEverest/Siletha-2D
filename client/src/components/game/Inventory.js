@@ -37,6 +37,7 @@ class Inventory extends Component {
                 <h1 className="Inventory-contents-items-name">{el.item_name}</h1>
                 <form className="Inventory-item-remove" onSubmit={this.removeItem}>
                   <label className="Inventory-contents-items-label">
+                    Are you sure you want to delete {el.item_name}?
                     <input type="radio" name="entry_id" value={`${el.entry_id}`} onChange={this.handleChange} />
                   </label>
                   <input className="Iventory-input-delete" type="submit" value="&times;" />

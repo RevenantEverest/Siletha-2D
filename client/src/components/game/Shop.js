@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import services from '../../services/apiServices';
 
-import Inventory from './Inventory';
+import InventoryShop from './InventoryShop';
 
 class Shop extends Component {
 
@@ -48,7 +48,7 @@ class Shop extends Component {
             <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
             <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
-              <Inventory character_id={this.state.character_id} characterInfo={this.state.characterInfo}/>
+              <InventoryShop character_id={this.state.character_id} characterInfo={this.state.characterInfo}/>
               <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1>
             </div>
           </div>

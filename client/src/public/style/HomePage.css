@@ -278,7 +278,7 @@ label {
   height: 42vh;
   width: 30%;
   top: 25%;
-  left: 5%;
+  left: 15%;
   position: absolute;
   background-image: url(../images/knight/KnightOneStates/KnightIdle.gif);
   background-repeat: no-repeat;
@@ -301,7 +301,7 @@ label {
 .Game-avatar-archer {
   height: 47vh;
   width: 30%;
-  top: 25%;
+  top: 21%;
   left: 10%;
   position: absolute;
   background-image: url(../images/archer/ArcherStates/ArcherIdle.gif);

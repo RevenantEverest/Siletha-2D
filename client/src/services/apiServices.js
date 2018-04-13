@@ -98,4 +98,19 @@ services.getItemName = (data) => {
 
 /*-------- END --------*/
 
+/*======== Shop ========*/
+
+services.sellItem = (data) => {
+  return axios({
+    method: 'PUT',
+    url: `/shops/sell`,
+    data: {
+      character_id: data.character_id,
+      gold: data.gold
+    }
+  })
+}
+
+/*-------- END --------*/
+
 export default services;

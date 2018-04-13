@@ -11,6 +11,8 @@ class InventoryShop extends Component {
 
       character_id: this.props.character_id
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.sellItem = this.sellItem.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +31,17 @@ class InventoryShop extends Component {
   renderInventory() {
     let InventoryShop = this.state.apiData.map((el, idx) => {
       return(
-
+        <div className="InventoryShop-contents">
+          <h3 className="InventoryShop-contents-item_name">{el.item_name}</h3>
+          <h4 className="InventoryShop-contents-worth">Worth: {el.worth}</h4>
+          <form onSubmit={this.sellItem}>
+            <label>
+              You sure you want to sell {el.item_name}?
+              <input type="radio" name="entry_id" value={`${el.entry_id}`} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Sell Item"/>
+          </form>
+        </div>
       );
     })
 
@@ -38,6 +50,36 @@ class InventoryShop extends Component {
         {InventoryShop}
       </div>
     );
+  }
+
+  handleChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleItemSell(e) {
+    e.preventDefault();
+    let data = {
+      entrty_id: this.state.entry_id
+    }
+    //delete item from inventory
+    services.removeItem(data)
+      .then(results => {
+        this.getGoldFromSale()
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+    //recieve worth of that item sold
+  }
+
+  handleItemBuy() {
+    //remove gold from player
+    //add item to inventory
   }
 
   render() {
