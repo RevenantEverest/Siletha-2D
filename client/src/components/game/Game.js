@@ -33,10 +33,31 @@ class Game extends Component {
         renderAvatar: 'Game-avatar-archer'
       })
     }
+    services.getCharacterInfo(this.state.character_id)
+      .then(results => {
+        this.setState({
+          apiData: results.data.data,
+          apiDataRecieved: true
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  renderCharacterInfo() {
+    let info = this.state.apiData;
+    return(
+      <div className="Game-characterInfo-contents">
+        <h1 className="Game-characterInfo-contents-name">{info.name}</h1>
+        <h3 className="Game-characterInfo-contents-level">Level: {info.level}</h3>
+        <h3 className="Game-characterInfo-contents-name">Exp: {info.experience}</h3>
+      </div>
+    );
   }
 
   openModal() {
-    let modal = document.querySelector('.simpleModal');
+    let modal = document.querySelector('.simpleModal-inventory');
     modal.style.display = "block";
     this.setState({
       modalOpen: true
@@ -45,7 +66,7 @@ class Game extends Component {
 
   closeModal() {
    console.log('Hello I Should Be Closing')
-    let modal = document.querySelector('.simpleModal');
+    let modal = document.querySelector('.simpleModal-inventory');
     modal.style.display = "none";
     this.setState({
       modalOpen: false
@@ -56,23 +77,25 @@ class Game extends Component {
     return(
       <div className="Game">
         <div className="Game-avatar-container">
+          {this.state.apiDataRecieved ? this.renderCharacterInfo() : ''}
           <div className={`${this.state.renderAvatar}`}>
           </div>
         </div>
         <Grid />
-        <div className="simpleModal">
-          <div className="modalContent">
+        <div className="simpleModal-inventory">
+          <div className="modalContent-inventory">
             <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
-            <h1 className="modalHeading">Inventory</h1>
+            <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
               <Inventory character_id={this.state.character_id} characterInfo={this.state.characterInfo}/>
-              <h1>Gold: {this.state.characterInfo.gold}</h1>
+              <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1>
             </div>
           </div>
         </div>
         <button className="Game-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
         <button onClick={this.props.triggerFight}>Fight</button>
         <button onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
+        <button onClick={this.props.triggerShop}>Shop</button>
       </div>
     );
   }

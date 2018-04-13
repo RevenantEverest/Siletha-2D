@@ -29,21 +29,18 @@ class Inventory extends Component {
   }
 
   renderInventory() {
-      console.log(this.state.apiData);
       let Inventory = this.state.apiData.map((el, idx) => {
-        console.log(el.item_name);
         return(
-          <ul>
-            <li>
+          <ul className="Inventory-items-UL" key={idx}>
+            <li className="Inventory-items-li">
               <div className="Inventory-contents-items">
-                <form onSubmit={this.removeItem}>
+                <h1 className="Inventory-contents-items-name">{el.item_name}</h1>
+                <form className="Inventory-item-remove" onSubmit={this.removeItem}>
                   <label className="Inventory-contents-items-label">
-                    You sure you want to delete {el.item_name}?
                     <input type="radio" name="entry_id" value={`${el.entry_id}`} onChange={this.handleChange} />
                   </label>
-                  <input type="submit" value="Delete" />
+                  <input className="Iventory-input-delete" type="submit" value="&times;" />
                 </form>
-                <h1 className="Inventory-contents-items-name">{el.item_name}</h1>
               </div>
             </li>
           </ul>

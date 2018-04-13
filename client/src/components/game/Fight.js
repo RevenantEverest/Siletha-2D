@@ -33,13 +33,17 @@ class Fight extends Component {
       victory: false,
       defeat: false,
 
+      enemyDefeated: false,
+
+      itemsRecieved: null,
+      itemsRecievedName: null,
+
       characterInfo: this.props.characterInfo,
       character_id: this.props.character_id
     }
   }
 
   componentDidMount() {
-    //console.log(this.state.characterInfo);
     if(this.state.characterInfo.class_id == 1) {
       this.setState({
         playerStates: [
@@ -101,7 +105,7 @@ class Fight extends Component {
           this.enemy();
         }, 1000)
       }
-    } else if(this.state.characterInfo.class_id == 2 || this.state.characterInfo.class_id ==3) {
+    } else if(this.state.characterInfo.class_id == 2 || this.state.characterInfo.class_id == 3) {
       if(this.state.canAttack) {
         this.setState({
           canAttack: false
@@ -127,9 +131,23 @@ class Fight extends Component {
   enemy() {
     if(this.state.enemyHealth <= 0) {
       this.setState({
-        enemyState: enemyStates[2]
+        enemyState: enemyStates[2],
+        enemyDefeated: true
       })
-      setTimeout(this.victory(),1000)
+      setTimeout(() => {
+        services.getCharacterInfo(this.state.character_id)
+          .then(result => {
+            this.setState({
+              characterInfo: result.data.data
+            }, () => {
+              this.itemReward()
+            })
+
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }, 1000)
     }else {
       if(this.state.enemyHealth > 0 && this.state.playerHealth > 0) {
         this.setState({
@@ -152,22 +170,19 @@ class Fight extends Component {
     })
   }
 
-  victory() {
-    this.setState({
-      victory: true
-    })
-  }
-
   itemReward() {
     let num = this.RNG(13)
     let data = {
       character_id: this.state.character_id,
       item_id: num
     }
-    console.log(data.item_id);
     services.addItem(data)
     .then(result => {
-      console.log('Items Recieved');
+      this.setState({
+        itemsRecieved: result.data.data,
+
+      })
+      this.getItemName()
       this.grantExperience();
     })
     .catch(err => {
@@ -176,20 +191,174 @@ class Fight extends Component {
   }
 
   grantExperience() {
-    this.setState({
-      experience: this.state.characterInfo.experience + 100
-    })
+    console.log('Experienced gined');
     let data = {
       character_id: this.state.character_id,
-      exp: this.state.experience
+      exp: 100
     }
     services.updateCharacterExperience(data)
       .then(result => {
         console.log('Expereience Gained');
+        this.checkForLevelUp();
+        setTimeout(() => {
+          this.setState({
+            victory: true
+          })
+        }, 1500)
       })
       .catch(err => {
         console.log(err);
       })
+  }
+
+  checkForLevelUp() {
+    if(this.state.characterInfo.experience === 300 && this.state.characterInfo.level === 1) {
+      console.log("Level 2");
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up');
+          this.levelUp();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 600 && this.state.characterInfo.level === 2) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up');
+          this.levelUp();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 900 && this.state.characterInfo.level === 3) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up');
+          this.levelUp();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 1200 && this.state.characterInfo.level === 4) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up');
+          this.levelUp();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 1500 && this.state.characterInfo.level === 5) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up');
+          this.levelUp();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 1800 && this.state.characterInfo.level === 6) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up')
+          this.levelUp()
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 2100 && this.state.characterInfo.level === 7) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up')
+          this.levelUp()
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 2400 && this.state.characterInfo.level === 8) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up')
+          this.levelUp()
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 2700 && this.state.characterInfo.level === 9) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up')
+          this.levelUp()
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else if(this.state.characterInfo.experience === 3000 && this.state.characterInfo.level === 10) {
+      services.levelUp(this.state.character_id)
+        .then(result => {
+          console.log('level up')
+          this.levelUp()
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }
+
+  levelUp() {
+    this.setState({
+      levelUp: true
+    })
+    setTimeout(() => {
+      this.setState({
+        levelUp: false
+      })
+    }, 3000)
+  }
+
+  renderLevelUp() {
+    console.log("Render Level Up");
+    return(
+      <div className="LevelUp">
+      </div>
+    );
+  }
+
+  getItemName() {
+    services.getItemName(this.state.itemsRecieved.item_id)
+      .then(result => {
+        this.setState({
+          itemsRecievedName: result.data.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  renderVictory() {
+    return(
+      <div className="simpleModal-victory">
+        <div className="modalContent-victory">
+          <h1 className="modalHeading-inventory">Recieved</h1>
+          <div className="Fight-victory-container">
+            <div className="Fight-victory-contents">
+              <h3 className="Fight-victory-contents-expGained">Exp Gained: 100</h3>
+              <h3 className="Fight-victory-contents-itemName">{this.state.itemsRecievedName.item_name}</h3>
+            </div>
+          </div>
+          <button className="Fight-continue-button" onClick={this.props.triggerGame}>Continue</button>
+        </div>
+      </div>
+    );
+  }
+
+  renderEnemyDefeated() {
+    return(
+      <div className="Fight-enemy-defeated">
+      </div>
+    );
   }
 
   RNG(int){
@@ -240,9 +409,10 @@ class Fight extends Component {
             <button className="Fight-attacks-attackOne" onClick={(e) => this.handleAttackOne()}>AttackOne</button>
           </div>
         </div>
-        {this.state.victory ? this.itemReward() : ''}
+        {this.state.levelUp ? this.renderLevelUp() : ''}
+        {this.state.enemyDefeated && !this.state.levelUp ? this.renderEnemyDefeated() : ''}
+        {this.state.victory && !this.state.levelUp ? this.renderVictory() : ''}
         {this.state.defeat ? this.renderDefeat() : ''}
-        <button className="back-to-game" onClick={this.props.triggerGame}>Back to Game</button>
       </div>
     );
   }

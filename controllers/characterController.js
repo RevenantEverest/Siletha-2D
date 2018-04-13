@@ -81,6 +81,19 @@ module.exports = {
       })
   },
 
+  updateCharacterLevel(req, res, next) {
+    characterDB.updateLevel(req.body)
+      .then((character) => {
+        res.json({
+          message: "Level Up!",
+          data: character
+        })
+      })
+      .catch(err => {
+        next(err)
+      })
+  },
+
   delete(req, res, next) {
     characterDB.delete(req.params.id)
       .then(() => next())

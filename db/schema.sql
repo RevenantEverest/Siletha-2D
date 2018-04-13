@@ -11,7 +11,8 @@ DROP TABLE IF EXISTS currency;
 CREATE TABLE items (
 item_id SERIAL PRIMARY KEY,
 item_name VARCHAR(255),
-item_type VARCHAR(255)
+item_type VARCHAR(255),
+worth INT
 );
 
 CREATE TABLE users (
@@ -49,9 +50,4 @@ strength INT,
 stamina INT,
 defense INT,
 intellect INT
-);
-
-CREATE TABLE currency (
-  character_id INT,
-  gold INT
 );

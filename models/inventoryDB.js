@@ -11,6 +11,10 @@ module.exports = {
     VALUES ($/character_id/, $/item_id/) RETURNING *`, inventory)
   },
 
+  findItemById(id) {
+    return db.one(`SELECT * FROM items WHERE item_id = $1`, id)
+  },
+
   deleteItem(data) {
     return db.none(`DELETE FROM inventory WHERE entry_id = $/entry_id/`, data)
   }

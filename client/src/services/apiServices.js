@@ -38,6 +38,16 @@ services.updateCharacterExperience = (data) => {
   })
 };
 
+services.levelUp = (data) => {
+  return axios({
+    method: 'PUT',
+    url: '/characters/level',
+    data: {
+      character_id: data
+    }
+  })
+};
+
 services.getCharacterInfo = (data) => {
   return axios.get(`characters/${data}`);
 };
@@ -81,6 +91,10 @@ services.removeItem = (data) => {
     }
   })
 };
+
+services.getItemName = (data) => {
+  return axios.get(`/inventory/items/${data}`)
+}
 
 /*-------- END --------*/
 

@@ -32,7 +32,15 @@ module.exports = {
     console.log("Hitting it big, in DB");
     return db.one(`UPDATE characters
       SET
-      experience = $/experience/
+      experience = experience + $/experience/
+      WHERE character_id = $/character_id/
+      RETURNING *`, character)
+  },
+
+  updateLevel(character) {
+    return db.one(`UPDATE characters
+      SET
+      level = level + 1
       WHERE character_id = $/character_id/
       RETURNING *`, character)
   },

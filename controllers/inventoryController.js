@@ -27,6 +27,19 @@ module.exports = {
       })
   },
 
+  getItemName(req, res, next) {
+    inventoryDB.findItemById(req.params.id)
+      .then(item => {
+        res.json({
+          message: "Getting item name",
+          data: item
+        })
+      })
+      .catch(err => {
+        next(err)
+      })
+  },
+
   removeItem(req, res, next) {
     inventoryDB.deleteItem(req.body)
       .then(() => next())

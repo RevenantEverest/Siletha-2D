@@ -16,7 +16,9 @@ class ChooseCharacter extends Component {
       apiDataRecieved: false,
       createCharacterRedirect: false,
       playGameRedirect: false,
-      modalOpen: false
+      modalOpen: false,
+
+      characterAvatar: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDeleteSubmit = this.handleDeleteSubmit.bind(this);
@@ -129,13 +131,34 @@ class ChooseCharacter extends Component {
 
   handleCharacterSelection(id) {
     let button = document.querySelector(`.character-${id}`);
-    button.backgroundColor = "#333333";
+    button.style.backgroundColor = "#333333";
     this.setState({
       character_id: id
     }, () => {
-      console.log('State =>', this.state.character_id);
+      services.getCharacterInfo(this.state.character_id)
+        .then(result => {
+          this.setState({
+            characterInfo: result.data.data
+          })
+          this.displayAvatar();
+        })
     })
+  }
 
+  displayAvatar() {
+    if(this.state.characterInfo.class_id == 1) {
+      this.setState({
+        characterAvatar: 'Game-avatar-knight'
+      })
+    }else if(this.state.characterInfo.class_id == 2) {
+      this.setState({
+        characterAvatar: 'Game-avatar-wizard'
+      })
+    }else if(this.state.characterInfo.class_id == 3) {
+      this.setState({
+        characterAvatar: 'Game-avatar-archer'
+      })
+    }
   }
 
   handlePlayButton() {
@@ -155,7 +178,7 @@ class ChooseCharacter extends Component {
           <div className="ChooseCharacter-router">
             {this.state.apiDataRecieved ? this.renderCharacters() : ''}
             <button className="ChooseCharacter-play-button" onClick={(e) => this.handlePlayButton()}>Play</button>
-
+            <div className={`${this.state.characterAvatar}`}></div>
             <div className="simpleModal">
               <div className="modalContent">
                 <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>

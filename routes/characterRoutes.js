@@ -8,6 +8,9 @@ characterRouter.get(`/user/:id`, characterController.getOneByUserId)
 characterRouter.route(`/experience`)
   .put(characterController.updateCharacterExperience)
 
+characterRouter.route('/level')
+  .put(characterController.updateCharacterLevel)
+
 characterRouter.route(`/:id`)
   .get(characterController.getOne)
   // .put(characterController.updateCharacterName)

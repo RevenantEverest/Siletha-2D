@@ -267,6 +267,12 @@ label {
   font-family: "Raleway", sans-serif;
 }
 
+.Game-characterInfo-contents {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
 /*Knight*/
 .Game-avatar-knight {
   height: 42vh;
@@ -293,7 +299,7 @@ label {
 
 /*Archer*/
 .Game-avatar-archer {
-  height: 42vh;
+  height: 47vh;
   width: 30%;
   top: 25%;
   left: 10%;
@@ -319,6 +325,29 @@ label {
 .Inventory-contents-items-name {
   color: black;
   font-weight: 400;
+}
+
+.Inventory-items-UL {
+  color: black;
+}
+
+.Inventory-items-LI {
+  color: black;
+}
+
+/*-------- END --------*/
+
+/*======== Shop ========*/
+
+.Shop {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/Shop.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  font-family: "Raleway", sans-serif;
 }
 
 /*-------- END --------*/
@@ -520,6 +549,37 @@ label {
   left: 2%;
 }
 
+.Fight-victory-contents-itemName {
+  color: black
+}
+
+.Fight-victory-contents-expGained {
+  color: black
+}
+
+.LevelUp {
+  height: 50vh;
+  width: 35%;
+  position: absolute;
+  left: 32%;
+  top: 25%;
+  background-image: url(../images/levelUp.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Fight-enemy-defeated {
+  height: 45vh;
+  width: 36%;
+  position: absolute;
+  left: 32%;
+  top: 25%;
+  background-image: url(../images/Victory.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 2s linear blink;
+}
+
 /*-------- END --------*/
 
 /*Animations*/
@@ -665,6 +725,80 @@ label {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/*-------- END --------*/
+
+/*======== Inventory Modal ========*/
+
+.simpleModal-inventory{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: .5s linear fadeIn;
+}
+
+.modalContent-inventory {
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  padding: 20px;
+  height: 46%;
+  width: 20%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+.modalHeading-inventory {
+  color: black;
+}
+
+.closeButton-inventory{
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+.closeButton-inventory:hover, .closeButton-inventory:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*-------- END --------*/
+
+/*======== Victory Modal ========*/
+
+.simpleModal-victory{
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: .5s linear fadeIn;
+}
+
+.modalContent-victory {
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  padding: 20px;
+  height: 46%;
+  width: 20%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+.modalHeading-victory {
+  color: black;
 }
 
 /*-------- END --------*/
