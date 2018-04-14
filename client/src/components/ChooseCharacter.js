@@ -44,7 +44,6 @@ class ChooseCharacter extends Component {
 
   playTundra() {
     let theme = document.querySelector('.Tundra');
-    theme.currentTime = 0;
     theme.play();
   }
 

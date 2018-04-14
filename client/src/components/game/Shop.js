@@ -9,7 +9,8 @@ import Fireplace from '../../public/sounds/Shop/Fireplace.wav';
 import Crowd from '../../public/sounds/Shop/Crowd.wav';
 import DoorClose from '../../public/sounds/Effects/UI/doorClose_3.ogg';
 import InventoryOpen from '../../public/sounds/Effects/UI/cloth1.ogg';
-import InventoryClose from '../../public/sounds/Effects/UI/clothBelt2.ogg';
+import InventoryClose from '../../public/sounds/Effects/UI/cloth2.ogg';
+import Coins from '../../public/sounds/Effects/UI/clothBelt2.ogg';
 
 class Shop extends Component {
 
@@ -43,9 +44,6 @@ class Shop extends Component {
     let music = document.querySelector('.TavernMusic');
     let fireplace = document.querySelector('.Fireplace');
     let crowd = document.querySelector('.Crowd');
-    // music.currentTime = 0;
-    // fireplace.currentTime = 0;
-    // crowd.currentTime = 0;
 
     music.play();
     fireplace.play();
@@ -64,7 +62,10 @@ class Shop extends Component {
 
       services.buyItem(data)
         .then(result => {
-          this.takeGold()
+          this.playCoinDrop();
+          setTimeout(() => {
+            this.takeGold();
+          }, 1000);
         })
         .catch(err => {
           console.log(err);
@@ -116,6 +117,12 @@ class Shop extends Component {
     setTimeout(() => {
       this.props.triggerGame()
     }, 2000)
+  }
+
+  playCoinDrop() {
+    let sound = document.querySelector('.Coins');
+    sound.currentTime = 0;
+    sound.play();
   }
 
   renderStock() {
@@ -181,6 +188,7 @@ class Shop extends Component {
         <audio className="DoorClose" src={DoorClose} />
         <audio className="InventoryOpen" src={InventoryOpen} />
         <audio className="InventoryClose" src={InventoryClose} />
+        <audio className="Coins" src={Coins} />
       </div>
     );
   }

@@ -8,7 +8,7 @@ import Inventory from './Inventory';
 import GameTheme from '../../public/sounds/dungeon';
 import DoorOpen from '../../public/sounds/Effects/UI/doorOpen_2.ogg';
 import InventoryOpen from '../../public/sounds/Effects/UI/cloth1.ogg';
-import InventoryClose from '../../public/sounds/Effects/UI/clothBelt2.ogg';
+import InventoryClose from '../../public/sounds/Effects/UI/cloth2.ogg';
 
 
 class Game extends Component {

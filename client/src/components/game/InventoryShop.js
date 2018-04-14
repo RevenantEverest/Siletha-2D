@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import services from '../../services/apiServices';
 
+//Audio Imports
+import Coins from '../../public/sounds/Effects/UI/clothBelt2.ogg';
+
 class InventoryShop extends Component {
 
   constructor(props) {
@@ -85,12 +88,11 @@ class InventoryShop extends Component {
     services.sellItem(data)
       .then(result => {
         this.removeItem(this.state.entry_id);
-        //play coin sound
+        this.playCoinDrop();
       })
       .catch(err => {
         console.log(err);
       })
-    //delete item from inventory
   }
 
   removeItem() {
@@ -106,15 +108,17 @@ class InventoryShop extends Component {
       })
   }
 
-  handleItemBuy() {
-    //remove gold from player
-    //add item to inventory
+  playCoinDrop() {
+    let sound = document.querySelector('.Coins');
+    sound.currentTime = 0;
+    sound.play();
   }
 
   render() {
     return(
       <div className="InventoryShop">
         {this.state.apiDataRecieved ? this.renderInventory() : ''}
+        <audio className="Coins" src={Coins} />
       </div>
     );
   }
