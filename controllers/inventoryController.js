@@ -53,6 +53,32 @@ module.exports = {
       })
   },
 
+  useItem(req, res, next) {
+    inventoryDB.useItem(req.body)
+      .then(item => {
+        res.json({
+          message: "Item used",
+          data: item
+        })
+      })
+      .catch(err => {
+        next(err)
+      })
+  },
+
+  findByEntryId(req, res, next) {
+    inventoryDB.findByEntryId(req.params.id)
+      .then(item => {
+        res.json({
+          message: "Item by entry_id info",
+          data: item
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
   removeItem(req, res, next) {
     inventoryDB.deleteItem(req.body)
       .then(() => next())

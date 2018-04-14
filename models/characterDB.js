@@ -15,8 +15,8 @@ module.exports = {
   },
 
   save(character) {
-    return db.one(`INSERT INTO characters (user_id, name, class_id, experience, level, gold)
-    VALUES ($/user_id/, $/name/, $/class_id/, $/experience/, $/level/, $/gold/)
+    return db.one(`INSERT INTO characters (user_id, name, class_id, experience, level, health, gold)
+    VALUES ($/user_id/, $/name/, $/class_id/, $/experience/, $/level/, $/health/, $/gold/)
     RETURNING *`, character)
   },
 
@@ -41,6 +41,14 @@ module.exports = {
     return db.one(`UPDATE characters
       SET
       level = level + 1
+      WHERE character_id = $/character_id/
+      RETURNING *`, character)
+  },
+
+  takeDamage(character) {
+    return db.one(`UPDATE characters
+      SET
+      health = health - $/damage/
       WHERE character_id = $/character_id/
       RETURNING *`, character)
   },

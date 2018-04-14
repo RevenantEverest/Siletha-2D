@@ -20,6 +20,7 @@ class Shop extends Component {
       itemsStocked: false,
 
       cannotBuy: false,
+      canBuy: true,
 
       characterInfo: null,
       character_id: this.props.character_id
@@ -50,21 +51,27 @@ class Shop extends Component {
     crowd.play();
   }
 
-  buyItem() {
-    if(this.state.characterInfo.gold >= 50) {
+  buyItemOne() {
+    if(this.state.characterInfo.gold >= 50 && this.state.canBuy) {
       let data = {
         item_id: 14,
         character_id: this.state.character_id
       }
       this.setState({
-        item_id: 14
+        item_id: 14,
+        canBuy: false
       })
+      setTimeout(() => {
+        this.setState({
+          canBuy: true
+        })
+      }, 2000)
 
       services.buyItem(data)
         .then(result => {
           this.playCoinDrop();
           setTimeout(() => {
-            this.takeGold();
+            this.takeGold(50);
           }, 1000);
         })
         .catch(err => {
@@ -77,9 +84,42 @@ class Shop extends Component {
     }
   }
 
-  takeGold() {
+  buyItemTwo() {
+    if(this.state.characterInfo.gold >= 80 && this.state.canBuy) {
+      let data = {
+        item_id: 15,
+        character_id: this.state.character_id
+      }
+      this.setState({
+        item_id: 15,
+        canBuy: false
+      })
+      setTimeout(() => {
+        this.setState({
+          canBuy: true
+        })
+      }, 2000)
+
+      services.buyItem(data)
+        .then(result => {
+          this.playCoinDrop();
+          setTimeout(() => {
+            this.takeGold(80);
+          }, 1000);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }else {
+      this.setState({
+        cannotBuy: true
+      })
+    }
+  }
+
+  takeGold(int) {
     let data = {
-      gold: 50,
+      gold: int,
       character_id: this.state.character_id
     }
     services.removeGold(data)
@@ -139,15 +179,19 @@ class Shop extends Component {
         </div>
         <div className="Shop-stock-container">
           <div className="Shop-stock-contents">
-            <div className="Shop-stock-healthPotion-container" onClick={() => this.buyItem()}>
-              <div className="Shop-stock-healthPotion">
+            <div className="Shop-stock-healthPotion-container">
+              <div className="Shop-stock-healthPotion" onClick={(e) => this.buyItemOne()}>
               </div>
+              <h1 className="Shop-stock-healthPotion-h1">Health Potion</h1>
+              <div className="Shop-stock-largeHealthPotion" onClick={(e) => this.buyItemTwo()}>
+              </div>
+              <h1 className="Shop-stock-largeHealthPotion-h1">Large Health Potion</h1>
             </div>
           </div>
         </div>
         <h1 className="Shop-player-gold">Gold {this.state.characterInfo.gold}</h1>
-        <button className="Game-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
-        <button onClick={(e) => this.handleExit()}>Back to Game</button>
+        <button className="Shop-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
+        <button className="Shop-exit-button" onClick={(e) => this.handleExit()}>Exit Shop</button>
       </div>
     );
   }

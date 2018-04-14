@@ -273,6 +273,28 @@ label {
   left: 5%;
 }
 
+.Game-Inventory-button {
+    position: absolute;
+    top: 75%;
+    left: 10%;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    border-radius: 20px;
+    padding: 0.5% 2% 0.5% 2%;
+}
+
+.Game-shop-enter-trigger {
+    position: absolute;
+    top: 75%;
+    left: 22%;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    border-radius: 20px;
+    padding: 0.5% 2% 0.5% 2%;
+}
+
 /*Knight*/
 .Game-avatar-knight {
   height: 42vh;
@@ -335,6 +357,11 @@ label {
   color: black;
 }
 
+.Inventory-CannotUse {
+  text-align: center;
+  color: black;
+}
+
 .Gold {
   color: black;
 }
@@ -366,36 +393,111 @@ label {
   border-color: #dedede;
 }
 
-.Shop-stock-healthPotion-container {
+.Shop-stock-healthPotion {
   height: 10vh;
   width: 10%;
   margin-top: 3%;
-  margin-left: 2%;
-  background-color: rgba(255,255,255,0.4);
-  display: inline-block;
-  border-radius: 16px;
-  border-style: solid;
-  border-color: yellow;
-}
-
-.Shop-stock-healthPotion-container:hover {
-  background-color: rgba(183,183,31,0.4);
-  border-color: #ff6600;
-}
-
-.Shop-stock-healthPotion {
-  height: 8vh;
-  width: 80%;
-  margin-top: 12%;
-  margin-left: 10%;
+  margin-left: 4.5%;
   display: inline-block;
   background-image: url(../images/Items/HealthPotion.png);
   background-repeat: no-repeat;
   background-size: 100%;
 }
 
+.Shop-stock-healthPotion:hover {
+  background-image: url(../images/Items/HealthPotionHover.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Shop-stock-healthPotion-h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #dedede;
+  position: absolute;
+  top: 60%;
+  left: 2%;
+}
+
+.Shop-stock-largeHealthPotion {
+  height: 10vh;
+  width: 10%;
+  margin-top: 3%;
+  margin-left: 16%;
+  display: inline-block;
+  background-image: url(../images/Items/LargeHealthPotion.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Shop-stock-largeHealthPotion:hover {
+  background-image: url(../images/Items/LargeHealthPotionHover.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Shop-stock-largeHealthPotion-h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #dedede;
+  position: absolute;
+  top: 60%;
+  left: 25%;
+}
+
 .Shop-player-gold {
   position: absolute;
+  top: 65%;
+  left: 62%;
+  padding: 0.5% 2% 0.5% 2%;
+  background-color: rgba(0,0,0,0.5);
+  border-style: solid;
+  border-color: #dedede;
+  border-radius: 24px;
+}
+
+.Shop-Inventory-button {
+  position: absolute;
+  top: 69.5%;
+  left: 25.5%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.5% 2%;
+  border-radius: 24px;
+  border-style: none;
+  border-style: solid;
+  border-color: #dedede;
+  color: #dedede;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.Shop-Inventory-button:hover {
+  border-style: solid;
+  border-color: orange;
+  font-weight: 800;
+}
+
+.Shop-exit-button {
+  position: absolute;
+  top: 90%;
+  left: 18%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.5% 1%;
+  border-style: none;
+  border-style: double;
+  border-color: #dedede;
+  border-width: thick;
+  color: #dedede;
+  background-color: rgba(0,0,0);
+}
+
+.Shop-exit-button:hover {
+  border-color: orange;
 }
 
 .InventoryShop-contents-inner-container {
@@ -433,6 +535,11 @@ label {
   background-color: rgba(0,0,0,0.8);
   border-style: double;
   border-color: #dedede;
+}
+
+.Fight-Inventory-button {
+  position: absolute;
+  top: 50%;
 }
 
 /*======== Fight: PLAYER ONE ========*/
@@ -489,9 +596,9 @@ label {
 }
 
 .Fight-player-avatar-wizard-attack {
-  height: 42vh;
+  height: 48vh;
   width: 30%;
-  top: 25%;
+  top: 20%;
   left: 10%;
   position: absolute;
   background-image: url(../images/WizardStates/WizardAttack.gif);
@@ -508,7 +615,19 @@ label {
   background-image: url(../images/Effects/Fireball.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  animation: 1s linear backAndForthOne;
+  animation: 1s linear projectile;
+}
+
+.Fight-player-avatar-wizard-projectile2 {
+  height: 42vh;
+  width: 20%;
+  top: 40%;
+  left: 25%;
+  position: absolute;
+  background-image: url(../images/Effects/ShadowBall.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear projectile;
 }
 
 .Fight-player-avatar-wizard-die {
@@ -554,7 +673,19 @@ label {
   background-image: url(../images/Effects/Arrow.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  animation: 1s linear backAndForthOne;
+  animation: 1s linear projectile;
+}
+
+.Fight-player-avatar-archer-projectile2 {
+  height: 42vh;
+  width: 30%;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  background-image: url(../images/Effects/Arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 1s linear projectile;
 }
 
 .Fight-player-avatar-archer-die {
@@ -712,6 +843,17 @@ label {
   100% {
     transform: translateX(0);
   }
+}
+
+@keyframes projectile {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  };
+
 }
 
 /*-------- END --------*/

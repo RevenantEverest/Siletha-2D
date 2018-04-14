@@ -11,6 +11,9 @@ characterRouter.route(`/experience`)
 characterRouter.route('/level')
   .put(characterController.updateCharacterLevel)
 
+characterRouter.route('/takeDamage')
+  .put(characterController.takeDamage)
+
 characterRouter.route(`/:id`)
   .get(characterController.getOne)
   // .put(characterController.updateCharacterName)

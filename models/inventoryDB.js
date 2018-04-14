@@ -23,6 +23,18 @@ module.exports = {
       RETURNING *`, data)
   },
 
+  useItem(data) {
+    return db.one(`UPDATE characters
+      SET
+      health = health + $/health/
+      WHERE character_id = $/character_id/
+      RETURNING *`, data)
+  },
+
+  findByEntryId(id) {
+    return db.many(`SELECT * FROM inventory WHERE entry_id = $1`, id)
+  },
+
   deleteItem(data) {
     return db.none(`DELETE FROM inventory WHERE entry_id = $/entry_id/`, data)
   }

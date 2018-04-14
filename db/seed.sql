@@ -72,13 +72,79 @@ INSERT INTO items (item_name, item_type, worth) VALUES (
   'Large Health Potion',
   'Consumeable',
   80
+),
+(
+  'Mystic Warhammer of Vengeance',
+  'Artifact',
+  80
+),
+(
+  'Rusted Iron Sword',
+  'Weapon',
+  12
+),
+(
+  'Potato Soup',
+  'Consumeable',
+  10
+),
+(
+  'Potion of Invisibility',
+  'Consumeable',
+  35
+),
+(
+  'Greatsword of Knerk',
+  'Artifact',
+  80
+),
+(
+  'Wolf Pelt',
+  'Crafting',
+  20
+),
+(
+  'Deck of Spiritual Cards',
+  'Misc',
+  5
+),
+(
+  'Human Skull',
+  'Misc',
+  6
+),
+(
+  'Jewelled Crown',
+  'Armor',
+  20
+),
+(
+  'Moose Antlers',
+  'Crafting',
+  5
+),
+(
+  'Heart of Everest',
+  'Consumeable',
+  100
+),
+(
+  'Great Iron Lance',
+  'Weapon',
+  15
+),
+(
+  'Steel Ingot',
+  'Crafting',
+  20
 );
 
-INSERT INTO characters (user_id, name, class_id, experience, level, gold) VALUES (
+INSERT INTO characters (user_id, name, class_id, experience, level, health, gold) VALUES (
   1,
   'Dragonborn',
   1,
   0,
   1,
+  100,
   100
 );

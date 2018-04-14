@@ -36,7 +36,8 @@ class CreateCharacter extends Component {
       class_id: this.state.class_id,
       experience: 0,
       level: 1,
-      gold: 100
+      gold: 100,
+      health: 100
     }
     services.createCharacter(data)
       .then(result => {

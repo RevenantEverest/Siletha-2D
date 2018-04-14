@@ -29,6 +29,7 @@ name VARCHAR(255),
 class_id INT,
 experience INT,
 level INT,
+health INT,
 gold INT
 );
 

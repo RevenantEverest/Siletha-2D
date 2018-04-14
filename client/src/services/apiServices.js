@@ -22,7 +22,8 @@ services.createCharacter = (data) => {
       class_id: data.class_id,
       experience: data.experience,
       level: data.level,
-      gold: data.gold
+      gold: data.gold,
+      health: data.health
     }
   })
 };
@@ -50,6 +51,17 @@ services.levelUp = (data) => {
 
 services.getCharacterInfo = (data) => {
   return axios.get(`characters/${data}`);
+};
+
+services.playerTakeDamage = (data) => {
+  return axios({
+    method: 'PUT',
+    url: 'characters/takeDamage',
+    data: {
+      character_id: data.character_id,
+      damage: data.damage
+    }
+  })
 };
 
 services.deleteCharacter = (data) => {
@@ -92,6 +104,17 @@ services.removeItem = (data) => {
   })
 };
 
+services.useItem = (data) => {
+  return axios({
+    method: 'PUT',
+    url: 'inventory/useItem',
+    data: {
+      health: data.health,
+      character_id: data.character_id
+    }
+  })
+};
+
 services.getGold = (data) => {
   return axios({
     method: 'PUT',
@@ -105,6 +128,10 @@ services.getGold = (data) => {
 
 services.getItemName = (data) => {
   return axios.get(`/inventory/items/${data}`)
+};
+
+services.getItemByEntry_id = (data) => {
+  return axios.get(`/inventory/entryId/${data.entry_id}`)
 };
 
 /*-------- END --------*/

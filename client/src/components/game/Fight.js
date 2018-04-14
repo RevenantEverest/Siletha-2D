@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import services from '../../services/apiServices';
 
+import Inventory from './Inventory';
+
 //Audio Imports
 import BattleTheme from '../../public/sounds/EpicFantasyMusic-AncientAwakening.wav';
 import KnightAttack from '../../public/sounds/Effects/Weapons/SwordHitPlate';
 import WizardAttack from '../../public/sounds/Effects/Weapons/Fireball.wav';
+import WizardAttack2 from '../../public/sounds/Effects/Weapons/ShadowBall.mp3';
 import ArcherAttack from '../../public/sounds/Effects/Weapons/ArrowShot';
 
 import EnemyAttack from '../../public/sounds/Effects/Weapons/AxeHitFlesh';
 
-let playerStates = [
-  'Fight-player-avatar-knight-idle',
-  'Fight-player-avatar-knight-attack',
-  'Fight-player-avatar-knight-die',
-  'Fight-player-avatar-knight-projectile'
-]
+import InventoryOpen from '../../public/sounds/Effects/UI/cloth1.ogg';
+import InventoryClose from '../../public/sounds/Effects/UI/cloth2.ogg';
+import LevelUp from '../../public/sounds/Effects/UI/LevelUp.mp3';
+
 let enemyStates = [
   'Fight-enemy-avatar-idle',
   'Fight-enemy-avatar-attack',
@@ -26,7 +27,6 @@ class Fight extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerHealth: this.props.playerHealth,
       enemyHealth: 100,
 
       playerStates: null,
@@ -54,6 +54,16 @@ class Fight extends Component {
   }
 
   componentDidMount() {
+    services.getCharacterInfo(this.state.character_id)
+      .then(result => {
+        this.setState({
+          characterInfo: result.data.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
     if(this.state.characterInfo.class_id == 1) {
       this.setState({
         playerStates: [
@@ -73,7 +83,8 @@ class Fight extends Component {
           'Fight-player-avatar-wizard-idle',
           'Fight-player-avatar-wizard-attack',
           'Fight-player-avatar-wizard-die',
-          'Fight-player-avatar-wizard-projectile'
+          'Fight-player-avatar-wizard-projectile',
+          'Fight-player-avatar-wizard-projectile2'
         ]
       }, () => {
         this.setState({
@@ -86,7 +97,8 @@ class Fight extends Component {
           'Fight-player-avatar-archer-idle',
           'Fight-player-avatar-archer-attack',
           'Fight-player-avatar-archer-die',
-          'Fight-player-avatar-archer-projectile'
+          'Fight-player-avatar-archer-projectile',
+          'Fight-player-avatar-archer-projectile2'
         ]
       }, () => {
         this.setState({
@@ -110,10 +122,10 @@ class Fight extends Component {
         this.setState({
           canAttack: false
         })
-        if(this.state.enemyHealth > 0 && this.state.playerHealth > 0) {
+        if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
           this.setState({
             playerState: this.state.playerStates[1],
-            enemyHealth: this.state.enemyHealth -= 50
+            enemyHealth: this.state.enemyHealth -= 10
           })
         }
         this.playKnightAttack();
@@ -129,11 +141,11 @@ class Fight extends Component {
         this.setState({
           canAttack: false
         })
-        if(this.state.enemyHealth > 0 && this.state.playerHealth > 0) {
+        if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
           this.setState({
             playerState: this.state.playerStates[1],
             projectileState: this.state.playerStates[3],
-            enemyHealth: this.state.enemyHealth -= 50
+            enemyHealth: this.state.enemyHealth -= 10
           })
           if(this.state.characterInfo.class_id == 2) {
             this.playWizardAttack();
@@ -148,6 +160,58 @@ class Fight extends Component {
           })
           this.enemy();
         }, 1000)
+      }
+    }
+  }
+
+  handleAttackTwo() {
+    if(this.state.characterInfo.class_id == 1) {
+      if(this.state.canAttack) {
+        this.setState({
+          canAttack: false
+        })
+        if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
+          this.setState({
+            playerState: this.state.playerStates[1],
+            enemyHealth: this.state.enemyHealth -= 30
+          }, () => {
+            setTimeout(() => {
+              this.setState({
+                playerState: this.state.playerStates[0]
+              })
+              this.enemy();
+            }, 1000)
+          })
+        }
+        this.playKnightAttack();
+
+      }
+    } else if(this.state.characterInfo.class_id == 2 || this.state.characterInfo.class_id == 3) {
+      if(this.state.canAttack) {
+        this.setState({
+          canAttack: false
+        })
+        if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
+          this.setState({
+            playerState: this.state.playerStates[1],
+            projectileState: this.state.playerStates[4],
+            enemyHealth: this.state.enemyHealth -= 30
+          }, () => {
+            setTimeout(() => {
+              this.setState({
+                playerState: this.state.playerStates[0],
+                projectileState: ''
+              })
+              this.enemy();
+            }, 1000)
+          })
+          if(this.state.characterInfo.class_id == 2) {
+            this.playWizardAttack2();
+          }else if(this.state.characterInfo.class_id == 3) {
+            this.playArcherAttack();
+          }
+        }
+
       }
     }
   }
@@ -172,14 +236,17 @@ class Fight extends Component {
             console.log(err);
           })
       }, 1000)
-    }else {
-      if(this.state.enemyHealth > 0 && this.state.playerHealth > 0) {
+    }else if(this.state.enemyHealth > 0) {
+      if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
         this.setState({
           enemyState: enemyStates[1],
-          playerHealth: this.state.playerHealth -= 10
+          damage: this.RNG(40)
+        }, () => {
+          this.playerTakeDamage()
         })
         this.playEnemyAttack();
       }
+
       setTimeout(() => {
         this.setState({
           enemyState: enemyStates[0]
@@ -189,6 +256,22 @@ class Fight extends Component {
     }
   }
 
+  playerTakeDamage() {
+    let data = {
+      character_id: this.state.character_id,
+      damage: this.state.damage
+    }
+    console.log("Player takes damage", this.state.damage);
+    services.playerTakeDamage(data)
+      .then(result => {
+        console.log(result);
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   canAttack() {
     this.setState({
       canAttack: true
@@ -196,7 +279,7 @@ class Fight extends Component {
   }
 
   itemReward() {
-    let num = this.RNG(13)
+    let num = this.RNG(26)
     let data = {
       character_id: this.state.character_id,
       item_id: num
@@ -207,7 +290,6 @@ class Fight extends Component {
         itemsRecieved: result.data.data,
 
       })
-      console.log("Items gotten");
       this.grantGold();
       this.grantExperience();
     })
@@ -217,7 +299,6 @@ class Fight extends Component {
   }
 
   grantExperience() {
-    console.log('Experienced gined');
     let data = {
       character_id: this.state.character_id,
       exp: 100
@@ -351,6 +432,7 @@ class Fight extends Component {
     this.setState({
       levelUp: true
     })
+    this.playLevelUp();
     setTimeout(() => {
       this.setState({
         levelUp: false
@@ -422,6 +504,12 @@ class Fight extends Component {
     sound.play();
   }
 
+  playWizardAttack2() {
+    let sound = document.querySelector('.WizardAttack2');
+    sound.currentTime = 0;
+    sound.play();
+  }
+
   playArcherAttack() {
     let sound = document.querySelector('.ArcherAttack');
     sound.currentTime = 0;
@@ -434,6 +522,39 @@ class Fight extends Component {
     sound.play();
   }
 
+  playLevelUp() {
+    let levelUpSound = document.querySelector('.LevelUpSound');
+    levelUpSound.currentTime = 0;
+    levelUpSound.play();
+  }
+  /*END*/
+
+  openModal() {
+    let openSound = document.querySelector('.InventoryOpen');
+    openSound.currentTime = 0;
+    openSound.play();
+
+    let modal = document.querySelector('.simpleModal-inventory');
+    modal.style.display = "block";
+    this.setState({
+      modalOpen: true
+    })
+  }
+
+  closeModal() {
+    let openSound = document.querySelector('.InventoryClose');
+    openSound.currentTime = 0;
+    openSound.play();
+
+    let modal = document.querySelector('.simpleModal-inventory');
+    modal.style.display = "none";
+    this.setState({
+      modalOpen: false
+    }, () => {
+      this.componentDidMount();
+    })
+  }
+
   render() {
     return(
       <div className="Fight">
@@ -444,7 +565,7 @@ class Fight extends Component {
           {/* Player Health */}
           <div className="Fight-healthBars-player-healthBar-container">
             <div className="Fight-healthBar-player-healthBar">
-              <h1>{this.state.playerHealth}</h1>
+              <h1>{this.state.characterInfo.health}</h1>
             </div>
           </div>
 
@@ -474,18 +595,38 @@ class Fight extends Component {
 
         <div className="Fight-player-attacks-container">
           <div className="Fight-player-attacks-contents">
-            <button className="Fight-attacks-attackOne" onClick={(e) => this.handleAttackOne()}>AttackOne</button>
+            <button className="Fight-attacks-attackOne" onClick={(e) => this.handleAttackOne()}>Attack One</button>
+            <button className="Fight-attacks-attackOne" onClick={(e) => this.handleAttackTwo()}>Attack Two</button>
           </div>
         </div>
+        <div className="simpleModal-inventory">
+          <div className="modalContent-inventory">
+            <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
+            <h1 className="modalHeading-inventory">Inventory</h1>
+            <div className="Game-Inventory-container">
+              <Inventory character_id={this.state.character_id} />
+              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
+            </div>
+          </div>
+        </div>
+
         {this.state.levelUp ? this.renderLevelUp() : ''}
         {this.state.enemyDefeated && !this.state.levelUp ? this.renderEnemyDefeated() : ''}
         {this.state.itemsNameRecieved && !this.state.levelUp ? this.renderVictory() : ''}
         {this.state.defeat ? this.renderDefeat() : ''}
+
+        <button className="Fight-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
+
         <audio className="BattleTheme" src={BattleTheme} />
         <audio className="KnightAttack" src={KnightAttack} />
         <audio className="WizardAttack" src={WizardAttack} />
+        <audio className="WizardAttack2" src={WizardAttack2} />
         <audio className="ArcherAttack" src={ArcherAttack} />
         <audio className="EnemyAttack" src={EnemyAttack} />
+
+        <audio className="InventoryOpen" src={InventoryOpen} />
+        <audio className="InventoryClose" src={InventoryClose} />
+        <audio className="LevelUpSound" src={LevelUp} />
       </div>
     );
   }

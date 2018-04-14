@@ -12,7 +12,14 @@ inventoryRouter.route('/')
 inventoryRouter.route('/gold')
   .put(inventoryController.getGold)
 
+inventoryRouter.route('/useItem')
+  .put(inventoryController.useItem)
+
+inventoryRouter.route('/entryId/:id')
+  .get(inventoryController.findByEntryId)
+
 inventoryRouter.route('/items/:id')
   .get(inventoryController.getItemName)
+
 
 module.exports = inventoryRouter;

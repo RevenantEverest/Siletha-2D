@@ -94,6 +94,19 @@ module.exports = {
       })
   },
 
+  takeDamage(req, res, next) {
+    characterDB.takeDamage(req.body)
+      .then(character => {
+        res.json({
+          message: "Damage taken",
+          data: character
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
   delete(req, res, next) {
     characterDB.delete(req.params.id)
       .then(() => next())

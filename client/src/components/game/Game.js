@@ -63,8 +63,9 @@ class Game extends Component {
     return(
       <div className="Game-characterInfo-contents">
         <h1 className="Game-characterInfo-contents-name">{info.name}</h1>
-        <h3 className="Game-characterInfo-contents-level">Level: {info.level}</h3>
-        <h3 className="Game-characterInfo-contents-name">Exp: {info.experience}</h3>
+        <h3>Health: {info.health}</h3>
+        <h4 className="Game-characterInfo-contents-level">Level: {info.level}</h4>
+        <h4 className="Game-characterInfo-contents-name">Exp: {info.experience}</h4>
       </div>
     );
   }
@@ -110,7 +111,7 @@ class Game extends Component {
           <div className={`${this.state.renderAvatar}`}>
           </div>
         </div>
-        <Grid />
+        {/* <Grid /> */}
         <div className="simpleModal-inventory">
           <div className="modalContent-inventory">
             <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
@@ -122,9 +123,11 @@ class Game extends Component {
           </div>
         </div>
         <button className="Game-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
-        <button onClick={this.props.triggerFight}>Fight</button>
-        <button onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
-        <button onClick={(e) => this.handleShopEnter()}>Shop</button>
+        <button className="Game-fight-trigger" onClick={this.props.triggerFight}>Fight</button>
+        <button className="Game-character-selection-trigger" onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
+        <button className="Game-shop-enter-trigger" onClick={(e) => this.handleShopEnter()}>Shop</button>
+
+        {/* Audio */}
         <audio className="GameTheme" src={GameTheme} />
         <audio className="DoorOpen" src={DoorOpen} />
         <audio className="InventoryOpen" src={InventoryOpen} />
