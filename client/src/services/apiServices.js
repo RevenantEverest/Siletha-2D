@@ -92,9 +92,20 @@ services.removeItem = (data) => {
   })
 };
 
+services.getGold = (data) => {
+  return axios({
+    method: 'PUT',
+    url: '/inventory/gold',
+    data: {
+      gold: data.gold,
+      character_id: data.character_id
+    }
+  })
+};
+
 services.getItemName = (data) => {
   return axios.get(`/inventory/items/${data}`)
-}
+};
 
 /*-------- END --------*/
 
@@ -109,7 +120,29 @@ services.sellItem = (data) => {
       gold: data.gold
     }
   })
-}
+};
+
+services.buyItem = (data) => {
+  return axios({
+    method: 'POST',
+    url: `/shops/buy`,
+    data: {
+      item_id: data.item_id,
+      character_id: data.character_id
+    }
+  })
+};
+
+services.removeGold = (data) => {
+  return axios({
+    method: 'PUT',
+    url: `/shops/buy`,
+    data: {
+      gold: data.gold,
+      character_id: data.character_id
+    }
+  })
+};
 
 /*-------- END --------*/
 

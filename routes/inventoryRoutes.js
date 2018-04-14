@@ -9,6 +9,9 @@ inventoryRouter.route(`/:id`)
 inventoryRouter.route('/')
   .delete(inventoryController.removeItem)
 
+inventoryRouter.route('/gold')
+  .put(inventoryController.getGold)
+
 inventoryRouter.route('/items/:id')
   .get(inventoryController.getItemName)
 

@@ -62,6 +62,16 @@ INSERT INTO items (item_name, item_type, worth) VALUES (
   'Bear Tooth',
   'Crafting',
   4
+),
+(
+  'Health Potion',
+  'Consumeable',
+  50
+),
+(
+  'Large Health Potion',
+  'Consumeable',
+  80
 );
 
 INSERT INTO characters (user_id, name, class_id, experience, level, gold) VALUES (

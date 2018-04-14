@@ -4,6 +4,12 @@ import services from '../../services/apiServices';
 import Grid from '../Grid';
 import Inventory from './Inventory';
 
+//Audio Imports
+import GameTheme from '../../public/sounds/dungeon';
+import DoorOpen from '../../public/sounds/Effects/UI/doorOpen_2.ogg';
+import InventoryOpen from '../../public/sounds/Effects/UI/cloth1.ogg';
+import InventoryClose from '../../public/sounds/Effects/UI/clothBelt2.ogg';
+
 
 class Game extends Component {
 
@@ -43,6 +49,13 @@ class Game extends Component {
       .catch(err => {
         console.log(err);
       })
+    this.playTheme();
+  }
+
+  playTheme() {
+    let theme = document.querySelector('.GameTheme');
+    theme.currentTime = 0;
+    theme.play();
   }
 
   renderCharacterInfo() {
@@ -57,6 +70,10 @@ class Game extends Component {
   }
 
   openModal() {
+    let openSound = document.querySelector('.InventoryOpen');
+    openSound.currentTime = 0;
+    openSound.play();
+
     let modal = document.querySelector('.simpleModal-inventory');
     modal.style.display = "block";
     this.setState({
@@ -65,12 +82,24 @@ class Game extends Component {
   }
 
   closeModal() {
-   console.log('Hello I Should Be Closing')
+    let openSound = document.querySelector('.InventoryClose');
+    openSound.currentTime = 0;
+    openSound.play();
+
     let modal = document.querySelector('.simpleModal-inventory');
     modal.style.display = "none";
     this.setState({
       modalOpen: false
     })
+  }
+
+  handleShopEnter() {
+    let doorOpen = document.querySelector('.DoorOpen');
+    doorOpen.currentTime = 0;
+    doorOpen.play();
+    setTimeout(() => {
+      this.props.triggerShop();
+    }, 2000)
   }
 
   render() {
@@ -87,15 +116,19 @@ class Game extends Component {
             <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
             <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
-              <Inventory character_id={this.state.character_id} characterInfo={this.state.characterInfo}/>
-              <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1>
+              <Inventory character_id={this.state.character_id} />
+              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
             </div>
           </div>
         </div>
         <button className="Game-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
         <button onClick={this.props.triggerFight}>Fight</button>
         <button onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
-        <button onClick={this.props.triggerShop}>Shop</button>
+        <button onClick={(e) => this.handleShopEnter()}>Shop</button>
+        <audio className="GameTheme" src={GameTheme} />
+        <audio className="DoorOpen" src={DoorOpen} />
+        <audio className="InventoryOpen" src={InventoryOpen} />
+        <audio className="InventoryClose" src={InventoryClose} />
       </div>
     );
   }

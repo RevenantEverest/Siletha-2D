@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import services from '../../services/apiServices';
 
+//Audio Imports
+import BattleTheme from '../../public/sounds/EpicFantasyMusic-AncientAwakening.wav';
+import KnightAttack from '../../public/sounds/Effects/Weapons/SwordHitPlate';
+import WizardAttack from '../../public/sounds/Effects/Weapons/Fireball.wav';
+import ArcherAttack from '../../public/sounds/Effects/Weapons/ArrowShot';
+
+import EnemyAttack from '../../public/sounds/Effects/Weapons/AxeHitFlesh';
+
 let playerStates = [
   'Fight-player-avatar-knight-idle',
   'Fight-player-avatar-knight-attack',
@@ -37,6 +45,8 @@ class Fight extends Component {
 
       itemsRecieved: null,
       itemsRecievedName: null,
+
+      itemsNameRecieved: false,
 
       characterInfo: this.props.characterInfo,
       character_id: this.props.character_id
@@ -84,6 +94,14 @@ class Fight extends Component {
         })
       })
     }
+
+    this.playBattleTheme();
+  }
+
+  playBattleTheme() {
+    let theme = document.querySelector('.BattleTheme');
+    theme.currentTime = 0;
+    theme.play();
   }
 
   handleAttackOne() {
@@ -98,6 +116,7 @@ class Fight extends Component {
             enemyHealth: this.state.enemyHealth -= 50
           })
         }
+        this.playKnightAttack();
         setTimeout(() => {
           this.setState({
             playerState: this.state.playerStates[0]
@@ -116,6 +135,11 @@ class Fight extends Component {
             projectileState: this.state.playerStates[3],
             enemyHealth: this.state.enemyHealth -= 50
           })
+          if(this.state.characterInfo.class_id == 2) {
+            this.playWizardAttack();
+          }else if(this.state.characterInfo.class_id == 3) {
+            this.playArcherAttack();
+          }
         }
         setTimeout(() => {
           this.setState({
@@ -154,6 +178,7 @@ class Fight extends Component {
           enemyState: enemyStates[1],
           playerHealth: this.state.playerHealth -= 10
         })
+        this.playEnemyAttack();
       }
       setTimeout(() => {
         this.setState({
@@ -182,7 +207,8 @@ class Fight extends Component {
         itemsRecieved: result.data.data,
 
       })
-      this.getItemName()
+      console.log("Items gotten");
+      this.grantGold();
       this.grantExperience();
     })
     .catch(err => {
@@ -205,6 +231,21 @@ class Fight extends Component {
             victory: true
           })
         }, 1500)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  grantGold() {
+    let data = {
+      gold: 25,
+      character_id: this.state.character_id
+    }
+    services.getGold(data)
+      .then(results => {
+        console.log("Gold recieved");
+        this.getItemName()
       })
       .catch(err => {
         console.log(err);
@@ -329,10 +370,12 @@ class Fight extends Component {
     services.getItemName(this.state.itemsRecieved.item_id)
       .then(result => {
         this.setState({
-          itemsRecievedName: result.data.data
+          itemsRecievedName: result.data.data,
+          itemsNameRecieved: true
         })
       })
       .catch(err => {
+        console.log("Error here");
         console.log(err);
       })
   }
@@ -364,6 +407,31 @@ class Fight extends Component {
   RNG(int){
     let numGen = Math.floor(Math.random() * int);
     return numGen;
+  }
+
+  //Audio Functions
+  playKnightAttack() {
+    let sound = document.querySelector('.KnightAttack');
+    sound.currentTime = 0;
+    sound.play();
+  }
+
+  playWizardAttack() {
+    let sound = document.querySelector('.WizardAttack');
+    sound.currentTime = 0;
+    sound.play();
+  }
+
+  playArcherAttack() {
+    let sound = document.querySelector('.ArcherAttack');
+    sound.currentTime = 0;
+    sound.play();
+  }
+
+  playEnemyAttack() {
+    let sound = document.querySelector('.EnemyAttack');
+    sound.currentTime = 0;
+    sound.play();
   }
 
   render() {
@@ -411,8 +479,13 @@ class Fight extends Component {
         </div>
         {this.state.levelUp ? this.renderLevelUp() : ''}
         {this.state.enemyDefeated && !this.state.levelUp ? this.renderEnemyDefeated() : ''}
-        {this.state.victory && !this.state.levelUp ? this.renderVictory() : ''}
+        {this.state.itemsNameRecieved && !this.state.levelUp ? this.renderVictory() : ''}
         {this.state.defeat ? this.renderDefeat() : ''}
+        <audio className="BattleTheme" src={BattleTheme} />
+        <audio className="KnightAttack" src={KnightAttack} />
+        <audio className="WizardAttack" src={WizardAttack} />
+        <audio className="ArcherAttack" src={ArcherAttack} />
+        <audio className="EnemyAttack" src={EnemyAttack} />
       </div>
     );
   }

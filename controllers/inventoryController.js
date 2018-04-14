@@ -40,6 +40,19 @@ module.exports = {
       })
   },
 
+  getGold(req, res, next) {
+    inventoryDB.getGold(req.body)
+      .then(result => {
+        res.json({
+          message: "Gold rewarded",
+          data: result
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
   removeItem(req, res, next) {
     inventoryDB.deleteItem(req.body)
       .then(() => next())

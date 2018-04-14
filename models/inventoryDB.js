@@ -15,6 +15,14 @@ module.exports = {
     return db.one(`SELECT * FROM items WHERE item_id = $1`, id)
   },
 
+  getGold(data) {
+    return db.one(`UPDATE characters
+      SET
+      gold = gold + $/gold/
+      WHERE character_id = $/character_id/
+      RETURNING *`, data)
+  },
+
   deleteItem(data) {
     return db.none(`DELETE FROM inventory WHERE entry_id = $/entry_id/`, data)
   }

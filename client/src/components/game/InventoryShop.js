@@ -12,10 +12,19 @@ class InventoryShop extends Component {
       character_id: this.props.character_id
     }
     this.handleChange = this.handleChange.bind(this);
-    this.sellItem = this.sellItem.bind(this);
+    this.handleItemSell = this.handleItemSell.bind(this);
   }
 
   componentDidMount() {
+    services.getCharacterInfo(this.state.character_id)
+    .then(result => {
+      this.setState({
+        characterInfo: result.data.data
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
     services.getInventoryByCharacterId(this.state.character_id)
       .then(results => {
         this.setState({
@@ -31,15 +40,16 @@ class InventoryShop extends Component {
   renderInventory() {
     let InventoryShop = this.state.apiData.map((el, idx) => {
       return(
-        <div className="InventoryShop-contents">
+        <div className="InventoryShop-contents" key={idx}>
           <h3 className="InventoryShop-contents-item_name">{el.item_name}</h3>
           <h4 className="InventoryShop-contents-worth">Worth: {el.worth}</h4>
-          <form onSubmit={this.sellItem}>
+          <form onSubmit={this.handleItemSell}>
             <label>
               You sure you want to sell {el.item_name}?
               <input type="radio" name="entry_id" value={`${el.entry_id}`} onChange={this.handleChange} />
+              <input type="radio" name="worth" value={`${el.worth}`} onChange={this.handleChange} />
             </label>
-            <input type="submit" value="Sell Item"/>
+            <input type="submit" value="Sell Item" />
           </form>
         </div>
       );
@@ -47,7 +57,10 @@ class InventoryShop extends Component {
 
     return(
       <div className="InventoryShop-contents-container">
-        {InventoryShop}
+        <div className="InventoryShop-contents-inner-container">
+          {InventoryShop}
+        </div>
+        <h1 className="Inventory-shop-gold">Gold: {this.state.characterInfo.gold}</h1>
       </div>
     );
   }
@@ -63,18 +76,34 @@ class InventoryShop extends Component {
   handleItemSell(e) {
     e.preventDefault();
     let data = {
-      entrty_id: this.state.entry_id
+      entrty_id: this.state.entry_id,
+      gold: this.state.worth,
+      character_id: this.state.character_id
     }
-    //delete item from inventory
-    services.removeItem(data)
-      .then(results => {
-        this.getGoldFromSale()
+    console.log("data", data);
+    //recieve worth of that item sold
+    services.sellItem(data)
+      .then(result => {
+        this.removeItem(this.state.entry_id);
+        //play coin sound
       })
       .catch(err => {
         console.log(err);
       })
+    //delete item from inventory
+  }
 
-    //recieve worth of that item sold
+  removeItem() {
+    let data = {
+      entry_id: this.state.entry_id
+    }
+    services.removeItem(data)
+      .then(result => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+
+      })
   }
 
   handleItemBuy() {

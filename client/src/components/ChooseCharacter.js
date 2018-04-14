@@ -6,6 +6,9 @@ import services from '../services/apiServices';
 import CreateCharacter from './CreateCharacter';
 import Game from './game/Game';
 
+//Audio Imports
+import Tundra from '.././public/sounds/Tundra.flac';
+
 class ChooseCharacter extends Component {
 
   constructor(props) {
@@ -36,6 +39,13 @@ class ChooseCharacter extends Component {
       .catch(err => {
         console.log(err)
       })
+      this.playTundra();
+  }
+
+  playTundra() {
+    let theme = document.querySelector('.Tundra');
+    theme.currentTime = 0;
+    theme.play();
   }
 
   openModal() {
@@ -188,6 +198,7 @@ class ChooseCharacter extends Component {
                 <CreateCharacter userData={this.state.userData} createCharacter={this.createCharacter} />
               </div>
             </div>
+            <audio className="Tundra" src={Tundra} />
           </div>
         </Router>
       </div>

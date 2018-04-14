@@ -9,13 +9,25 @@ class Inventory extends Component {
       apiData: null,
       apiDataRecieved: false,
       character_id: this.props.character_id,
-      characterInfo: this.props.characterInfo
+      characterInfo: this.props.characterInfo,
+      characterInfoRecieved: false
     }
     this.removeItem = this.removeItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
+    services.getCharacterInfo(this.state.character_id)
+      .then(result => {
+        this.setState({
+          characterInfo: result.data.data,
+          characterInfoRecieved: true
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
     services.getInventoryByCharacterId(this.state.character_id)
       .then(result => {
         this.setState({
@@ -80,7 +92,10 @@ class Inventory extends Component {
   render() {
     return(
       <div className="Inventory">
-        {this.state.apiDataRecieved ? this.renderInventory() : ''}
+        <div className="Inventory-container">
+          {this.state.apiDataRecieved ? this.renderInventory() : ''}
+        </div>
+        {this.state.characterInfoRecieved ? <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> : ''}
       </div>
     );
   }
