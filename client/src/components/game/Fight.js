@@ -59,6 +59,12 @@ class Fight extends Component {
         this.setState({
           characterInfo: result.data.data
         })
+        if(result.data.data.health <= 0) {
+          this.setState({
+            playerState: this.state.playerStates[2],
+            defeat: true
+          })
+        }
       })
       .catch(err => {
         console.log(err);
@@ -114,6 +120,11 @@ class Fight extends Component {
     let theme = document.querySelector('.BattleTheme');
     theme.currentTime = 0;
     theme.play();
+  }
+
+  stopBattleTheme() {
+    let theme = document.querySelector('.BattleTheme');
+    theme.pause();
   }
 
   handleAttackOne() {
@@ -432,6 +443,7 @@ class Fight extends Component {
     this.setState({
       levelUp: true
     })
+    this.stopBattleTheme();
     this.playLevelUp();
     setTimeout(() => {
       this.setState({
@@ -485,6 +497,31 @@ class Fight extends Component {
       </div>
     );
   }
+
+  renderDefeat() {
+    return(
+      <div className="Fight-player-defeated-container">
+        <div className="Fight-player-defeated">
+        </div>
+        <button className="Fight-player-defeated-continue" onClick={(e) => this.handleDefeat()}>Continue</button>
+      </div>
+    );
+  }
+
+  handleDefeat() {
+    let data = {
+      health: 50,
+      character_id: this.state.character_id
+    }
+    services.useItem(data)
+      .then(result => {
+        this.props.triggerGame();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
 
   RNG(int){
     let numGen = Math.floor(Math.random() * int);

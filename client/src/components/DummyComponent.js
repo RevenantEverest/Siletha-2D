@@ -7,6 +7,7 @@ import ChooseCharacter from './ChooseCharacter';
 import Game from './game/Game';
 import Fight from './game/Fight';
 import Shop from './game/Shop';
+import Town from './game/Town';
 
 class DummyComponent extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class DummyComponent extends Component {
       renderGame: false,
       renderFight: false,
       renderShop: false,
+      renderTown: false,
       characterInfo: null,
       playerHealth: 100
     }
@@ -25,6 +27,7 @@ class DummyComponent extends Component {
     this.triggerGame = this.triggerGame.bind(this);
     this.triggerCharacterSelection = this.triggerCharacterSelection.bind(this);
     this.triggerShop = this.triggerShop.bind(this);
+    this.triggerTown = this.triggerTown.bind(this);
   }
 
   getCharacterInfo(id) {
@@ -65,6 +68,7 @@ class DummyComponent extends Component {
     this.setState({
       renderShop: false,
       renderFight: false,
+      renderTown: false,
       renderGame: true
     })
   }
@@ -74,6 +78,7 @@ class DummyComponent extends Component {
       renderShop: false,
       renderFight: false,
       renderGame: false,
+      renderTown: false,
       renderChooseCharacter: true
     })
   }
@@ -83,17 +88,29 @@ class DummyComponent extends Component {
       renderFight: false,
       renderGame: false,
       renderChooseCharacter: false,
+      renderTown: false,
       renderShop: true
     })
+  }
+
+  triggerTown() {
+      this.setState({
+        renderFight: false,
+        renderGame: false,
+        renderChooseCharacter: false,
+        renderShop: false,
+        renderTown: true
+      })
   }
 
   render() {
     return(
       <div>
         {this.state.renderChooseCharacter ? <ChooseCharacter userData={this.state.userData} setCharacter={this.setCharacter} /> : ''}
-        {this.state.renderGame ? <Game characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerFight={this.triggerFight} triggerCharacterSelection={this.triggerCharacterSelection} triggerShop={this.triggerShop} playerHealth={this.state.playerHealth} /> : ''}
+        {this.state.renderGame ? <Game characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerFight={this.triggerFight} triggerCharacterSelection={this.triggerCharacterSelection} triggerShop={this.triggerShop} triggerTown={this.triggerTown} playerHealth={this.state.playerHealth} /> : ''}
         {this.state.renderFight ? <Fight characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerGame={this.triggerGame} playerHealth={this.state.playerHealth} /> : ''}
         {this.state.renderShop ? <Shop characterInfo={this.state.characterInfo} character_id={this.state.character_id} triggerGame={this.triggerGame} /> : ''}
+        {this.state.renderTown ? <Town character_id={this.state.character_id} triggerGame={this.triggerGame} /> : ''}
       </div>
     );
   }

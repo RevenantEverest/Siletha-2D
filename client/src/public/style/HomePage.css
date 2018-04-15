@@ -276,23 +276,55 @@ label {
 .Game-Inventory-button {
     position: absolute;
     top: 75%;
-    left: 10%;
+    left: 7%;
     font-family: "Raleway", sans-serif;
-    font-weight: 800;
-    font-size: 24px;
-    border-radius: 20px;
-    padding: 0.5% 2% 0.5% 2%;
+    font-weight: 600;
+    font-size: 26px;
+    padding: 0.5% 2%;
+    border-radius: 24px;
+    border-style: none;
+    border-style: solid;
+    border-color: #dedede;
+    color: #dedede;
+    background-color: rgba(0,0,0,0.6);
 }
 
 .Game-shop-enter-trigger {
-    position: absolute;
-    top: 75%;
-    left: 22%;
-    font-family: "Raleway", sans-serif;
-    font-weight: 800;
-    font-size: 24px;
-    border-radius: 20px;
-    padding: 0.5% 2% 0.5% 2%;
+  position: absolute;
+  top: 75%;
+  left: 21%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  padding: 0.5% 2%;
+  border-radius: 24px;
+  border-style: none;
+  border-style: solid;
+  border-color: #dedede;
+  color: #dedede;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.Game-fight-trigger {
+  position: absolute;
+  top: 75%;
+  left: 32.5%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  padding: 0.5% 2%;
+  border-radius: 24px;
+  border-style: none;
+  border-style: solid;
+  border-color: #dedede;
+  color: #dedede;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.Game-Inventory-button:hover, .Game-shop-enter-trigger:hover, .Game-fight-trigger:hover {
+  border-style: solid;
+  border-color: orange;
+  font-weight: 800;
 }
 
 /*Knight*/
@@ -515,6 +547,21 @@ label {
 
 /*-------- END --------*/
 
+/*======== Town ========*/
+
+.Town {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../images/FantasyTown.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #dedede;
+  font-family: "Raleway", sans-serif;
+}
+
+/*-------- END --------*/
+
 /*======== Fight ========*/
 
 .Fight {
@@ -631,9 +678,9 @@ label {
 }
 
 .Fight-player-avatar-wizard-die {
-  height: 42vh;
+  height: 55vh;
   width: 30%;
-  top: 25%;
+  top: 20%;
   left: 10%;
   position: absolute;
   background-image: url(../images/WizardStates/WizardDie.gif);
@@ -770,6 +817,18 @@ label {
   background-repeat: no-repeat;
   background-size: 100%;
   animation: 2s linear blink;
+}
+
+.Fight-player-defeated {
+  height: 45vh;
+  width: 25%;
+  position: absolute;
+  left: 35%;
+  top: 25%;
+  background-image: url(../images/Defeat.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: 2s linear infinite blink;
 }
 
 /*-------- END --------*/
@@ -952,7 +1011,7 @@ label {
   background-color: #f4f4f4;
   margin: 10% auto;
   padding: 20px;
-  height: 46%;
+  height: 48%;
   width: 20%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
 }
@@ -1002,6 +1061,49 @@ label {
 
 .modalHeading-victory {
   color: black;
+}
+
+/*-------- END --------*/
+
+/*======== Quest Log Modal ========*/
+
+.simpleModal-questLog{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: .5s linear fadeIn;
+}
+
+.modalContent-questLog {
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  padding: 20px;
+  height: 48%;
+  width: 20%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+.modalHeading-questLog {
+  color: black;
+}
+
+.closeButton-questLog{
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+.closeButton-inventory:hover, .closeButton-inventory:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /*-------- END --------*/

@@ -12,6 +12,8 @@ class InventoryShop extends Component {
       apiData: null,
       apiDataRecieved: false,
 
+      blankInventory: false,
+
       character_id: this.props.character_id
     }
     this.handleChange = this.handleChange.bind(this);
@@ -24,20 +26,27 @@ class InventoryShop extends Component {
       this.setState({
         characterInfo: result.data.data
       })
+      setTimeout(() => {
+        services.getInventoryByCharacterId(this.state.character_id)
+          .then(results => {
+            this.setState({
+              blankInventory: false,
+              apiData: results.data.data,
+              apiDataRecieved: true
+            })
+          })
+          .catch(err => {
+            this.setState({
+              blankInventory: true
+            })
+            console.log(err);
+          })
+      }, 1000)
     })
     .catch(err => {
       console.log(err);
     })
-    services.getInventoryByCharacterId(this.state.character_id)
-      .then(results => {
-        this.setState({
-          apiData: results.data.data,
-          apiDataRecieved: true
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
+
   }
 
   renderInventory() {
@@ -64,6 +73,16 @@ class InventoryShop extends Component {
           {InventoryShop}
         </div>
         <h1 className="Inventory-shop-gold">Gold: {this.state.characterInfo.gold}</h1>
+      </div>
+    );
+  }
+
+  renderBlankInventory() {
+    return(
+      <div className="InventoryShop-contents-container">
+        <div className="InventoryShop-contents-inner-container">
+        </div>
+        <h1>Inventory Is Empty</h1>
       </div>
     );
   }
@@ -117,7 +136,7 @@ class InventoryShop extends Component {
   render() {
     return(
       <div className="InventoryShop">
-        {this.state.apiDataRecieved ? this.renderInventory() : ''}
+        {this.state.apiDataRecieved && !this.state.blankInventory ? this.renderInventory() : this.renderBlankInventory()}
         <audio className="Coins" src={Coins} />
       </div>
     );

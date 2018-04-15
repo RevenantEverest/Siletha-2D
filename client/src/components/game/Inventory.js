@@ -28,23 +28,24 @@ class Inventory extends Component {
           characterInfo: result.data.data,
           characterInfoRecieved: true
         })
+        setTimeout(() => {
+          services.getInventoryByCharacterId(this.state.character_id)
+            .then(result => {
+              this.setState({
+                apiData: result.data.data,
+                apiDataRecieved: true,
+                blankInventory: false
+              })
+            })
+            .catch(err => {
+              this.setState({
+                blankInventory: true
+              })
+              console.log(err);
+            })
+        }, 1000)
       })
       .catch(err => {
-        console.log(err);
-      })
-
-    services.getInventoryByCharacterId(this.state.character_id)
-      .then(result => {
-        this.setState({
-          apiData: result.data.data,
-          apiDataRecieved: true,
-          blankInventory: false
-        })
-      })
-      .catch(err => {
-        this.setState({
-          blankInventory: true
-        })
         console.log(err);
       })
   }
@@ -57,13 +58,6 @@ class Inventory extends Component {
               <div className="Inventory-contents-items">
                 <h1 className="Inventory-contents-items-name">{el.item_name}</h1>
                 <button className="Iventory-useItem" onClick={(e) => this.getItemId(el.entry_id)}>Use Item</button>
-                {/* <form className="Inventory-item-remove" onSubmit={this.removeItem}>
-                  <label className="Inventory-contents-items-label">
-                    Use item?
-                    <input type="radio" name="entry_id" value={`${el.entry_id}`} onChange={this.handleChange} />
-                  </label>
-                  <input className="Iventory-input-delete" type="submit" value="&times;" />
-                </form> */}
               </div>
             </li>
           </ul>
@@ -105,12 +99,18 @@ class Inventory extends Component {
     let data = {
       entry_id: entryId
     }
-    if(this.state.item_id[0].item_id == 14) {
-      console.log("If statement working");
+    if(this.state.item_id[0].item_id === 14) {
       services.removeItem(data)
       .then(() => {
-        console.log("Removed Item");
-        this.useItem();
+        this.useItem(20);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else if(this.state.item_id[0].item_id === 15) {
+      services.removeItem(data)
+      .then(() => {
+        this.useItem(50);
       })
       .catch(err => {
         console.log(err);
@@ -127,10 +127,10 @@ class Inventory extends Component {
     }
   }
 
-  useItem() {
+  useItem(int) {
     console.log("Use item being called");
     let data = {
-      health: 20,
+      health: int,
       character_id: this.state.character_id
     }
     services.useItem(data)
@@ -146,7 +146,7 @@ class Inventory extends Component {
   renderCannotUse() {
     if(!this.state.apiDataRecieved) {
       return(
-        <div className="Inventory-blank">
+        <div className="Inventory-contents">
         </div>
       );
     }else {

@@ -3,6 +3,7 @@ import services from '../../services/apiServices';
 
 import Grid from '../Grid';
 import Inventory from './Inventory';
+import QuestLog from './QuestLog';
 
 //Audio Imports
 import GameTheme from '../../public/sounds/dungeon';
@@ -54,7 +55,6 @@ class Game extends Component {
 
   playTheme() {
     let theme = document.querySelector('.GameTheme');
-    theme.currentTime = 0;
     theme.play();
   }
 
@@ -70,7 +70,7 @@ class Game extends Component {
     );
   }
 
-  openModal() {
+  openModalInventory() {
     let openSound = document.querySelector('.InventoryOpen');
     openSound.currentTime = 0;
     openSound.play();
@@ -82,12 +82,40 @@ class Game extends Component {
     })
   }
 
-  closeModal() {
+  closeModalInventory() {
     let openSound = document.querySelector('.InventoryClose');
     openSound.currentTime = 0;
     openSound.play();
 
+    this.componentDidMount();
+
     let modal = document.querySelector('.simpleModal-inventory');
+    modal.style.display = "none";
+    this.setState({
+      modalOpen: false
+    })
+  }
+
+  openModalQuestLog() {
+    let openSound = document.querySelector('.InventoryOpen');
+    openSound.currentTime = 0;
+    openSound.play();
+
+    let modal = document.querySelector('.simpleModal-questLog');
+    modal.style.display = "block";
+    this.setState({
+      modalOpen: true
+    })
+  }
+
+  closeModalQuestLog() {
+    let openSound = document.querySelector('.InventoryClose');
+    openSound.currentTime = 0;
+    openSound.play();
+
+    this.componentDidMount();
+
+    let modal = document.querySelector('.simpleModal-questLog');
     modal.style.display = "none";
     this.setState({
       modalOpen: false
@@ -114,7 +142,7 @@ class Game extends Component {
         {/* <Grid /> */}
         <div className="simpleModal-inventory">
           <div className="modalContent-inventory">
-            <span className="closeButton" onClick={(e) => this.closeModal()}>&times;</span>
+            <span className="closeButton" onClick={(e) => this.closeModalInventory()}>&times;</span>
             <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
               <Inventory character_id={this.state.character_id} />
@@ -122,10 +150,22 @@ class Game extends Component {
             </div>
           </div>
         </div>
-        <button className="Game-Inventory-button" onClick={(e) => this.openModal()}>Inventory</button>
+        <div className="simpleModal-questLog">
+          <div className="modalContent-questLog">
+            <span className="closeButton" onClick={(e) => this.closeModalQuestLog()}>&times;</span>
+            <h1 className="modalHeading-questLog">QuestLog</h1>
+            <div className="Game-questLog-container">
+              <QuestLog character_id={this.state.character_id} />
+              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
+            </div>
+          </div>
+        </div>
+        <button className="Game-Inventory-button" onClick={(e) => this.openModalInventory()}>Inventory</button>
+        <button className="Game-QuestLog-button" onClick={(e) => this.openModalQuestLog()}>Quest Log</button>
         <button className="Game-fight-trigger" onClick={this.props.triggerFight}>Fight</button>
         <button className="Game-character-selection-trigger" onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
         <button className="Game-shop-enter-trigger" onClick={(e) => this.handleShopEnter()}>Shop</button>
+        <button className="Game-town-enter-trigger" onClick={this.props.triggerTown}>Town</button>
 
         {/* Audio */}
         <audio className="GameTheme" src={GameTheme} />

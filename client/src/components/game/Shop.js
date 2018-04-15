@@ -20,7 +20,6 @@ class Shop extends Component {
       itemsStocked: false,
 
       cannotBuy: false,
-      canBuy: true,
 
       characterInfo: null,
       character_id: this.props.character_id
@@ -52,7 +51,7 @@ class Shop extends Component {
   }
 
   buyItemOne() {
-    if(this.state.characterInfo.gold >= 50 && this.state.canBuy) {
+    if(this.state.characterInfo.gold >= 50) {
       let data = {
         item_id: 14,
         character_id: this.state.character_id
@@ -61,11 +60,6 @@ class Shop extends Component {
         item_id: 14,
         canBuy: false
       })
-      setTimeout(() => {
-        this.setState({
-          canBuy: true
-        })
-      }, 2000)
 
       services.buyItem(data)
         .then(result => {
@@ -85,7 +79,8 @@ class Shop extends Component {
   }
 
   buyItemTwo() {
-    if(this.state.characterInfo.gold >= 80 && this.state.canBuy) {
+    console.log("Item 2");
+    if(this.state.characterInfo.gold >= 80) {
       let data = {
         item_id: 15,
         character_id: this.state.character_id
@@ -137,7 +132,7 @@ class Shop extends Component {
 
   renderCannotBuy() {
     return(
-      <div classname="Shop-cannot-buy">
+      <div className="Shop-cannot-buy">
         <h1 className="Shop-cannot-buy-h1">Not enough Gold</h1>
         {
           setTimeout(() => {

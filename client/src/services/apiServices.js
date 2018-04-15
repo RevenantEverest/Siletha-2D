@@ -173,4 +173,48 @@ services.removeGold = (data) => {
 
 /*-------- END --------*/
 
+/*======== Quests ========*/
+
+services.getQuests = (data) => {
+  return axios.get(`/quests`)
+};
+
+services.getQuestsById = (data) => {
+  return axios.get(`/quests/${data.quest_id}`)
+};
+
+services.getQuestLog = (data) => {
+  return axios({
+    method: 'GET',
+    url: '/quests/questLog',
+    data: {
+      character_id: data.character_id
+    }
+  })
+};
+
+services.addQuest = (data) => {
+  return axios({
+    method: 'POST',
+    url: '/quests/questLog',
+    data: {
+      character_id: data.character_id,
+      quest_id: data.quest_id,
+      requirements: data.requirements
+    }
+  })
+};
+
+services.abandonQuest = (data) => {
+  return axios({
+    method: 'DELETE',
+    url: '/quests/questLog',
+    data: {
+      entry_id: data.entry_id
+    }
+  })
+};
+
+/*-------- END --------*/
+
 export default services;

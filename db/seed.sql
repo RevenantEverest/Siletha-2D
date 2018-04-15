@@ -139,6 +139,16 @@ INSERT INTO items (item_name, item_type, worth) VALUES (
   20
 );
 
+INSERT INTO quests (quest_name, quest_obj, requirements) VALUES (
+  'Our Forests Are Not Safe',
+  'Kill 10 enemies',
+  10
+),(
+  'Stock up',
+  'Buy 5 potions from the shop',
+  5
+);
+
 INSERT INTO characters (user_id, name, class_id, experience, level, health, gold) VALUES (
   1,
   'Dragonborn',
