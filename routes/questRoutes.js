@@ -9,9 +9,15 @@ questRouter.route('/:id')
   .get(questController.getOne)
 
 questRouter.route('/questLog')
-  .get(questController.questLogIndex)
+  .put(questController.updateQuest)
   .post(questController.addQuest)
   .delete(questController.abandonQuest)
+
+questRouter.route('/questLog/:id')
+  .get(questController.questLogIndex)
+
+questRouter.route('/questLog/questInfo/:id')
+  .get(questController.getQuestInfo)
 
 questRouter.route('/questLog/complete')
   .put(questController.completeQuest)

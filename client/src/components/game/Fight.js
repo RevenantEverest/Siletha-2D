@@ -239,7 +239,8 @@ class Fight extends Component {
             this.setState({
               characterInfo: result.data.data
             }, () => {
-              this.itemReward()
+              this.itemReward();
+              this.checkForQuest();
             })
 
           })
@@ -251,7 +252,7 @@ class Fight extends Component {
       if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
         this.setState({
           enemyState: enemyStates[1],
-          damage: this.RNG(40)
+          damage: this.RNG(30)
         }, () => {
           this.playerTakeDamage()
         })
@@ -443,7 +444,6 @@ class Fight extends Component {
     this.setState({
       levelUp: true
     })
-    this.stopBattleTheme();
     this.playLevelUp();
     setTimeout(() => {
       this.setState({
@@ -454,6 +454,7 @@ class Fight extends Component {
 
   renderLevelUp() {
     console.log("Render Level Up");
+    this.stopBattleTheme();
     return(
       <div className="LevelUp">
       </div>
@@ -470,6 +471,33 @@ class Fight extends Component {
       })
       .catch(err => {
         console.log("Error here");
+        console.log(err);
+      })
+  }
+
+  checkForQuest() {
+    let data = {
+      character_id: this.state.character_id
+    }
+    services.getQuestLog(data)
+      .then(result => {
+        let questData = result.data.data;
+        console.log("Quest data", questData);
+        if(questData[0].quest_id === 1) {
+          let updateData = {
+            entry_id: questData[0].entry_id,
+            character_id: data.character_id
+          }
+          services.updateQuest(updateData)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        }
+      })
+      .catch(err => {
         console.log(err);
       })
   }

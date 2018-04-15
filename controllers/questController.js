@@ -29,11 +29,24 @@ module.exports = {
   },
 
   questLogIndex(req, res, next) {
-    questDB.findAllInQuestLog(req.body)
+    questDB.findQuestLog(req.params.id)
       .then(quests => {
         res.json({
           message: "Getting all in quest log",
           data: quests
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
+  getQuestInfo(req, res, next) {
+    questDB.getQuestInfo(req.params.id)
+      .then(quest => {
+        res.json({
+          message: "Getting quest info",
+          data: quest
         })
       })
       .catch(err => {
@@ -60,6 +73,19 @@ module.exports = {
         res.json({
           message: "Quest is complete",
           data: quest
+        })
+      })
+      .catch(err => {
+        next(err);
+      })
+  },
+
+  updateQuest(req, res, next) {
+    questDB.updateQuest(req.body)
+      .then(result => {
+        res.json({
+          message: "Updating quest",
+          data: result
         })
       })
       .catch(err => {

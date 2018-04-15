@@ -9,6 +9,9 @@ class Town extends Component {
       apiData: null,
       apiDataRecieved: false,
 
+      questLog: null,
+      questLogFull: false,
+
       characterInfo: null,
       character_id: this.props.character_id
     }
@@ -36,15 +39,32 @@ class Town extends Component {
         .catch(err => {
           console.log(err);
         })
+
+        let data = {
+            character_id: this.state.character_id
+        }
+
+        services.getQuestLog(data)
+          .then(result => {
+            console.log("Quest Log in Town", result);
+            this.setState({
+              questLog: result.data.data
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          })
   }
 
   renderNoticeBoard() {
     let NoticeBoard = this.state.apiData.map((el, idx) => {
+      console.log(el);
       return(
-        <div className="Town-noticeBoard-contents">
+        <div className="Town-noticeBoard-contents" key={idx}>
           <h1>{el.quest_name}</h1>
           <h3>{el.quest_obj}</h3>
           <h3>Requirements: {el.requirements}</h3>
+          <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>
         </div>
       );
     })
@@ -58,11 +78,47 @@ class Town extends Component {
     );
   }
 
+  handleAcceptQuest(id) {
+    if(Array.isArray(this.state.questLog)) {
+      this.setState({
+        questLogFull: true
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            questLogFull: false
+          })
+        }, 2000)
+      })
+    }else {
+      let data = {
+        quest_id: id,
+        character_id: this.state.character_id,
+        requirements: 0
+      }
+      services.addQuest(data)
+        .then(result => {
+          console.log("Adding quest", result)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }
+
+  renderQuestLogFull() {
+    return(
+      <div className="Town-questLogFull">
+        <h1 className="Town-questLogFull-h1">Can't accept quest, Quest Log is full</h1>
+      </div>
+    );
+  }
+
   render() {
     return(
       <div className="Town">
         <button onClick={this.props.triggerGame}>Back to Game</button>
         {this.state.apiDataRecieved ? this.renderNoticeBoard() : ''}
+        {this.state.questLogFull ? this.renderQuestLogFull() : ''}
       </div>
     );
   }

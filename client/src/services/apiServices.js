@@ -79,7 +79,6 @@ services.deleteCharacter = (data) => {
 /*======== Inventory ========*/
 
 services.getInventoryByCharacterId = (data) => {
-  console.log('apiServices =>', data);
   return axios.get(`/inventory/${data}`)
 };
 
@@ -184,13 +183,11 @@ services.getQuestsById = (data) => {
 };
 
 services.getQuestLog = (data) => {
-  return axios({
-    method: 'GET',
-    url: '/quests/questLog',
-    data: {
-      character_id: data.character_id
-    }
-  })
+  return axios.get(`/quests/questLog/${data.character_id}`)
+};
+
+services.getQuestInfo = (data) => {
+  return axios.get(`/quests/questLog/questInfo/${data.character_id}`)
 };
 
 services.addQuest = (data) => {
@@ -201,6 +198,17 @@ services.addQuest = (data) => {
       character_id: data.character_id,
       quest_id: data.quest_id,
       requirements: data.requirements
+    }
+  })
+};
+
+services.updateQuest = (data) => {
+  return axios({
+    method: 'PUT',
+    url: '/quests/questLog',
+    data: {
+      entry_id: data.entry_id,
+      character_id: data.character_id
     }
   })
 };

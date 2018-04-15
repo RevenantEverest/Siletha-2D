@@ -10,8 +10,15 @@ module.exports = {
     return db.one(`SELECT * FROM quests WHERE quest_id = $1`, id)
   },
 
-  findAllInQuestLog(questLog) {
-    return db.many(`SELECT * FROM questLog WHERE character_id = $/character_id/ RETURNING *`, questLog)
+  findQuestLog(id) {
+    return db.many(`SELECT * FROM questLog WHERE character_id = $1`, id)
+  },
+
+  getQuestInfo(id) {
+    return db.many(`SELECT * FROM questLog
+      JOIN quests
+      ON questLog.quest_id = quests.quest_id
+      WHERE character_id = $1`, id)
   },
 
   addQuest(character) {

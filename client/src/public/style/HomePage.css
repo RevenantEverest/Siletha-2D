@@ -586,6 +586,22 @@ label {
 
 /*-------- END --------*/
 
+/*======== Quest Log ========*/
+
+.QuestLog-container {
+  color: black;
+}
+
+.QuestLog-contents-container {
+  height: 35vh;
+  overflow-y: scroll;
+  border-style: double;
+  border-color: black;
+  border-width: thick;
+}
+
+/*-------- END --------*/
+
 /*======== Fight ========*/
 
 .Fight {
