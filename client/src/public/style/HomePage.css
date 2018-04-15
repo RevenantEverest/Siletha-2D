@@ -560,6 +560,30 @@ label {
   font-family: "Raleway", sans-serif;
 }
 
+.Town-noticeBoard-container {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  height: 80vh;
+  width: 50%;
+  background-image: url(../images/NoticeBoardPaper.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 26px;
+  color: black;
+  border-color: black;
+  border-style: solid;
+  border-width: thick;
+}
+
+.Town-noticeBoard-contents-Container {
+  margin-top: 2%;
+}
+
+.Town-noticeBoard-contents {
+  padding: 1% 8%;
+}
+
 /*-------- END --------*/
 
 /*======== Fight ========*/

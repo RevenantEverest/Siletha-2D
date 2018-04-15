@@ -27,6 +27,7 @@ class Town extends Component {
 
       services.getQuests()
         .then(result => {
+          console.log("Quest Data", result.data.data);
           this.setState({
             apiData: result.data.data,
             apiDataRecieved: true
@@ -49,8 +50,10 @@ class Town extends Component {
     })
 
     return(
-      <div className="Town-noticeBoard-container">\
-        {NoticeBoard}
+      <div className="Town-noticeBoard-container">
+        <div className="Town-noticeBoard-contents-Container">
+          {NoticeBoard}
+        </div>
       </div>
     );
   }
@@ -59,7 +62,7 @@ class Town extends Component {
     return(
       <div className="Town">
         <button onClick={this.props.triggerGame}>Back to Game</button>
-        {this.apiDataRecieved ? this.renderNoticeBoard() : ''}
+        {this.state.apiDataRecieved ? this.renderNoticeBoard() : ''}
       </div>
     );
   }
