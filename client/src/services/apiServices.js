@@ -213,6 +213,16 @@ services.updateQuest = (data) => {
   })
 };
 
+services.completeQuest = (data) => {
+  return axios({
+    method: 'PUT',
+    url: '/quests/questLog/complete',
+    data: {
+      entry_id: data.entry_id
+    }
+  })
+};
+
 services.abandonQuest = (data) => {
   return axios({
     method: 'DELETE',

@@ -8,6 +8,11 @@ import Game from './game/Game';
 
 //Audio Imports
 import Tundra from '.././public/sounds/Tundra.flac';
+import ButtonPress from '.././public/sounds/buttonPress';
+
+import Fireball from '.././public/sounds/Effects/Weapons/Fireball.wav';
+import Sword from '.././public/sounds/Effects/UI/Sword.wav';
+import Arrow from '.././public/sounds/Effects/Weapons/ArrowShot';
 
 class ChooseCharacter extends Component {
 
@@ -45,6 +50,26 @@ class ChooseCharacter extends Component {
   playTundra() {
     let theme = document.querySelector('.Tundra');
     theme.play();
+  }
+
+  playButtonPress() {
+    let sound = document.querySelector('.ButtonPress');
+    sound.play();
+  }
+
+  playSword() {
+    let sound = document.querySelector('.Sword');
+    sound.play();
+  }
+
+  playFireball() {
+    let sound = document.querySelector('.Fireball');
+    sound.play();
+  }
+
+  playArrow() {
+    let sound = document.querySelector('.Arrow');
+    sound.play();
   }
 
   openModal() {
@@ -156,14 +181,17 @@ class ChooseCharacter extends Component {
 
   displayAvatar() {
     if(this.state.characterInfo.class_id == 1) {
+      this.playSword();
       this.setState({
         characterAvatar: 'Game-avatar-knight'
       })
     }else if(this.state.characterInfo.class_id == 2) {
+      this.playFireball();
       this.setState({
         characterAvatar: 'Game-avatar-wizard'
       })
     }else if(this.state.characterInfo.class_id == 3) {
+      this.playArrow();
       this.setState({
         characterAvatar: 'Game-avatar-archer'
       })
@@ -171,8 +199,11 @@ class ChooseCharacter extends Component {
   }
 
   handlePlayButton() {
-    let character_id = parseInt(this.state.character_id, 10)
-    this.props.setCharacter(character_id)
+    this.playButtonPress();
+    setTimeout(() => {
+      let character_id = parseInt(this.state.character_id, 10)
+      this.props.setCharacter(character_id)
+    }, 2000)
   }
 
   createCharacter() {
@@ -198,6 +229,10 @@ class ChooseCharacter extends Component {
               </div>
             </div>
             <audio className="Tundra" src={Tundra} />
+            <audio className="ButtonPress" src={ButtonPress} />
+            <audio className="Sword" src={Sword} />
+            <audio className="Fireball" src={Fireball} />
+            <audio className="Arrow" src={Arrow} />
           </div>
         </Router>
       </div>

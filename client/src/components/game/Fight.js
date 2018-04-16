@@ -70,6 +70,12 @@ class Fight extends Component {
         console.log(err);
       })
 
+    if(this.state.enemyHealth <- 0) {
+      this.setState({
+        enemyHealth: 0
+      })
+    }
+
     if(this.state.characterInfo.class_id == 1) {
       this.setState({
         playerStates: [
@@ -118,7 +124,6 @@ class Fight extends Component {
 
   playBattleTheme() {
     let theme = document.querySelector('.BattleTheme');
-    theme.currentTime = 0;
     theme.play();
   }
 
@@ -136,7 +141,7 @@ class Fight extends Component {
         if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
           this.setState({
             playerState: this.state.playerStates[1],
-            enemyHealth: this.state.enemyHealth -= 10
+            enemyHealth: this.state.enemyHealth -= this.RNG(40) //Attack one damage output if Knight
           })
         }
         this.playKnightAttack();
@@ -156,7 +161,7 @@ class Fight extends Component {
           this.setState({
             playerState: this.state.playerStates[1],
             projectileState: this.state.playerStates[3],
-            enemyHealth: this.state.enemyHealth -= 10
+            enemyHealth: this.state.enemyHealth -= this.RNG(40) //Attack One damage output if Wizard or Archer
           })
           if(this.state.characterInfo.class_id == 2) {
             this.playWizardAttack();
@@ -184,7 +189,7 @@ class Fight extends Component {
         if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
           this.setState({
             playerState: this.state.playerStates[1],
-            enemyHealth: this.state.enemyHealth -= 30
+            enemyHealth: this.state.enemyHealth -= this.RNG(40) //Attack two damage output if Knight
           }, () => {
             setTimeout(() => {
               this.setState({
@@ -206,7 +211,7 @@ class Fight extends Component {
           this.setState({
             playerState: this.state.playerStates[1],
             projectileState: this.state.playerStates[4],
-            enemyHealth: this.state.enemyHealth -= 30
+            enemyHealth: this.state.enemyHealth -= this.RNG(40) //Attack two damage output if Wizard or Archer
           }, () => {
             setTimeout(() => {
               this.setState({
@@ -346,11 +351,21 @@ class Fight extends Component {
   }
 
   checkForLevelUp() {
+    let data = {
+      character_id: this.state.character_id,
+      health: 100
+    }
+
     if(this.state.characterInfo.experience === 300 && this.state.characterInfo.level === 1) {
-      console.log("Level 2");
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up');
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
           this.levelUp();
         })
         .catch(err => {
@@ -359,7 +374,13 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 600 && this.state.characterInfo.level === 2) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up');
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
           this.levelUp();
         })
         .catch(err => {
@@ -368,7 +389,13 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 900 && this.state.characterInfo.level === 3) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up');
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
           this.levelUp();
         })
         .catch(err => {
@@ -377,7 +404,13 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 1200 && this.state.characterInfo.level === 4) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up');
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
           this.levelUp();
         })
         .catch(err => {
@@ -386,7 +419,13 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 1500 && this.state.characterInfo.level === 5) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up');
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
           this.levelUp();
         })
         .catch(err => {
@@ -395,8 +434,14 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 1800 && this.state.characterInfo.level === 6) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up')
-          this.levelUp()
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          this.levelUp();
         })
         .catch(err => {
           console.log(err);
@@ -404,8 +449,14 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 2100 && this.state.characterInfo.level === 7) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up')
-          this.levelUp()
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          this.levelUp();
         })
         .catch(err => {
           console.log(err);
@@ -413,8 +464,14 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 2400 && this.state.characterInfo.level === 8) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up')
-          this.levelUp()
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          this.levelUp();
         })
         .catch(err => {
           console.log(err);
@@ -422,8 +479,14 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 2700 && this.state.characterInfo.level === 9) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up')
-          this.levelUp()
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          this.levelUp();
         })
         .catch(err => {
           console.log(err);
@@ -431,8 +494,14 @@ class Fight extends Component {
     }else if(this.state.characterInfo.experience === 3000 && this.state.characterInfo.level === 10) {
       services.levelUp(this.state.character_id)
         .then(result => {
-          console.log('level up')
-          this.levelUp()
+          services.useItem(data)
+            .then(result => {
+
+            })
+            .catch(err => {
+              console.log(err);
+            })
+          this.levelUp();
         })
         .catch(err => {
           console.log(err);
@@ -481,21 +550,35 @@ class Fight extends Component {
     }
     services.getQuestLog(data)
       .then(result => {
-        let questData = result.data.data;
-        console.log("Quest data", questData);
-        if(questData[0].quest_id === 1) {
-          let updateData = {
-            entry_id: questData[0].entry_id,
-            character_id: data.character_id
-          }
-          services.updateQuest(updateData)
-            .then(result => {
+        this.setState({
+          questData: result.data.data
+        })
+        services.getQuestInfo(data)
+          .then(result => {
+            this.setState({
+              questInfo: result.data.data
+            })
+            if(this.state.questData[0].iscomplete) {
 
-            })
-            .catch(err => {
-              console.log(err);
-            })
-        }
+            }else {
+              if(this.state.questData[0].quest_id === 1) {
+                let updateData = {
+                  entry_id: this.state.questData[0].entry_id,
+                  character_id: data.character_id
+                }
+                services.updateQuest(updateData)
+                  .then(result => {
+
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+              }
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
       })
       .catch(err => {
         console.log(err);
@@ -538,7 +621,7 @@ class Fight extends Component {
 
   handleDefeat() {
     let data = {
-      health: 50,
+      health: 80,
       character_id: this.state.character_id
     }
     services.useItem(data)
@@ -630,14 +713,14 @@ class Fight extends Component {
           {/* Player Health */}
           <div className="Fight-healthBars-player-healthBar-container">
             <div className="Fight-healthBar-player-healthBar">
-              <h1>{this.state.characterInfo.health}</h1>
+              <h1 className="Fight-player-health">Health: {this.state.characterInfo.health}</h1>
             </div>
           </div>
 
           {/* Enemy Health */}
           <div className="Fight-healthBar-enemy-healthBar-container">
             <div className="Fight-healthBar-enemy-healthBar">
-              <h1>{this.state.enemyHealth}</h1>
+              <h1 className="Fight-enemy-health">Enemy Health: {this.state.enemyHealth}</h1>
             </div>
           </div>
 
@@ -670,7 +753,6 @@ class Fight extends Component {
             <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
               <Inventory character_id={this.state.character_id} />
-              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
             </div>
           </div>
         </div>

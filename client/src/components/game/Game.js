@@ -11,6 +11,8 @@ import DoorOpen from '../../public/sounds/Effects/UI/doorOpen_2.ogg';
 import InventoryOpen from '../../public/sounds/Effects/UI/cloth1.ogg';
 import InventoryClose from '../../public/sounds/Effects/UI/cloth2.ogg';
 
+import ButtonPress from '../../public/sounds/buttonPress';
+
 
 class Game extends Component {
 
@@ -113,22 +115,33 @@ class Game extends Component {
     openSound.currentTime = 0;
     openSound.play();
 
-    this.componentDidMount();
 
     let modal = document.querySelector('.simpleModal-questLog');
     modal.style.display = "none";
     this.setState({
       modalOpen: false
     })
+    this.componentDidMount();
   }
 
   handleShopEnter() {
     let doorOpen = document.querySelector('.DoorOpen');
     doorOpen.currentTime = 0;
+    doorOpen.volume = 0.5;
     doorOpen.play();
     setTimeout(() => {
       this.props.triggerShop();
     }, 2000)
+  }
+
+  handleTownEnter() {
+    let sound = document.querySelector('.ButtonPress');
+
+    sound.currentTime = 0;
+    sound.play();
+    setTimeout(() => {
+      this.props.triggerTown();
+    }, 1000)
   }
 
   render() {
@@ -146,7 +159,6 @@ class Game extends Component {
             <h1 className="modalHeading-inventory">Inventory</h1>
             <div className="Game-Inventory-container">
               <Inventory character_id={this.state.character_id} />
-              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
             </div>
           </div>
         </div>
@@ -156,7 +168,6 @@ class Game extends Component {
             <h1 className="modalHeading-questLog">QuestLog</h1>
             <div className="Game-questLog-container">
               <QuestLog character_id={this.state.character_id} />
-              {/* <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> */}
             </div>
           </div>
         </div>
@@ -165,13 +176,14 @@ class Game extends Component {
         <button className="Game-fight-trigger" onClick={this.props.triggerFight}>Fight</button>
         <button className="Game-character-selection-trigger" onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
         <button className="Game-shop-enter-trigger" onClick={(e) => this.handleShopEnter()}>Shop</button>
-        <button className="Game-town-enter-trigger" onClick={this.props.triggerTown}>Town</button>
+        <button className="Game-town-enter-trigger" onClick={(e) => this.handleTownEnter()}>Town</button>
 
         {/* Audio */}
         <audio className="GameTheme" src={GameTheme} />
         <audio className="DoorOpen" src={DoorOpen} />
         <audio className="InventoryOpen" src={InventoryOpen} />
         <audio className="InventoryClose" src={InventoryClose} />
+        <audio className="ButtonPress" src={ButtonPress} />
       </div>
     );
   }

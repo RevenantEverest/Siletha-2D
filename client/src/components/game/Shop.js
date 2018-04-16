@@ -33,6 +33,18 @@ class Shop extends Component {
           characterInfo: results.data.data,
           itemsStocked: true
         })
+        let data = {
+          character_id: this.state.character_id
+        }
+        services.getQuestLog(data)
+          .then(result => {
+            this.setState({
+              questLog: result.data.data
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          })
       })
       .catch(err => {
         console.log(err);
@@ -67,6 +79,19 @@ class Shop extends Component {
           setTimeout(() => {
             this.takeGold(50);
           }, 1000);
+          if(this.state.questLog[0].quest_id ==2 && this.state.questLog[0].requirements < 5) {
+            let questData = {
+              entry_id: this.state.questLog[0].entry_id,
+              character_id: this.state.character_id
+            }
+            services.updateQuest(questData)
+              .then(result => {
+
+              })
+              .catch(err => {
+                console.log(err);
+              })
+          }
         })
         .catch(err => {
           console.log(err);
@@ -147,6 +172,7 @@ class Shop extends Component {
 
   handleExit() {
     let doorClose = document.querySelector('.DoorClose');
+    doorClose.volume = 0.5;
     doorClose.currentTime = 0;
     doorClose.play();
     setTimeout(() => {

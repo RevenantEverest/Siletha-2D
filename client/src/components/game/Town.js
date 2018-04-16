@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import services from '../../services/apiServices';
 
+//Audio Imports
+import MarketAmbient from '../../public/sounds/Town/MarketAmbient.mp3';
+import City from '../../public/sounds/Town/City.mp3';
+import AcceptQuest from '../../public/sounds/Town/AcceptQuest.mp3';
+
 class Town extends Component {
 
   constructor(props) {
@@ -11,6 +16,7 @@ class Town extends Component {
 
       questLog: null,
       questLogFull: false,
+      questLogRecieved: false,
 
       characterInfo: null,
       character_id: this.props.character_id
@@ -35,6 +41,17 @@ class Town extends Component {
             apiData: result.data.data,
             apiDataRecieved: true
           })
+          services.getQuestLog(data)
+            .then(result => {
+              console.log("Quest Log in Town", result);
+              this.setState({
+                questLog: result.data.data,
+                questLogRecieved: true
+              })
+            })
+            .catch(err => {
+              console.log(err);
+            })
         })
         .catch(err => {
           console.log(err);
@@ -44,38 +61,51 @@ class Town extends Component {
             character_id: this.state.character_id
         }
 
-        services.getQuestLog(data)
-          .then(result => {
-            console.log("Quest Log in Town", result);
-            this.setState({
-              questLog: result.data.data
-            })
-          })
-          .catch(err => {
-            console.log(err);
-          })
+      this.playMarket();
   }
 
   renderNoticeBoard() {
-    let NoticeBoard = this.state.apiData.map((el, idx) => {
-      console.log(el);
+    if(this.state.questLogRecieved) {
+      let NoticeBoard = this.state.apiData.map((el, idx) => {
+        console.log(el);
+        return(
+          <div className="Town-noticeBoard-contents" key={idx}>
+            <h1>{el.quest_name}</h1>
+            <h3>{el.quest_obj}</h3>
+            <h3>Requirements: {el.requirements}</h3>
+            {this.state.questLog[0].quest_id == el.quest_id ? <h4>You canlready have this quest</h4> : <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>}
+          </div>
+        );
+      })
+
       return(
-        <div className="Town-noticeBoard-contents" key={idx}>
-          <h1>{el.quest_name}</h1>
-          <h3>{el.quest_obj}</h3>
-          <h3>Requirements: {el.requirements}</h3>
-          <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>
+        <div className="Town-noticeBoard-container">
+          <div className="Town-noticeBoard-contents-Container">
+            {NoticeBoard}
+          </div>
         </div>
       );
-    })
+    }else {
+      let NoticeBoard = this.state.apiData.map((el, idx) => {
+        console.log(el);
+        return(
+          <div className="Town-noticeBoard-contents" key={idx}>
+            <h1>{el.quest_name}</h1>
+            <h3>{el.quest_obj}</h3>
+            <h3>Requirements: {el.requirements}</h3>
+            <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>
+          </div>
+        );
+      })
 
-    return(
-      <div className="Town-noticeBoard-container">
-        <div className="Town-noticeBoard-contents-Container">
-          {NoticeBoard}
+      return(
+        <div className="Town-noticeBoard-container">
+          <div className="Town-noticeBoard-contents-Container">
+            {NoticeBoard}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   handleAcceptQuest(id) {
@@ -97,12 +127,30 @@ class Town extends Component {
       }
       services.addQuest(data)
         .then(result => {
-          console.log("Adding quest", result)
+          console.log("Adding quest", result);
+          this.playAcceptQuest();
+          this.componentDidMount();
         })
         .catch(err => {
           console.log(err);
         })
     }
+  }
+
+  playMarket() {
+    let city = document.querySelector('.City');
+    let market = document.querySelector('.MarketAmbient');
+
+    market.volume = 0.2;
+    market.play();
+    city.play()
+  }
+
+  playAcceptQuest() {
+    let sound = document.querySelector('.AcceptQuest');
+
+    sound.currentTime = 0;
+    sound.play();
   }
 
   renderQuestLogFull() {
@@ -119,6 +167,9 @@ class Town extends Component {
         <button onClick={this.props.triggerGame}>Back to Game</button>
         {this.state.apiDataRecieved ? this.renderNoticeBoard() : ''}
         {this.state.questLogFull ? this.renderQuestLogFull() : ''}
+        <audio className="MarketAmbient" src={MarketAmbient} />
+        <audio className="City" src={City} />
+        <audio className="AcceptQuest" src={AcceptQuest} />
       </div>
     );
   }

@@ -629,6 +629,11 @@ label {
   top: 50%;
 }
 
+.Fight-player-defeated-continue {
+  position: absolute;
+  top: 40%;
+}
+
 /*======== Fight: PLAYER ONE ========*/
 .Fight-player-attacks-container {
   position: absolute;
