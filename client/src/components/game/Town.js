@@ -164,7 +164,7 @@ class Town extends Component {
   render() {
     return(
       <div className="Town">
-        <button onClick={this.props.triggerGame}>Back to Game</button>
+        <button className="Town-leave-town" onClick={this.props.triggerGame}>Leave Town</button>
         {this.state.apiDataRecieved ? this.renderNoticeBoard() : ''}
         {this.state.questLogFull ? this.renderQuestLogFull() : ''}
         <audio className="MarketAmbient" src={MarketAmbient} />
