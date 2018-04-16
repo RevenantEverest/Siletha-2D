@@ -13,6 +13,8 @@ class QuestLog extends Component {
       apiDataRecieved: false,
 
       questLog: null,
+      questCompleteItemReward: false,
+      questCompleteGoldReward: false,
 
       characterInfo: null,
       character_id: this.props.character_id
@@ -40,18 +42,18 @@ class QuestLog extends Component {
                   apiData: result.data.data,
                   apiDataRecieved: true
                 })
-                if(this.state.questLog[0].requirements === this.state.apiData[0].requirements) {
+                if(this.state.questLog[0].requirements >= this.state.apiData[0].requirements && !this.state.questLog[0].iscomplete) {
                   let questData = {
                     entry_id: this.state.questLog[0].entry_id
                   }
                   services.completeQuest(questData)
                     .then(result => {
                       console.log("Complete Quest", result);
+                      this.componentDidMount();
                     })
                     .catch(err => {
                       console.log(err);
                     })
-                }else {
                 }
               })
               .catch(err => {
@@ -84,7 +86,18 @@ class QuestLog extends Component {
             .then(result => {
               this.playCompleteQuest();
               console.log("Item reward");
-              this.componentDidMount();
+              this.setState({
+                itemsRecieved: result.data.data
+              }, () => {
+                services.getItemName(this.state.itemsRecieved.item_id)
+                  .then(result => {
+                    this.setState({
+                      itemName: result.data.data,
+                      questCompleteItemReward: true
+                    })
+                    this.componentDidMount();
+                  })
+              })
             })
             .catch(err => {
               console.log(err);
@@ -98,7 +111,10 @@ class QuestLog extends Component {
           services.getGold(goldReward)
             .then(result => {
               this.playCompleteQuest();
-              console.log("gold reward");
+              this.setState({
+                goldReward: result.data.data,
+                questCompleteGoldReward: true
+              })
               this.componentDidMount();
             })
             .catch(err => {
@@ -106,6 +122,21 @@ class QuestLog extends Component {
             })
         }
 
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleAbandonQuest() {
+    let data = {
+      entry_id: this.state.questLog[0].entry_id
+    }
+    services.abandonQuest(data)
+      .then(result => {
+        this.setState({
+          
+        })
       })
       .catch(err => {
         console.log(err);
@@ -121,7 +152,7 @@ class QuestLog extends Component {
           <h1>{el.quest_name}</h1>
           <h3>{el.quest_obj}</h3>
           <h3>Requirements Met: {this.state.questLog[0].requirements} / {el.requirements}</h3>
-          {this.state.questLog[0].iscomplete ? <button onClick={(e) => this.handleTurnIn()}>Turn In</button> : ''}
+          {this.state.questLog[0].iscomplete ? <button onClick={(e) => this.handleTurnIn()}>Turn In</button> : <button onClick={(e) => this.handleAbandonQuest()}>Abandon Quest</button>}
         </div>
       );
     })
@@ -133,6 +164,52 @@ class QuestLog extends Component {
         </div>
       </div>
     );
+  }
+
+  renderBlankQuestLog() {
+    return(
+      <div className="QuestLog-container">
+        <div className="QuestLog-contents-container">
+          <h3 className="QuestLog-contents-noQuests">No Active Quests <br></br> Visit the town for new quests</h3>
+        </div>
+      </div>
+    );
+  }
+
+  renderQuestCompleteItemReward() {
+    let blankQuest = document.querySelector('.QuestLog-container');
+    blankQuest.style.display = "None"
+    return(
+      <div className="QuestLog-questComplete">
+        <div className="QuestLog-container">
+          <h3>Quest Complete! <br></br> You are rewarded with: </h3>
+          <h4>{this.state.itemName.item_name}</h4>
+          <button onClick={(e) => this.handleContinue()}>Continue</button>
+        </div>
+      </div>
+    );
+  }
+
+  renderQuestCompleteGoldReward() {
+    let blankQuest = document.querySelector('.QuestLog-container');
+    blankQuest.style.display = "None"
+    return(
+      <div className="QuestLog-questComplete">
+        <div className="QuestLog-container">
+          <h3>Quest Complete! <br></br> You are rewarded with: </h3>
+          <h4>{this.state.goldReward} Gold</h4>
+          <button onClick={(e) => this.handleContinue()}>Continue</button>
+        </div>
+      </div>
+    );
+  }
+
+  handleContinue() {
+    this.setState({
+      questCompleteGoldReward: false,
+      questCompleteItemReward: false
+    })
+    this.componentDidMount();
   }
 
   RNG(int){
@@ -150,7 +227,9 @@ class QuestLog extends Component {
   render() {
     return(
       <div className="QuestLog">
-        {this.state.apiDataRecieved ? this.renderQuestLog() : ''}
+        {this.state.apiDataRecieved && !this.state.questCompleteItemReward && !this.state.questCompleteGoldReward ? this.renderQuestLog() : this.renderBlankQuestLog()}
+        {this.state.questCompleteItemReward ? this.renderQuestCompleteItemReward() : ''}
+        {this.state.questCompleteGoldReward ? this.renderQuestCompleteGoldReward() : ''}
         <audio className="CompleteQuest" src={CompleteQuest} />
       </div>
     );

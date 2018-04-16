@@ -115,13 +115,13 @@ class Game extends Component {
     openSound.currentTime = 0;
     openSound.play();
 
+    this.componentDidMount();
 
     let modal = document.querySelector('.simpleModal-questLog');
     modal.style.display = "none";
     this.setState({
       modalOpen: false
     })
-    this.componentDidMount();
   }
 
   handleShopEnter() {
@@ -142,6 +142,18 @@ class Game extends Component {
     setTimeout(() => {
       this.props.triggerTown();
     }, 1000)
+  }
+
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    // document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    // document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
   }
 
   render() {
@@ -171,12 +183,32 @@ class Game extends Component {
             </div>
           </div>
         </div>
-        <button className="Game-Inventory-button" onClick={(e) => this.openModalInventory()}>Inventory</button>
-        <button className="Game-QuestLog-button" onClick={(e) => this.openModalQuestLog()}>Quest Log</button>
-        <button className="Game-fight-trigger" onClick={this.props.triggerFight}>Fight</button>
-        <button className="Game-character-selection-trigger" onClick={this.props.triggerCharacterSelection}>Back to Character Selection</button>
-        <button className="Game-shop-enter-trigger" onClick={(e) => this.handleShopEnter()}>Shop</button>
-        <button className="Game-town-enter-trigger" onClick={(e) => this.handleTownEnter()}>Town</button>
+        <div id="mySidenav" class="sidenav">
+          <div className="closebtn" onClick={(e) => this.closeNav()}>&times;</div>
+          <a onClick={(e) => this.openModalInventory()}>Inventory</a>
+          <br></br>
+          <a onClick={(e) => this.openModalQuestLog()}>Quest Log</a>
+          <br></br>
+          <a onClick={(e) => this.handleShopEnter()}>Shop</a>
+          <br></br>
+          <a onClick={(e) => this.handleTownEnter()}>Town</a>
+          <br></br>
+          <a onClick={this.props.triggerFight}>Fight</a>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <a onClick={this.props.triggerCharacterSelection}>Back to Character Selection</a>
+        </div>
+
+        {/* <a className="Game-Inventory-button" onClick={(e) => this.openModalInventory()}>Inventory</a>
+        <a className="Game-QuestLog-button" onClick={(e) => this.openModalQuestLog()}>Quest Log</a>
+        <a className="Game-fight-trigger" onClick={this.props.triggerFight}>Fight</a>
+        <a className="Game-character-selection-trigger" onClick={this.props.triggerCharacterSelection}>Back to Character Selection</a>
+        <a className="Game-shop-enter-trigger" onClick={(e) => this.handleShopEnter()}>Shop</a>
+        <a className="Game-town-enter-trigger" onClick={(e) => this.handleTownEnter()}>Town</a> */}
+
+        <button className="Game-menu-button" onClick={(e) => this.openNav()}>Menu</button>
 
         {/* Audio */}
         <audio className="GameTheme" src={GameTheme} />

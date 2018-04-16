@@ -169,8 +169,8 @@ class Inventory extends Component {
     return(
       <div className="Inventory">
         <div className="Inventory-container">
-          {this.state.apiDataRecieved && !this.state.cannotUse ? this.renderInventory() : this.renderCannotUse()}
           {!this.state.apiDataRecieved && this.state.blankInventory ? this.renderBlankInventory() : ''}
+          {this.state.apiDataRecieved && !this.state.cannotUse ? this.renderInventory() : this.renderCannotUse()}
         </div>
         {this.state.characterInfoRecieved ? <h1 className="Gold">Gold: {this.state.characterInfo.gold}</h1> : ''}
         <audio className="BottleDrink" src={BottleDrink} />

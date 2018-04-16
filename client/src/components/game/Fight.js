@@ -592,8 +592,9 @@ class Fight extends Component {
           <h1 className="modalHeading-inventory">Recieved</h1>
           <div className="Fight-victory-container">
             <div className="Fight-victory-contents">
-              <h3 className="Fight-victory-contents-expGained">Exp Gained: 100</h3>
-              <h3 className="Fight-victory-contents-itemName">{this.state.itemsRecievedName.item_name}</h3>
+              <h2 className="Fight-victory-contents-expGained">Exp Gained: 100</h2>
+              <h3 className="Fight-victory-contents-itemName">Recieved Item: {this.state.itemsRecievedName.item_name}</h3>
+              <h3 className="Fight-victory-contents-gold">Gold Recieved: 25</h3>
             </div>
           </div>
           <button className="Fight-continue-button" onClick={this.props.triggerGame}>Continue</button>
