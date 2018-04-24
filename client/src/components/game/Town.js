@@ -73,7 +73,7 @@ class Town extends Component {
             <h1>{el.quest_name}</h1>
             <h3>{el.quest_obj}</h3>
             <h3>Requirements: {el.requirements}</h3>
-            {this.state.questLog[0].quest_id == el.quest_id ? <h4>You canlready have this quest</h4> : <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>}
+            {this.state.questLog[0].quest_id == el.quest_id ? <h4>You already have this quest</h4> : <button className="Town-noticeBoard-contents-acceptQuest" onClick={(e) => this.handleAcceptQuest(el.quest_id)}>Accept Quest</button>}
           </div>
         );
       })

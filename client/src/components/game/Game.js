@@ -183,7 +183,7 @@ class Game extends Component {
             </div>
           </div>
         </div>
-        <div id="mySidenav" class="sidenav">
+        <div id="mySidenav" className="sidenav">
           <div className="closebtn" onClick={(e) => this.closeNav()}>&times;</div>
           <a onClick={(e) => this.openModalInventory()}>Inventory</a>
           <br></br>

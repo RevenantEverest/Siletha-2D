@@ -257,7 +257,7 @@ class Fight extends Component {
       if(this.state.enemyHealth > 0 && this.state.characterInfo.health > 0) {
         this.setState({
           enemyState: enemyStates[1],
-          damage: this.RNG(30)
+          damage: this.RNG(20)
         }, () => {
           this.playerTakeDamage()
         })
